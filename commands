@@ -1,0 +1,17 @@
+// php artisan serve
+// php artisan migrate
+// php artisan migrate:fresh --seed
+// php artisan make:controller AdminController
+// php artisan r:l shows all the routes
+// php artisan make:middleware EnsureTokenIsValid
+// 'frameworks'=>'required|array|min:2|max:3'
+// 'cv'=>'required|mimes:doc,docx,pdf|max:1024',
+
+// birth_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// 'passport_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// 'fathers_id_card_front' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// 'fathers_id_card_back' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// 'mothers_id_card_front' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// 'mothers_id_card_back' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// $cv_name = 'CV_'.$this->cv->getClientOriginalName();
+// $upload_cv = $this->cv->storeAs('students_cvs', $cv_name);
