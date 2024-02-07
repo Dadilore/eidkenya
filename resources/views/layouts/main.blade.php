@@ -66,8 +66,13 @@
           <li><a class="nav-link scrollto" href="{{route('requirements')}}">Requirements</a></li>
           <li><a class="nav-link scrollto" href="#">About us</a></li>        
           <!-- <li><a class="nav-link scrollto" href="#">News and Updates</a></li> -->
+          @guest
           <li><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
-          <li><a class="nav-link scrollto" href="{{ route('register') }}">Register</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('register') }}">Register</a></li>  
+          @else
+          <li><a class="nav-link scrollto" href="{{ route('dashboard') }}">{{ Auth::user()->name }}</a></li>            
+          @endguest
+          
           <!-- <li class="dropdown"><a href="#"><span>user</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
