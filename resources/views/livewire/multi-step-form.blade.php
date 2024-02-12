@@ -15,7 +15,7 @@
 
             <div class="step-one" id="1">
                 <div class="card shadow_lg">
-                <div class="card-header bg-primary "><h2>STEP1/5 - INSTRUCTIONS AND REQUIREMENTS</h2></div>
+                <div class="card-header bg-primary "><h2 class="mt-5">STEP1/5 - INSTRUCTIONS AND REQUIREMENTS</h2></div>
                     <div class="card-body">
                         <div class="row">
                         <div class="card">
@@ -65,7 +65,7 @@
                                                     <div class="icon-box ">
                                                 
                                                     <h4><a href="#">Fee Payment</a></h4>
-                                                    <p>A money order of CAD 70 payable to Kenya High Commissiom</p>
+                                                    <p>A money order of ksh 1000 payable to Kenya High Commissiom</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,7 +110,7 @@
                                                 <div class="icon-box ">
                                             
                                                 <h4><a href="#">Fee Payment</a></h4>
-                                                <p>A money order of CAD 70 payable to Kenya High Commissiom</p>
+                                                <p>A money order of ksh 2000 payable to Kenya High Commissiom</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                                 <div class="icon-box ">
                                             
                                                 <h4><a href="#">Fee Payment</a></h4>
-                                                <p>A money order of CAD 70 payable to Kenya High Commissiom</p>
+                                                <p>A money order of ksh 2000 payable to Kenya High Commissiom</p>
                                                 </div>
                                             </div>
                                             <!-- <div class="col-md-6 mt-4 mt-md-0">
@@ -182,7 +182,7 @@
 
             <div class="step-one" id="1">
                 <div class="card shadow_lg">
-                <div class="card-header bg-primary "><H2>STEP2/5 - PERSONAL DETAILS</H2></div>
+                <div class="card-header bg-primary "><H2 class="mt-5">STEP2/5 - PERSONAL DETAILS</H2></div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -275,7 +275,7 @@
 
             <div class="step-two" id="2">
                 <div class="card">
-                    <div class="card-header bg-primary "><H2>Step3/5 - BIRTHPLACES AND LOCATIONS</H2></div>
+                    <div class="card-header bg-primary "><H2 class="mt-5">Step3/5 - BIRTHPLACES AND LOCATIONS</H2></div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -374,7 +374,7 @@
 
                     <div class="step-three" id="3">
                         <div class="card">
-                            <div class="card-header bg-primary "><H2>STEP4/5 - DOCUMENTS IN SUPPORT OF APPLICATION. SELECT WHERE APPLICABLE</H2></div>
+                            <div class="card-header bg-primary "><H2 class="mt-5">STEP4/5 - DOCUMENTS IN SUPPORT OF APPLICATION. SELECT WHERE APPLICABLE</H2></div>
                             <div class="card-body">
                                 <div class="frameworks d-flex flex-column align-items-left mt-2" >
 
@@ -424,7 +424,7 @@
             
             <div class="step-four" id="5">
                 <div class="card">
-                    <div class="card-header bg-secondary ">STEP 5/5 - ATTACHMENTS</div>
+                    <div class="card-header bg-primary "><h3 class="mt-5">STEP 5/5 - ATTACHMENTS</h3></div>
                     <div class="card-body">
                         upload scanned images of the following
                         <div class="row">                                
@@ -472,13 +472,6 @@
                                     </div>
                                 </div>
                                 
-                            </div>
-
-                            <div class="form-group">
-                                <label for="terms" class="d-block">
-                                <input type="checkbox" id="terms" wire:model="terms"> you must agree with our <a href="#">terms and conditions</a> 
-                                </label>
-                                <span class="text-danger">@error('terms'){{ $message }}@enderror</span>
                             </div>
                     </div>
                 </div>

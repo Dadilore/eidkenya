@@ -16,7 +16,7 @@
 				<h1 class="fw-bold text-gray-800 mb-5">Select your Application</h1>
 				<!--end::Title-->
 				
-				<!-- ======= Services Section ======= -->
+				<!-- ======= application type ======= -->
 				<section id="services" class="services" style="margin-bottom:50px;">
 						<div class="row">
 
@@ -48,7 +48,8 @@
 							</div>
 
 						</div>
-				</section><!-- End Services Section -->
+				</section>
+				<!-- End application type -->
 
 
 

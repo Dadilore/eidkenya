@@ -55,10 +55,16 @@
             <div class="icon-box shadow">
               <i class="bi bi-cash-stack"></i>
               <h4><a href="#">Fee Payment</a></h4>
-              <p>A money order of CAD 70 payable to Kenya High Commissiom</p>
+              <p>A money order of ksh 1000 payable to Kenya High Commissiom</p>
             </div>
           </div>
-          
+          <div class="col-md-6 mt-4 mt-md-0">
+            <div class="icon-box shadow">
+              <i class="bi bi-cash-stack"></i>
+              <h4><a href="#">Proof of citizenship</a></h4>
+              <p>Copy of Kenyan Identity card for parent/parents</p>
+            </div>
+          </div>
 
       </div>
     </section><!-- End Services Section -->
@@ -104,7 +110,7 @@
             <div class="icon-box shadow">
               <i class="bi bi-cash-stack"></i>
               <h4><a href="#">Fee Payment</a></h4>
-              <p>A money order of CAD 70 payable to Kenya High Commissiom</p>
+              <p>A money order of ksh 2000 payable to Kenya High Commissiom</p>
             </div>
           </div>
 
@@ -145,7 +151,7 @@
             <div class="icon-box shadow">
               <i class="bi bi-cash-stack"></i>
               <h4><a href="#">Fee Payment</a></h4>
-              <p>A money order of CAD 70 payable to Kenya High Commissiom</p>
+              <p>A money order of ksh 2000 payable to Kenya High Commissiom</p>
             </div>
           </div>
           <!-- <div class="col-md-6 mt-4 mt-md-0">
