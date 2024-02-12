@@ -7,11 +7,14 @@ use Livewire\WithFileUploads;
 use App\Models\Birthplaces;
 use App\Models\PersonalDetails;
 use App\Models\Documents;
+use App\http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
 class MultiStepForm extends Component
 {
     use WithFileUploads;
 
+    public $user_id;
     public $full_names;
     public $date_of_birth;
     public $gender;
@@ -46,12 +49,13 @@ class MultiStepForm extends Component
     public $mothers_id_card_back;
     public $terms;
 
-    public $totalSteps = 4;
+    public $totalSteps = 5;
     public $currentStep = 1;
 
     public function mount()
     {
         $this->currentStep = 1;
+        $this->user_id = Auth::user()->id;
     }
 
     public function render()
@@ -63,6 +67,7 @@ class MultiStepForm extends Component
     {
         $this->resetErrorBag();
         $this->validateData();
+        $this->user_id ;
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
             $this->currentStep = $this->totalSteps;
@@ -80,7 +85,7 @@ class MultiStepForm extends Component
 
     public function validateData()
     {
-        // // Add your validation rules here
+        // Add your validation rules here
         // if ($this->currentStep == 1) {
         //     $this->validate([
         //         'full_names' => 'required|string',
@@ -89,8 +94,6 @@ class MultiStepForm extends Component
         //         'fathers_name' => 'required|string',
         //         'mothers_name' => 'required|string',
         //         'marital_status' => 'required',
-        //         'husbands_names' => 'required|string',
-        //         'husbands_id_number' => 'required|string',
         //         'occupation' => 'required|string',
         //         'telephone_number' => 'required',
         //         'email' => 'required|email',
@@ -110,10 +113,18 @@ class MultiStepForm extends Component
         //     ]);
         // } elseif ($this->currentStep == 3) {
         //     $this->validate([
-        //         'birth_certificate_number' => 'required|string',
-        //         'passport_number' => 'required|string',
-        //         'parents_id_number' => 'required',
-        //         'certificate_of_registration_number' => 'required|string',
+        //         'birth_certificate_number' => 'string',
+        //         'passport_number' => 'string',
+        //         'parents_id_number' => 'string',
+        //         'certificate_of_registration_number' => 'string',
+        //     ]);
+        // } elseif ($this->currentStep == 4) {
+        //     $this->validate([
+        //         'birth_certificate' => 'required|string',
+        //         'fathers_id_card_front' => 'required|string',
+        //         'fathers_id_card_back' => 'required',
+        //         'mothers_id_card_front' => 'required|string',
+        //         'mothers_id_card_back' => 'required|string',
         //     ]);
         // }
     }
@@ -123,8 +134,11 @@ class MultiStepForm extends Component
         $this->resetErrorBag();
 
         if ($this->currentStep == 4) {
+            $user = Auth::user(); // Get the authenticated user
+
             // Insert into personal_details table
             PersonalDetails::create([
+                'user_id' => $this->user_id,
                 'full_names' => $this->full_names,
                 'date_of_birth' => $this->date_of_birth,
                 'gender' => $this->gender,
@@ -141,6 +155,7 @@ class MultiStepForm extends Component
 
             // Insert into birthplaces table
             Birthplaces::create([
+                'user_id' => $this->user_id,
                 'district_of_birth' => $this->district_of_birth,
                 'tribe' => $this->tribe,
                 'clan' => $this->clan,
@@ -157,6 +172,7 @@ class MultiStepForm extends Component
 
             // Insert into documents table
             $document = Documents::create([
+                'user_id' => $this->user_id,
                 'birth_certificate_number' => $this->birth_certificate_number,
                 'passport_number' => $this->passport_number,
                 'parents_id_number' => $this->parents_id_number,
@@ -204,5 +220,6 @@ class MultiStepForm extends Component
         if ($this->currentStep > $this->totalSteps) {
             $this->currentStep = $this->totalSteps;
         }
+         session()->flash('success', 'Application submitted successfully. Proceed to payment.');
     }
 }

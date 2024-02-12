@@ -12,7 +12,7 @@
             <h1>eID <span>Kenya</span></h1><br>
             <h2>Apply for your Kenyan ID card conveniently and securely online!</h2>
             <div class="d-flex">
-                <a href="#" class="btn-get-started scrollto">Apply Now</a>
+                <a href="{{ route('login') }}" class="btn-get-started scrollto">Apply Now</a>
             </div>
         </div>
     </section><!-- End Hero -->

@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/images/logo/logo.png" rel="icon">
+  <link href="{{ asset ('assets/images/logo/logo.png') }}" rel="icon">
   <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -29,6 +29,8 @@
 
   <!-- bootstrap stuff -->
   <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('sass/app.scss') }}">
   
 </head>
 

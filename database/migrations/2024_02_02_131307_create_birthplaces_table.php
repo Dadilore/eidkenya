@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('birthplaces', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('district_of_birth')->nullable();
             $table->string('tribe')->nullable();
             $table->string('clan')->nullable();
@@ -23,8 +24,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('sub_location')->nullable();
             $table->string('village')->nullable();
-            $table->string('home_address')->nullable();
-            // $table->foreignId('user_id')->constrained();
+            $table->string('home_address')->nullable(); 
             $table->timestamps();
         });
     }

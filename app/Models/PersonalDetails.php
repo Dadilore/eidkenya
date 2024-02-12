@@ -9,6 +9,7 @@ class PersonalDetails extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+    protected $foreignKey = 'user_id';
     public $timestamps = false;
 
     protected $fillable = [

@@ -13,6 +13,7 @@ return new class extends Migration
         {
             Schema::create('personal_details', function (Blueprint $table) {
                 $table->id();
+                $table->foreignId('user_id')->constrained();
                 $table->string('full_names')->nullable();
                 $table->string('date_of_birth')->nullable();
                 $table->string('gender')->nullable();
@@ -24,7 +25,6 @@ return new class extends Migration
                 $table->string('occupation')->nullable();
                 $table->string('telephone_number')->nullable();
                 $table->string('email')->nullable();
-                // $table->foreignId('user_id')->constrained();
                 $table->timestamps();
             });
         }
