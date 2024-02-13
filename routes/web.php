@@ -33,15 +33,20 @@ Route::get('/applications', function () {
 })->name('applications');
 
 // payment routes
-Route::get('/pay', [PayController::class, 'stk']);
+// Route::get('/pay', [PayController::class, 'stk']);
 
-Route::get('/payment', function () {
-    return view('payment');
-})->name('payment');
+Route::get('/pay', [PayController::class, 'stk'])->name('pay.stk');
+
+
 
 Route::get('/application', function () {
     return view('modules.application');
 })->name('application');
+
+Route::get('/payment', function () {
+    return view('modules.payment');
+})->name('payment');
+
 
 Route::post('get-token', [MPESAController::class, 'getAccessToken']);
 

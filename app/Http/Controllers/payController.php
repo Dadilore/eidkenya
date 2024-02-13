@@ -37,6 +37,11 @@ class payController extends Controller
         $Remarks
  );
 
-     dd($stkPushSimulation);
+    
+    //  $stkPushSimulation
   }
 }
+
+
+//consumer key: FxTLq8Fn5v6HAgFmd1ay8yXgTZhFwL6B1gTQDSvEOYGpOzzb
+// consumer secret: LfdYSSeFR2CFX6RCv2aXLT7lDu6ylTxGadHMjwNbHC1tIN8wfv73vSCA4sJia09a

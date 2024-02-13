@@ -2,11 +2,14 @@
 
 
 <div>
-    @if (session()->has('success'))
+        @if (session()->has('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+                <a href="{{route('payment')}}"><button type="" class="btn btn-md btn-primary" >Proceed to Payment</button></a>
             </div>
         @endif
+
+        
         <form action="get"  wire:submit.prevent="register" enctype="multipart/form-data" >
             @csrf
             {{-- STEP 1 --}}
@@ -15,7 +18,7 @@
 
             <div class="step-one" id="1">
                 <div class="card shadow_lg">
-                <div class="card-header bg-primary "><h2 class="mt-5">STEP1/5 - INSTRUCTIONS AND REQUIREMENTS</h2></div>
+                <div class="card-header bg-primary "><h2 class="mt-5">STEP1/6 - INSTRUCTIONS AND REQUIREMENTS</h2></div>
                     <div class="card-body">
                         <div class="row">
                         <div class="card">
@@ -180,9 +183,9 @@
 
             @if ($currentStep == 2)
 
-            <div class="step-one" id="1">
+            <div class="step-one" id="2">
                 <div class="card shadow_lg">
-                <div class="card-header bg-primary "><H2 class="mt-5">STEP2/5 - PERSONAL DETAILS</H2></div>
+                <div class="card-header bg-primary "><H2 class="mt-5">STEP2/6 - PERSONAL DETAILS</H2></div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -273,9 +276,9 @@
 
             @if ($currentStep == 3)
 
-            <div class="step-two" id="2">
+            <div class="step-two" id="3">
                 <div class="card">
-                    <div class="card-header bg-primary "><H2 class="mt-5">Step3/5 - BIRTHPLACES AND LOCATIONS</H2></div>
+                    <div class="card-header bg-primary "><H2 class="mt-5">Step3/6 - BIRTHPLACES AND LOCATIONS</H2></div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -372,9 +375,9 @@
 
             @if ($currentStep == 4)
 
-                    <div class="step-three" id="3">
+                    <div class="step-three" id="4">
                         <div class="card">
-                            <div class="card-header bg-primary "><H2 class="mt-5">STEP4/5 - DOCUMENTS IN SUPPORT OF APPLICATION. SELECT WHERE APPLICABLE</H2></div>
+                            <div class="card-header bg-primary "><H2 class="mt-5">STEP4/6 - DOCUMENTS IN SUPPORT OF APPLICATION. SELECT WHERE APPLICABLE</H2></div>
                             <div class="card-body">
                                 <div class="frameworks d-flex flex-column align-items-left mt-2" >
 
@@ -422,9 +425,9 @@
                 {{-- STEP 5 --}}
                 @if ($currentStep == 5)
             
-            <div class="step-four" id="5">
+            <div class="step-five" id="5">
                 <div class="card">
-                    <div class="card-header bg-primary "><h3 class="mt-5">STEP 5/5 - ATTACHMENTS</h3></div>
+                    <div class="card-header bg-primary "><h3 class="mt-5">STEP 5/6 - ATTACHMENTS</h3></div>
                     <div class="card-body">
                         upload scanned images of the following
                         <div class="row">                                
@@ -478,21 +481,25 @@
             </div>
             @endif
 
-            <div class="action-buttons d-flex justify-content-between bg-white pt-3 pb-2 mb-5 shadow_lg">
-            @if ($currentStep == 1)
-                    @endif
 
-                    @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4|| $currentStep == 5)
+            
+
+            <div class="action-buttons d-flex justify-content-between bg-white pt-3 pb-2 mb-5 shadow_lg">
+            
+
+                    @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5 )
                         <button type="button" class="btn btn-md btn-secondary" wire:click="decreaseStep()">Back</button>
                     @endif
                     
-                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3|| $currentStep == 4)
+                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3 || $currentStep == 4)
                         <button type="button" class="btn btn-md btn-success" wire:click="increaseStep()">Next</button>
                     @endif
                     
                     @if ($currentStep == 5)
                         <button type="submit" class="btn btn-md btn-primary">Submit</button>
                     @endif
+
+                    
             </div>
 
 

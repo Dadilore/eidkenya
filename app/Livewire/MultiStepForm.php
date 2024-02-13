@@ -49,7 +49,7 @@ class MultiStepForm extends Component
     public $mothers_id_card_back;
     public $terms;
 
-    public $totalSteps = 5;
+    public $totalSteps = 6;
     public $currentStep = 1;
 
     public function mount()
@@ -214,6 +214,8 @@ class MultiStepForm extends Component
                 // ... (Similar logic for other images)
             }
         }
+
+        
 
         // Move to the next step
         $this->currentStep++;
