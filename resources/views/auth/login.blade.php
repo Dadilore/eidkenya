@@ -21,8 +21,8 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-		<link href="{{ asset ('admin/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset ('admin/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset ('user/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset ('user/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 		<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
 	</head>
@@ -35,15 +35,15 @@
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root" id="kt_app_root">
 			<!--begin::Authentication - Sign-in -->
-			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
+			<div class="d-flex flex-column flex-lg-row flex-column-fluid ">
 				<!--begin::Body-->
-				<div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">
+				<div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1 ">
 					<!--begin::Form-->
-					<div class="d-flex flex-center flex-column flex-lg-row-fluid">
+					<div class="d-flex flex-center flex-column flex-lg-row-fluid ">
 						<!--begin::Wrapper-->
-						<div class="w-lg-500px p-10">
+						<div class="w-lg-500px p-10 ">
 							<!--begin::Form-->
-							<form class="form w-100" method="POST" action="{{ route('login') }}">
+							<form class="form w-100 " method="POST" action="{{ route('login') }}">
 							@csrf
 								<!--begin::Heading-->
 								<div class="text-center mb-11">
@@ -111,7 +111,7 @@
 						<div class="me-10">
 							<!--begin::Toggle-->
 							<button class="btn btn-flex btn-link btn-color-gray-700 btn-active-color-primary rotate fs-base" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-offset="0px, 0px">
-								<img data-kt-element="current-lang-flag" class="w-20px h-20px rounded me-3" src="{{ asset ('admin/media/flags/united-states.svg') }}" alt="" />
+								<img data-kt-element="current-lang-flag" class="w-20px h-20px rounded me-3" src="{{ asset ('user/media/flags/united-states.svg') }}" alt="" />
 								<span data-kt-element="current-lang-name" class="me-1">English</span>
 								<span class="d-flex flex-center rotate-180">
 									<i class="ki-outline ki-down fs-5 text-muted m-0"></i>
@@ -124,7 +124,7 @@
 								<div class="menu-item px-3">
 									<a href="#" class="menu-link d-flex px-5" data-kt-lang="English">
 										<span class="symbol symbol-20px me-4">
-											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('admin/media/flags/united-states.svg') }}" alt="" />
+											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('user/media/flags/united-states.svg') }}" alt="" />
 										</span>
 										<span data-kt-element="lang-name">English</span>
 									</a>
@@ -134,7 +134,7 @@
 								<div class="menu-item px-3">
 									<a href="#" class="menu-link d-flex px-5" data-kt-lang="Spanish">
 										<span class="symbol symbol-20px me-4">
-											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('admin/media/flags/spain.svg') }}" alt="" />
+											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('user/media/flags/spain.svg') }}" alt="" />
 										</span>
 										<span data-kt-element="lang-name">Spanish</span>
 									</a>
@@ -144,7 +144,7 @@
 								<div class="menu-item px-3">
 									<a href="#" class="menu-link d-flex px-5" data-kt-lang="German">
 										<span class="symbol symbol-20px me-4">
-											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('admin/media/flags/germany.svg') }}" alt="" />
+											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('user/media/flags/germany.svg') }}" alt="" />
 										</span>
 										<span data-kt-element="lang-name">German</span>
 									</a>
@@ -154,7 +154,7 @@
 								<div class="menu-item px-3">
 									<a href="#" class="menu-link d-flex px-5" data-kt-lang="Japanese">
 										<span class="symbol symbol-20px me-4">
-											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('admin/media/flags/japan.svg') }}" alt="" />
+											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('user/media/flags/japan.svg') }}" alt="" />
 										</span>
 										<span data-kt-element="lang-name">Japanese</span>
 									</a>
@@ -164,7 +164,7 @@
 								<div class="menu-item px-3">
 									<a href="#" class="menu-link d-flex px-5" data-kt-lang="French">
 										<span class="symbol symbol-20px me-4">
-											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('admin/media/flags/france.svg') }}" alt="" />
+											<img data-kt-element="lang-flag" class="rounded-1" src="{{ asset ('user/media/flags/france.svg') }}" alt="" />
 										</span>
 										<span data-kt-element="lang-name">French</span>
 									</a>
@@ -195,7 +195,7 @@
 						</a>
 						<!--end::Logo-->
 						<!--begin::Image-->
-						<img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="{{ asset ('admin/media/misc/auth-screens.png') }}" alt="" />
+						<img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="{{ asset ('user/media/misc/auth-screens.png') }}" alt="" />
 						<!--end::Image-->
 						<!--begin::Title-->
 						<h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">Fast, Efficient and Productive</h1>
@@ -212,18 +212,18 @@
 		
 		
 		<!--begin::Javascript-->
-		<script>var hostUrl = "{{ asset ('admin/') }}";</script>
+		<script>var hostUrl = "{{ asset ('user/') }}";</script>
 		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
-		<script src="{{ asset ('admin/plugins/global/plugins.bundle.js') }}"></script>
-		<script src="{{ asset ('admin/js/scripts.bundle.js') }}"></script>
+		<script src="{{ asset ('user/plugins/global/plugins.bundle.js') }}"></script>
+		<script src="{{ asset ('user/js/scripts.bundle.js') }}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Custom Javascript(used for this page only)-->
-		<script src="{{ asset ('admin/js/custom/authentication/sign-in/general.js') }}"></script>
-		<script src="{{ asset ('admin/js/custom/utilities/modals/create-campaign.js') }}"></script>
-		<script src="{{ asset ('admin/js/custom/utilities/modals/new-target.js') }}"></script>
-		<script src="{{ asset ('admin/js/custom/utilities/modals/new-card.js') }}"></script>
-		<script src="{{ asset ('admin/js/custom/utilities/modals/bidding.js') }}"></script>
-		<script src="{{ asset ('admin/js/custom/utilities/modals/top-up-wallet.js') }}"></script>
+		<script src="{{ asset ('user/js/custom/authentication/sign-in/general.js') }}"></script>
+		<script src="{{ asset ('user/js/custom/utilities/modals/create-campaign.js') }}"></script>
+		<script src="{{ asset ('user/js/custom/utilities/modals/new-target.js') }}"></script>
+		<script src="{{ asset ('user/js/custom/utilities/modals/new-card.js') }}"></script>
+		<script src="{{ asset ('user/js/custom/utilities/modals/bidding.js') }}"></script>
+		<script src="{{ asset ('user/js/custom/utilities/modals/top-up-wallet.js') }}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

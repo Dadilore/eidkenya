@@ -13,6 +13,7 @@ class PersonalDetails extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'full_names',
         'date_of_birth',
         'gender',

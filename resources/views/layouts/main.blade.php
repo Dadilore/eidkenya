@@ -64,7 +64,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{ route ('home') }}">Home</a></li>
-          <li><a class="nav-link scrollto" href="{{route('applications')}}">Apply for ID</a></li>
+          <!-- <li><a class="nav-link scrollto" href="{{route('applications')}}">Apply for ID</a></li> -->
           <li><a class="nav-link scrollto" href="{{route('requirements')}}">Requirements</a></li>
           <li><a class="nav-link scrollto" href="#">About us</a></li>        
           <!-- <li><a class="nav-link scrollto" href="#">News and Updates</a></li> -->

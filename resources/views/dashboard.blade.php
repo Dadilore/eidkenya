@@ -1,5 +1,5 @@
 @extends('includes.main')
-@section('pageTitle', 'Home')
+@section('pageTitle', 'Admin Dshboard')
 @section('content')
 
 			

@@ -56,6 +56,7 @@ class MultiStepForm extends Component
     {
         $this->currentStep = 1;
         $this->user_id = Auth::user()->id;
+
     }
 
     public function render()
@@ -67,7 +68,8 @@ class MultiStepForm extends Component
     {
         $this->resetErrorBag();
         $this->validateData();
-        $this->user_id ;
+
+
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
             $this->currentStep = $this->totalSteps;
@@ -133,8 +135,7 @@ class MultiStepForm extends Component
     {
         $this->resetErrorBag();
 
-        if ($this->currentStep == 4) {
-            $user = Auth::user(); // Get the authenticated user
+        if ($this->currentStep == 5) {
 
             // Insert into personal_details table
             PersonalDetails::create([
@@ -186,7 +187,7 @@ class MultiStepForm extends Component
             ]);
 
             // Handle file uploads (e.g., passport photo, ID card photos)
-            if ($this->currentStep === 4) {
+            if ($this->currentStep === 5) {
                 $this->currentDocumentId = $document->id;
                 // Assuming you have stored the uploaded files in a folder named 'uploads'
                 $birthCertificatePath = $this->birth_certificate->store('uploads', 'public');
@@ -213,15 +214,12 @@ class MultiStepForm extends Component
                 // Store their file paths in the documents table
                 // ... (Similar logic for other images)
             }
+            
         }
 
         
 
-        // Move to the next step
-        $this->currentStep++;
-        if ($this->currentStep > $this->totalSteps) {
-            $this->currentStep = $this->totalSteps;
-        }
+        
          session()->flash('success', 'Application submitted successfully. Proceed to payment.');
     }
 }

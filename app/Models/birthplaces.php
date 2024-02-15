@@ -13,6 +13,7 @@ class Birthplaces extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'district_of_birth',
         'tribe',
         'clan',

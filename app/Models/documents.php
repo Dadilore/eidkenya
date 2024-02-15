@@ -13,6 +13,7 @@ class Documents extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'user_id',
         'birth_certificate_number',
         'passport_number',
         'parents_id_number',

@@ -47,8 +47,8 @@ Route::get('/payment', function () {
     return view('modules.payment');
 })->name('payment');
 
-
 Route::post('get-token', [MPESAController::class, 'getAccessToken']);
+
 
 // Assuming 'make_payment' is the name of your Blade view file
 // Route::get('/make-payment', function () {
