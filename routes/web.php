@@ -7,6 +7,7 @@ use App\Http\Controllers\Applications;
 use App\Http\Controllers\payController;
 use App\http\Controllers\mpesa\mpesaController;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\MpesaSTKPUSHController;
 
 
 /*
@@ -32,32 +33,27 @@ Route::get('/applications', function () {
     return view('applications');
 })->name('applications');
 
-// payment routes
-// Route::get('/pay', [PayController::class, 'stk']);
-
-Route::get('/pay', [PayController::class, 'stk'])->name('pay.stk');
-
-
-
 Route::get('/application', function () {
     return view('modules.application');
 })->name('application');
 
+
+
+//Start payments
 Route::get('/payment', function () {
     return view('modules.payment');
 })->name('payment');
 
+// Route::get('/pay', [PayController::class, 'stk'])->name('pay.stk');
+
+// Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush']);
+
+Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush'])->name('mpesa.stkpush');
+
+// Mpesa STK Push Callback Route
+Route::post('v1/confirm', [MpesaSTKPUSHController::class, 'STKConfirm'])->name('mpesa.confirm');
+
 Route::post('get-token', [MPESAController::class, 'getAccessToken']);
-
-
-// Assuming 'make_payment' is the name of your Blade view file
-// Route::get('/make-payment', function () {
-//     return view('make_payment'); 
-// })->name('make-payment');
-
-// Route to handle the B2C payment submission
-// Route::post('/make-payment', [PayController::class, 'b2c'])->name('submit-payment');
-
 
 
 //end payments
