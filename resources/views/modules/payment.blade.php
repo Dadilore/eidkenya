@@ -24,13 +24,6 @@
                                                 <label for=""><h4 style="color:green;">Enter Your Safaricon M-PESA Phone number</h4></label>
                                                 <div class="col-md-6 ">
                                                     <input type="number" class="form-control" name="phonenumber" placeholder="Enter your Phone number" required>
-
-                                                    <label for=""><h4 style="color:green;">Amount</h4></label>
-                                                <div class="col-md-6 ">
-                                                    <input type="number" class="form-control" name="amount" placeholder="Enter your Phone number" required>
-                                                    <label for=""><h4 style="color:green;">Account Number</h4></label>
-                                                <div class="col-md-6 ">
-                                                    <input type="number" class="form-control" name="account_number" placeholder="Enter your Phone number" required>
                                                 </div>
                                             </div>
                                         </div>
