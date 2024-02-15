@@ -8,13 +8,13 @@ return [
         |The Mpesa Consumer Key
         |------------------------------------------
         */
-    'mpesa_consumer_key' => env('MPESA_CONSUMER_KEY'),
+    'mpesa_consumer_key' => env('MPESA_CONSUMER_KEY','FxTLq8Fn5v6HAgFmd1ay8yXgTZhFwL6B1gTQDSvEOYGpOzzb'),
 
     /*-----------------------------------------
         |The Mpesa Consumer Secret
         |------------------------------------------
         */
-    'mpesa_consumer_secret' => env('MPESA_CONSUMER_SECRET'),
+    'mpesa_consumer_secret' => env('MPESA_CONSUMER_SECRET','LfdYSSeFR2CFX6RCv2aXLT7lDu6ylTxGadHMjwNbHC1tIN8wfv73vSCA4sJia09a'),
 
     /*-----------------------------------------
         |The Lipa na Mpesa Online Passkey
@@ -74,7 +74,7 @@ return [
         |Mpesa Lipa Na Mpesa callback url
         |------------------------------------------
         */
-    'callback_url' => env('MPESA_CALLBACK_URL'),
+    'callback_url' => env('MPESA_CALLBACK_URL','https://lovely-baboons-camp.loca.lt'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Result url
@@ -111,12 +111,4 @@ return [
         |------------------------------------------
         */
     'reversal_timeout_url' => env('MPESA_REVERSAL_TIMEOUT_URL'),
-
-    /*-----------------------------------------
-        |Mpesa B2B urls
-        |------------------------------------------
-    */
-    'b2b_result_url' => env('MPESA_B2B_RESULT_URL'),
-
-    'b2b_timeout_url' => env('MPESA_B2B_TIMEOUT_URL'),
 ];
