@@ -74,7 +74,7 @@ return [
         |Mpesa Lipa Na Mpesa callback url
         |------------------------------------------
         */
-    'callback_url' => env('MPESA_CALLBACK_URL','https://lovely-baboons-camp.loca.lt'),
+    'callback_url' => env('MPESA_CALLBACK_URL','https://c814-105-161-149-26.ngrok-free.app'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Result url

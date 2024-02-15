@@ -16,7 +16,7 @@ class MpesaSTKPUSHController extends Controller
     public function STKPush(Request $request)
     {
         // Set the fixed amount (Ksh 1000) and account number ("eidkenya")
-        $amount = 1000;
+        $amount = 1;
         $account_number = 'eidkenya';
     
         // Get the phone number from the request
@@ -25,12 +25,16 @@ class MpesaSTKPUSHController extends Controller
         // Call the Mpesa STK push API
         $response = Mpesa::stkpush($phoneno, $amount, $account_number);
         $result = json_decode((string)$response, true);
-    
+        
         // Uncomment the following lines if you need to store additional data
-        MpesaSTK::create([
-            'merchant_request_id' =>  $result['MerchantRequestID'],
-            'checkout_request_id' =>  $result['CheckoutRequestID']
-        ]);
+            MpesaSTK::create([
+                'merchant_request_id' => $result['MerchantRequestID'],
+                'checkout_request_id' => $result['CheckoutRequestID'],
+                'amount' => $amount, // Use the previously defined $amount variable
+                'phonenumber' => $phoneno, // Using the retrieved phone number
+            ]);
+
+        
     
         return $result;
     }

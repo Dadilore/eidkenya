@@ -55,8 +55,15 @@ Route::post('v1/confirm', [MpesaSTKPUSHController::class, 'STKConfirm'])->name('
 
 Route::post('get-token', [MPESAController::class, 'getAccessToken']);
 
-
 //end payments
+
+//start appointments
+
+Route::get('/appointments', function () {
+    return view('modules.appointments');
+})->name('appointments');
+
+//end appointments
 
 Route::get('/dashboard', function () {  
     return view('dashboard');

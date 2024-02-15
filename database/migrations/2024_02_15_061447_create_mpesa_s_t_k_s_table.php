@@ -13,8 +13,12 @@ class CreateMpesaSTKSTable extends Migration
      */
     public function up()
     {
+        // Disable foreign key checks during migration
+       DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         Schema::create('mpesa_s_t_k_s', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->constrained ();
             $table->string('result_desc')->nullable();
             $table->string('result_code')->nullable();
             $table->string('merchant_request_id')->nullable();
@@ -25,6 +29,9 @@ class CreateMpesaSTKSTable extends Migration
             $table->string('phonenumber')->nullable();
             $table->timestamps();
         });
+        
+        // Enable foreign key checks after creating the table
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**

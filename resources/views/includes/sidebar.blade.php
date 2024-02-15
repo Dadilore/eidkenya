@@ -183,7 +183,7 @@
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="#">
+				<a class="menu-link  active" href="{{ route('appointments') }}">
 					<span class="menu-bullet">
 						<span class="bullet bullet-dot"></span>
 					</span>

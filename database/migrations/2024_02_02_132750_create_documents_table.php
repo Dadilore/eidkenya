@@ -16,7 +16,6 @@ return new class extends Migration
 
             Schema::create('documents', function (Blueprint $table) {
                 $table->id();
-                // $table->foreignId('user_id')->constrained();
                 $table->unsignedBigInteger('user_id')->constrained ();
                 $table->string('birth_certificate_number')->nullable();
                 $table->string('passport_number')->nullable();
