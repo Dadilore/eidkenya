@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PersonalDetails extends Model
+class Applications extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
@@ -14,16 +14,9 @@ class PersonalDetails extends Model
 
     protected $fillable = [
         'user_id',
-        'full_names',
-        'date_of_birth',
-        'gender',
-        'fathers_name',
-        'mothers_name',
-        'marital_status',
-        'husbands_names',
-        'husbands_id_number',
-        'occupation',
-        'telephone_number',
-        'email'
+        'personal_details_id',
+        'birthplaces_id',
+        'documents_id',
+        'application_status'
     ];
 }
