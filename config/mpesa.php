@@ -26,7 +26,7 @@ return [
         |The Lipa na Mpesa Online ShortCode
         |------------------------------------------
         */
-    'shortcode' => env('MPESA_BUSINESS_SHORTCODE', '174379'),
+    'shortcode' => env('MPESA_BUSINESS_SHORTCODE', '600982'),
 
     /*-----------------------------------------
         |The Mpesa Initator Name
@@ -50,13 +50,13 @@ return [
         |Mpesa C2B Validation url
         |------------------------------------------
         */
-    'c2b_validation_url' => env('MPESA_C2B_VALIDATION_URL'),
+    'c2b_validation_url' => env('https://small-clubs-suffer.loca.lt'),
 
     /*-----------------------------------------
         |Mpesa C2B Confirmation url
         |------------------------------------------
         */
-    'c2b_confirmation_url' => env('MPESA_C2B_CONFIRMATION_URL'),
+    'c2b_confirmation_url' => env('https://small-clubs-suffer.loca.lt'),
 
     /*-----------------------------------------
         |Mpesa B2C Result url
@@ -74,19 +74,19 @@ return [
         |Mpesa Lipa Na Mpesa callback url
         |------------------------------------------
         */
-    'callback_url' => env('MPESA_CALLBACK_URL','https://c814-105-161-149-26.ngrok-free.app'),
+    'callback_url' => env('MPESA_CALLBACK_URL','https://small-clubs-suffer.loca.lt'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Result url
         |------------------------------------------
         */
-    'status_result_url' => env('MPESA_STATUS_RESULT_URL'),
+    'status_result_url' => env('https://small-clubs-suffer.loca.lt'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Timeout url
         |------------------------------------------
         */
-    'status_timeout_url' => env('MPESA_STATUS_TIMEOUT_URL'),
+    'status_timeout_url' => env('https://small-clubs-suffer.loca.lt'),
 
     /*-----------------------------------------
         |Mpesa Account Balance Result url

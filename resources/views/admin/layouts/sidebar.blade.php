@@ -446,11 +446,11 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="pages/social/feeds.html">
+                        <a class="menu-link" href="{{ url('showappointment') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">add appointment</span>
+                          <span class="menu-title">View appointments</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -462,7 +462,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">view appointment</span>
+                          <span class="menu-title">edit appointments</span>
                         </a>
                         <!--end:Menu link-->
                       </div>

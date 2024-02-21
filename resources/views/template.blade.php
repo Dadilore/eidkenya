@@ -1,6 +1,6 @@
 @extends('includes.main')
 @section('pageTitle', 'Home')
-@section('test_dashboard')
+@section('content')
 
 
 @endsection

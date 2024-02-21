@@ -21,7 +21,7 @@
 						<div class="row">
 
 							<div class="col-lg-4 col-md-6 shadow">
-								<a href="{{route('application')}}">
+								<a href="{{route('new_applications')}}">
 									<div class="icon-box" style="height: 100%;">
 										<h4>New Application</h4>
 										<p>Apply for a new ID card</p>
@@ -30,7 +30,7 @@
 							</div>
 
 							<div class="col-lg-4 col-md-6 shadow">
-								<a href="#">
+								<a href="{{route('replacement_applications')}}">
 									<div class="icon-box" style="height: 100%;">
 										<h4>Replacement Application</h4>
 										<p>Apply for Replacement/Lost/Mutilated/Duplicate ID cards</p>
@@ -39,7 +39,7 @@
 							</div>
 
 							<div class="col-lg-4 col-md-6 shadow">
-								<a href="#">
+								<a href="{{route('change_of_particulars')}}">
 									<div class="icon-box" style="height: 100%;">
 										<h4>Change of Particulars application</h4>
 										<p>Apply to change the particulars in your ID </p>
@@ -299,7 +299,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/dribbble-icon-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -338,7 +338,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/linkedin-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/linkedin-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -377,7 +377,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/slack-icon.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/slack-icon.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -416,7 +416,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/youtube-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/youtube-3.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -455,7 +455,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/instagram-2-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -788,7 +788,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="assets/media/flags/united-states.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="{{ asset('user/media/flags/united-states.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -827,7 +827,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="assets/media/flags/brazil.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="{{ asset('user/media/flags/brazil.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -866,7 +866,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="assets/media/flags/turkey.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="{{ asset('user/media/flags/turkey.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -905,7 +905,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="assets/media/flags/france.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="{{ asset('user/media/flags/france.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -944,7 +944,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="assets/media/flags/india.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="{{ asset('user/media/flags/india.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -983,7 +983,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="assets/media/flags/sweden.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="{{ asset('user/media/flags/sweden.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -1048,7 +1048,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/dribbble-icon-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1087,7 +1087,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/linkedin-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/linkedin-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1126,7 +1126,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/slack-icon.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/slack-icon.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1165,7 +1165,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/youtube-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/youtube-3.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1204,7 +1204,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/instagram-2-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1243,7 +1243,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="assets/media/svg/brand-logos/facebook-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="{{ asset('user/media/svg/brand-logos/facebook-3.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">

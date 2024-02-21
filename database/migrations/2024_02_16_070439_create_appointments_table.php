@@ -14,15 +14,16 @@ return new class extends Migration
         // Disable foreign key checks during migration
        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        Schema::create('applications', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->constrained ();
-            $table->string('personal_details_id')->nullable();
-            $table->string('birthplaces_id')->nullable();
-            $table->string('documents_id')->nullable();
-            $table->enum('application_status',['paid','unpaid'])->default('unpaid');
-            $table->timestamps();
+       Schema::create('appointments', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('user_id')->constrained();
+        $table->date('appointment_date')->nullable();
+        $table->time('appointment_time')->nullable();
+        $table->string('appointment_venue')->nullable();
+        $table->string('status')->nullable();
+        $table->timestamps();
         });
+    
 
         // Enable foreign key checks after creating the table
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('appointments');
     }
 };

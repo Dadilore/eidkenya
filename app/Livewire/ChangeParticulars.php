@@ -11,8 +11,9 @@ use App\Models\Applications;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
-class MultiStepForm extends Component
+class ChangeParticulars extends Component
 {
+
     use WithFileUploads;
 
     public $user_id;
@@ -48,6 +49,7 @@ class MultiStepForm extends Component
     public $fathers_id_card_back;
     public $mothers_id_card_front;
     public $mothers_id_card_back;
+    public $old_id;
     public $application_status;
     public $terms;
 
@@ -63,7 +65,7 @@ class MultiStepForm extends Component
 
     public function render()
     {
-        return view('livewire.multi-step-form');
+        return view('livewire.change-particulars');
     }
 
     public function increaseStep()
@@ -195,6 +197,7 @@ class MultiStepForm extends Component
                 'fathers_id_card_back' => $this->fathers_id_card_back,
                 'mothers_id_card_front' => $this->mothers_id_card_front,
                 'mothers_id_card_back' => $this->mothers_id_card_back,
+                'old_id' => $this->old_id,
                 // ... Other fields ...
             ]);
 
@@ -221,6 +224,9 @@ class MultiStepForm extends Component
                      
                 $mothersIdCardBackPath = $this->mothers_id_card_back->store('uploads', 'public');
                 Documents::where('id', $this->currentDocumentId)->update(['mothers_id_card_back' => $mothersIdCardBackPath]);
+
+                $oldIdPath = $this->old_id->store('uploads', 'public');
+                Documents::where('id', $this->currentDocumentId)->update(['old_id' => $oldIdPath]);
 
                 // Repeat the same for other image fields (passport_photo, fathers_id_card_front, fathers_id_card_back, mothers_id_card_front, mothers_id_card_back)
                 // Store their file paths in the documents table

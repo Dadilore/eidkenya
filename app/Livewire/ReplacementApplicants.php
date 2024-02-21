@@ -11,7 +11,7 @@ use App\Models\Applications;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
-class MultiStepForm extends Component
+class ReplacementApplicants extends Component
 {
     use WithFileUploads;
 
@@ -48,6 +48,8 @@ class MultiStepForm extends Component
     public $fathers_id_card_back;
     public $mothers_id_card_front;
     public $mothers_id_card_back;
+    public $lost_id;
+    public $police_report;
     public $application_status;
     public $terms;
 
@@ -60,18 +62,15 @@ class MultiStepForm extends Component
         $this->user_id = Auth::user()->id;
 
     }
-
     public function render()
     {
-        return view('livewire.multi-step-form');
+        return view('livewire.replacement-applicants');
     }
 
     public function increaseStep()
     {
         $this->resetErrorBag();
         $this->validateData();
-
-
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
             $this->currentStep = $this->totalSteps;
@@ -124,12 +123,15 @@ class MultiStepForm extends Component
             ]);
         } elseif ($this->currentStep == 5) {
             $this->validate([
-                'birth_certificate' => 'required|string',
-                'fathers_id_card_front' => 'required|string',
-                'fathers_id_card_back' => 'required',
-                'mothers_id_card_front' => 'required|string',
-                'mothers_id_card_back' => 'required|string',
+                'birth_certificate' => 'required|image|mimes:jpg,jpeg,png|max:5120', // max:5120 is 5MB in kilobytes
+                'fathers_id_card_front' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+                'fathers_id_card_back' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+                'mothers_id_card_front' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+                'mothers_id_card_back' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+                'lost_id' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+                'police_report' => 'required|mimes:pdf|max:5120', // for PDF files
             ]);
+            
         }
     }
 
@@ -195,6 +197,8 @@ class MultiStepForm extends Component
                 'fathers_id_card_back' => $this->fathers_id_card_back,
                 'mothers_id_card_front' => $this->mothers_id_card_front,
                 'mothers_id_card_back' => $this->mothers_id_card_back,
+                'lost_id' => $this->lost_id,
+                'police_report' => $this->police_report,
                 // ... Other fields ...
             ]);
 
@@ -221,6 +225,13 @@ class MultiStepForm extends Component
                      
                 $mothersIdCardBackPath = $this->mothers_id_card_back->store('uploads', 'public');
                 Documents::where('id', $this->currentDocumentId)->update(['mothers_id_card_back' => $mothersIdCardBackPath]);
+
+                $lostIdPath = $this->lost_id->store('uploads', 'public');
+                Documents::where('id', $this->currentDocumentId)->update(['lost_id' => $lostIdPath]);
+
+                $policeReportPath = $this->police_report->store('uploads', 'public');
+                Documents::where('id', $this->currentDocumentId)->update(['police_report' => $policeReportPath]);
+
 
                 // Repeat the same for other image fields (passport_photo, fathers_id_card_front, fathers_id_card_back, mothers_id_card_front, mothers_id_card_back)
                 // Store their file paths in the documents table

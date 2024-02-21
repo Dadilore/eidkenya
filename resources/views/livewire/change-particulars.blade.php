@@ -474,6 +474,14 @@
                                         <span class="text-danger">@error('mothers_id_card_back'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="old_id">copy of old ID Card </label>
+                                        <input type="file" class="form-control" accept="image/*" wire:model="old_id">
+                                        <span class="text-danger">@error('old_id'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
                                 
                             </div>
                     </div>

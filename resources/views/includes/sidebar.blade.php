@@ -123,11 +123,13 @@
 
 		<!--begin::Logo-->
 		<div class="app-sidebar-logo d-none d-md-flex flex-center pt-10 pb-2" id="kt_app_sidebar_logo">
+
 		<!--begin::Logo image-->
 		<a href="{{ route('dashboard') }}">
 			<img alt="Logo" src="{{ asset ('assets/images/logo/logo_w_t.png') }}" class="h-30px" />
 		</a>
 		<!--end::Logo image-->
+		
 	</div>
 	<!--end::Logo-->
 
@@ -157,16 +159,16 @@
 			</div>
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
-			<div class=" mt-5 menu-item">
+			<!-- <div class=" mt-5 menu-item"> -->
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{route('application')}}">
+				<!-- <a class="menu-link  active" href="{{route('new_applications')}}">
 					<span class="menu-bullet">
 						<span class="bullet bullet-dot"></span>
 					</span>
 					<span class="menu-title">Apply for ID</span>
-				</a>
+				</a> -->
 				<!--end:Menu link-->
-			</div>
+			<!-- </div> -->
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
@@ -183,7 +185,7 @@
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{ route('appointments') }}">
+				<a class="menu-link  active" href="{{ url('myappointment') }}">
 					<span class="menu-bullet">
 						<span class="bullet bullet-dot"></span>
 					</span>

@@ -18,7 +18,7 @@ class MpesaSTKPUSHController extends Controller
     public function STKPush(Request $request)
     {
         // Set the fixed amount (Ksh 1000) and account number ("eidkenya")
-        $amount = 3;
+        $amount = 4;
         $account_number = 'eidkenya';
     
         // Get the phone number from the request
@@ -48,16 +48,20 @@ class MpesaSTKPUSHController extends Controller
     public function STKConfirm(Request $request)
     {
         $stk_push_confirm = (new STKPush())->confirm($request);
-
+    
         if ($stk_push_confirm) {
-
-            $this->result_code = 0;
-            $this->result_desc = 'Success';
+            // STK push is confirmed, set success flash message
+            session()->flash('success', 'Payment successful. Proceed to book your biometrics capture appointment.');
+            
+            // Redirect the user to the make_appointment.blade.php view
+            return redirect()->route('make_appointment');
         }
-        return response()->json([
-            'ResultCode' => $this->result_code,
-            'ResultDesc' => $this->result_desc
-        ]);
+    
+        // If STK push confirmation fails, set an error flash message
+        session()->flash('error', 'Payment failed. Please try again.');
+    
+        // Redirect the user to an appropriate page
+        return redirect()->route('some-error-page');
     }
+    
 }
-

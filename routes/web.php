@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Applications;
 use App\Http\Controllers\payController;
-use App\http\Controllers\mpesa\mpesaController;
+use App\http\Controllers\payments\mpesa\mpesaController;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MpesaSTKPUSHController;
+use App\Http\Controllers\AppointmentController;
 
 
 /*
@@ -33,13 +34,22 @@ Route::get('/applications', function () {
     return view('applications');
 })->name('applications');
 
-Route::get('/application', function () {
-    return view('modules.application');
-})->name('application');
+Route::get('/new_applications', function () {
+    return view('modules.new_applications');
+})->name('new_applications');
+
+Route::get('/replacement_applications', function () {
+    return view('modules.replacement_applications');
+})->name('replacement_applications');
+
+Route::get('/change_of_particulars', function () {
+    return view('modules.change_of_particulars');
+})->name('change_of_particulars');
 
 
 
-//Start payments
+
+//START PAYMENTS
 Route::get('/payment', function () {
     return view('modules.payment');
 })->name('payment');
@@ -48,22 +58,54 @@ Route::get('/payment', function () {
 
 // Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush']);
 
-Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush'])->name('mpesa.stkpush');
 
+//iankumu
+Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush'])->name('mpesa.stkpush');
 // Mpesa STK Push Callback Route
 Route::post('v1/confirm', [MpesaSTKPUSHController::class, 'STKConfirm'])->name('mpesa.confirm');
 
+//codewithben
 Route::post('get-token', [MPESAController::class, 'getAccessToken']);
+Route::post('register-urls', [MPESAController::class, 'registerURLS']);
+Route::post('simulate', [MPESAController::class, 'simulateTransaction']);
+Route::post('stkpush', [MPESAController::class, 'stkPush']);
 
-//end payments
+//END PAYMENTS
 
-//start appointments
+Route::get('/test', function () {
+    return view('modules.test');
+})->name('test');
 
-Route::get('/appointments', function () {
-    return view('modules.appointments');
-})->name('appointments');
+Route::get('/stk', function () {
+    return view('modules.stk');
+})->name('stk');
 
-//end appointments
+//START APPOINTMENTS
+Route::get('/make_appointment', function () {
+    return view('modules.make_appointment');
+})->name('make_appointment');
+
+
+Route::get('/myappointment', function () {
+    return view('modules.myappointment');
+})->name('myappointment');
+
+Route::get('/showappointment', function () {
+    return view('admin.showappointment');
+})->name('showappointment');
+
+Route::post('/make_appointment', [AppointmentController::class, 'make_appointment']);
+
+Route::get('/myappointment', [AppointmentController::class, 'myappointment']);
+
+Route::get('/cancel_appoint/{id}', [AppointmentController::class, 'cancel_appoint']);
+
+Route::get('/showappointment', [AdminController::class, 'showappointment']);
+
+Route::get('/approved/{id}', [AdminController::class, 'approved']);
+
+Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
+//END APPOINTMENTS
 
 Route::get('/dashboard', function () {  
     return view('dashboard');

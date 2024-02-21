@@ -474,6 +474,22 @@
                                         <span class="text-danger">@error('mothers_id_card_back'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lost_id">copy of lost/Mutilated/duplicate ID card</label>
+                                        <input type="file" class="form-control" accept="image/*" wire:model="lost_id">
+                                        <span class="text-danger">@error('lost_id'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="police_report">Police report(PDF)</label>
+                                        <input type="file" class="form-control" accept="image/*" wire:model="police_report">
+                                        <span class="text-danger">@error('police_report'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
                                 
                             </div>
                     </div>
