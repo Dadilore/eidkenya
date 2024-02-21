@@ -8,6 +8,8 @@ class Applications extends Controller
 {
     //
     function index(){
+        $counties = config('counties.counties');
+        dd($counties);
         return view('applications');
     }
     function add(Request $request){

@@ -9,11 +9,13 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="50">
+          <div class="content">
             <h1>eID <span>Kenya</span></h1><br>
-            <h2>Apply for your Kenyan ID card conveniently and securely online!</h2>
+            <h2>Your Seamless Gateway to a Smarter National ID Application Experience.</h2>
             <div class="d-flex">
                 <a href="{{ route('login') }}" class="btn-get-started scrollto">Apply Now</a>
             </div>
+          </div>
         </div>
     </section><!-- End Hero -->
 

@@ -49,6 +49,7 @@ class MultiStepForm extends Component
     public $totalSteps = 4;
     public $currentStep = 1;
 
+
     public function mount()
     {
         $this->currentStep = 1;

@@ -52,11 +52,13 @@ class MultiStepForm extends Component
     public $totalSteps = 6;
     public $currentStep = 1;
 
+    public $counties;
+
     public function mount()
     {
         $this->currentStep = 1;
         $this->user_id = Auth::user()->id;
-
+        $this->counties = config('counties.counties');
     }
 
     public function render()
