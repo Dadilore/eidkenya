@@ -38,4 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function full_name(){
+        return $this->name.' '.$this->middle_name.' '.$this->surname;
+    }
 }

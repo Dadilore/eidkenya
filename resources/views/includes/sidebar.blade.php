@@ -206,7 +206,17 @@
 				<!--end:Menu link-->
 			</div>
 			<!--end:Menu item-->
-			
+			<div class="aside-footer flex-column-auto py-5" id="kt_aside_footer">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf	
+            <a :href="route('logout')"
+            onclick="event.preventDefault();
+            this.closest('form').submit();" class="btn btn-flex btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Go to main PIA page">
+                <span class="btn-label">Log Out</span>
+            </a>
+        </form>
+        
+    </div>
 		</div>
 	</div>
 	<!--end::Sidebar secondary menu-->

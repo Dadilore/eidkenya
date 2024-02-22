@@ -11,8 +11,13 @@
 		<!--end::Sidebar toggle-->
 		<!--begin::Logo-->
 		<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
+<<<<<<< HEAD
 			<a href="index.html">
 				<img alt="Logo" src="{{ asset('user/media/logos/demo50.svg') }}" class="h-30px" />
+=======
+			<a href="{{ route ('home') }}">
+				<img alt="Logo" src="assets/media/logos/demo50.svg" class="h-30px" />
+>>>>>>> cd15746ab46e93ba32b6539c9315d92a712273a0
 			</a>
 		</div>
 		<!--end::Logo-->
@@ -32,17 +37,8 @@
 			<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-base my-1">
 				<!--begin::Item-->
 				<li class="breadcrumb-item text-gray-500">
-					<a href="index.html" class="text-gray-500 text-hover-primary">Home</a>
+					<a href="{{ route ('dashboard') }}" class="text-gray-500 text-hover-primary">Dashboard</a>
 				</li>
-				<!--end::Item-->
-				<!--begin::Item-->
-				<li class="breadcrumb-item">
-					<span class="text-gray-500">/</span>
-				</li>
-				<!--end::Item-->
-				<!--begin::Item-->
-				<li class="breadcrumb-item text-gray-500">Home</li>
-				<!--end::Item-->
 			</ul>
 			<!--end::Breadcrumb-->
 			<!--begin::Page title-->

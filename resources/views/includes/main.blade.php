@@ -2,7 +2,7 @@
 			<html lang="en">
 			<!--begin::Head-->
 			<head>
-				<title>eIDKenya</title>
+				<title>@yield('pageTitle') | eIDKenya</title>
 				<meta charset="utf-8" />
 				<meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
 				<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -47,7 +47,7 @@
 						<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 							@include('includes.sidebar')
 							<!--begin::Main-->
-							<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+							<div class="app-main flex-column flex-row-fluid bg-light" id="kt_app_main">
 								<!--begin::Content wrapper-->
 								<div class="d-flex flex-column flex-column-fluid">
 									<!--begin::Toolbar-->

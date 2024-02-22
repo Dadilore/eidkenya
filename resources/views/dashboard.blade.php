@@ -1,5 +1,5 @@
 @extends('includes.main')
-@section('pageTitle', 'Admin Dshboard')
+@section('pageTitle', 'Dashboard')
 @section('content')
 
 			
@@ -13,7 +13,7 @@
 				
 				<div class="m-0">
 				<!--begin::Title-->
-				<h1 class="fw-bold text-gray-800 mt-5 mb-5" style="margin-top:20px;">Select your Application</h1>
+				<h1 class="fw-bold text-gray-800 mb-5">Select your Application</h1>
 				<!--end::Title-->
 				
 				<!-- ======= application type ======= -->
@@ -21,7 +21,7 @@
 						<div class="row">
 
 							<div class="col-lg-4 col-md-6 shadow">
-								<a href="{{route('new_applications')}}">
+								<a href="#">
 									<div class="icon-box" style="height: 100%;">
 										<h4>New Application</h4>
 										<p>Apply for a new ID card</p>
@@ -30,7 +30,7 @@
 							</div>
 
 							<div class="col-lg-4 col-md-6 shadow">
-								<a href="{{route('replacement_applications')}}">
+								<a href="#">
 									<div class="icon-box" style="height: 100%;">
 										<h4>Replacement Application</h4>
 										<p>Apply for Replacement/Lost/Mutilated/Duplicate ID cards</p>
@@ -39,7 +39,7 @@
 							</div>
 
 							<div class="col-lg-4 col-md-6 shadow">
-								<a href="{{route('change_of_particulars')}}">
+								<a href="#">
 									<div class="icon-box" style="height: 100%;">
 										<h4>Change of Particulars application</h4>
 										<p>Apply to change the particulars in your ID </p>
@@ -299,7 +299,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/dribbble-icon-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -338,7 +338,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/linkedin-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/linkedin-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -377,7 +377,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/slack-icon.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/slack-icon.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -416,7 +416,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/youtube-3.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/youtube-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -455,7 +455,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/instagram-2-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -788,7 +788,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="{{ asset('user/media/flags/united-states.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="assets/media/flags/united-states.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -827,7 +827,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="{{ asset('user/media/flags/brazil.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="assets/media/flags/brazil.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -840,20 +840,11 @@
 											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">All Social Channels</span>
 											<!--end::Desc-->
 										</div>
-										<!--end::Content-->
+										<!--end::Radio-->
 										<!--begin::Info-->
-										<div class="d-flex align-items-center">
-											<!--begin::Number-->
-											<span class="text-gray-800 fw-bold fs-6 me-3 d-block">4,062</span>
-											<!--end::Number-->
-											<!--begin::Label-->
-											<div class="m-0">
-												<!--begin::Label-->
-												<span class="badge badge-light-danger fs-base">
-												<i class="ki-outline ki-arrow-down fs-5 text-danger ms-n1"></i>0.4%</span>
-												<!--end::Label-->
-											</div>
-											<!--end::Label-->
+										<div class="flex-grow-1">
+											<div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Startup</div>
+											<div class="fw-semibold opacity-75">Best for startups</div>
 										</div>
 										<!--end::Info-->
 									</div>
@@ -866,7 +857,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="{{ asset('user/media/flags/turkey.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="assets/media/flags/turkey.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -879,20 +870,11 @@
 											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">Mailchimp Campaigns</span>
 											<!--end::Desc-->
 										</div>
-										<!--end::Content-->
+										<!--end::Radio-->
 										<!--begin::Info-->
-										<div class="d-flex align-items-center">
-											<!--begin::Number-->
-											<span class="text-gray-800 fw-bold fs-6 me-3 d-block">1,680</span>
-											<!--end::Number-->
-											<!--begin::Label-->
-											<div class="m-0">
-												<!--begin::Label-->
-												<span class="badge badge-light-success fs-base">
-												<i class="ki-outline ki-arrow-up fs-5 text-success ms-n1"></i>0.2%</span>
-												<!--end::Label-->
-											</div>
-											<!--end::Label-->
+										<div class="flex-grow-1">
+											<div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Advanced</div>
+											<div class="fw-semibold opacity-75">Best for 100+ team size</div>
 										</div>
 										<!--end::Info-->
 									</div>
@@ -905,7 +887,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="{{ asset('user/media/flags/france.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="assets/media/flags/france.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -918,20 +900,12 @@
 											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">Impact Radius visits</span>
 											<!--end::Desc-->
 										</div>
-										<!--end::Content-->
+										<!--end::Radio-->
 										<!--begin::Info-->
-										<div class="d-flex align-items-center">
-											<!--begin::Number-->
-											<span class="text-gray-800 fw-bold fs-6 me-3 d-block">849</span>
-											<!--end::Number-->
-											<!--begin::Label-->
-											<div class="m-0">
-												<!--begin::Label-->
-												<span class="badge badge-light-success fs-base">
-												<i class="ki-outline ki-arrow-up fs-5 text-success ms-n1"></i>4.1%</span>
-												<!--end::Label-->
-											</div>
-											<!--end::Label-->
+										<div class="flex-grow-1">
+											<div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Enterprise 
+											<span class="badge badge-light-success ms-2 py-2 px-3 fs-7">Popular</span></div>
+											<div class="fw-semibold opacity-75">Best value for 1000+ team</div>
 										</div>
 										<!--end::Info-->
 									</div>
@@ -944,7 +918,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="{{ asset('user/media/flags/india.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="assets/media/flags/india.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -957,20 +931,11 @@
 											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">Many Sources</span>
 											<!--end::Desc-->
 										</div>
-										<!--end::Content-->
+										<!--end::Radio-->
 										<!--begin::Info-->
-										<div class="d-flex align-items-center">
-											<!--begin::Number-->
-											<span class="text-gray-800 fw-bold fs-6 me-3 d-block">604</span>
-											<!--end::Number-->
-											<!--begin::Label-->
-											<div class="m-0">
-												<!--begin::Label-->
-												<span class="badge badge-light-danger fs-base">
-												<i class="ki-outline ki-arrow-down fs-5 text-danger ms-n1"></i>8.3%</span>
-												<!--end::Label-->
-											</div>
-											<!--end::Label-->
+										<div class="flex-grow-1">
+											<div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Custom</div>
+											<div class="fw-semibold opacity-75">Requet a custom license</div>
 										</div>
 										<!--end::Info-->
 									</div>
@@ -983,7 +948,7 @@
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Flag-->
-									<img src="{{ asset('user/media/flags/sweden.svg') }}" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+									<img src="assets/media/flags/sweden.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 									<!--end::Flag-->
 									<!--begin::Section-->
 									<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -1048,7 +1013,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/dribbble-icon-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1087,7 +1052,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/linkedin-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/linkedin-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1113,9 +1078,9 @@
 											<i class="ki-outline ki-arrow-down fs-5 text-danger ms-n1"></i>0.4%</span>
 											<!--end::Label-->
 										</div>
-										<!--end::Info-->
+										<!--end::Item-->
 									</div>
-									<!--end::Wrapper-->
+									<!--end::Body-->
 								</div>
 								<!--end::Section-->
 							</div>
@@ -1126,7 +1091,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/slack-icon.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/slack-icon.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1165,7 +1130,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/youtube-3.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/youtube-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1191,9 +1156,9 @@
 											<i class="ki-outline ki-arrow-up fs-5 text-success ms-n1"></i>4.1%</span>
 											<!--end::Label-->
 										</div>
-										<!--end::Info-->
+										<!--end::Item-->
 									</div>
-									<!--end::Wrapper-->
+									<!--end::Body-->
 								</div>
 								<!--end::Section-->
 							</div>
@@ -1204,7 +1169,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/instagram-2-1.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1243,7 +1208,7 @@
 							<!--begin::Item-->
 							<div class="d-flex flex-stack">
 								<!--begin::Flag-->
-								<img src="{{ asset('user/media/svg/brand-logos/facebook-3.svg') }}" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+								<img src="assets/media/svg/brand-logos/facebook-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 								<!--end::Flag-->
 								<!--begin::Section-->
 								<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1303,105 +1268,88 @@
 								<!--begin::Menu 3-->
 								<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
 									<!--begin::Heading-->
-									<div class="menu-item px-3">
-										<div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Payments</div>
+									<div class="pb-5">
+										<h2 class="fw-bold text-gray-900">What’s in Startup Plan?</h2>
+										<div class="text-muted fw-semibold">Optimal for corporations</div>
 									</div>
 									<!--end::Heading-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3">
-										<a href="#" class="menu-link px-3">Create Invoice</a>
-									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3">
-										<a href="#" class="menu-link flex-stack px-3">Create Payment 
-										<span class="ms-2" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference">
-											<i class="ki-outline ki-information fs-6"></i>
-										</span></a>
-									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3">
-										<a href="#" class="menu-link px-3">Generate Bill</a>
-									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
-										<a href="#" class="menu-link px-3">
-											<span class="menu-title">Subscription</span>
-											<span class="menu-arrow"></span>
-										</a>
-										<!--begin::Menu sub-->
-										<div class="menu-sub menu-sub-dropdown w-175px py-4">
-											<!--begin::Menu item-->
-											<div class="menu-item px-3">
-												<a href="#" class="menu-link px-3">Plans</a>
-											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu item-->
-											<div class="menu-item px-3">
-												<a href="#" class="menu-link px-3">Billing</a>
-											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu item-->
-											<div class="menu-item px-3">
-												<a href="#" class="menu-link px-3">Statements</a>
-											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu separator-->
-											<div class="separator my-2"></div>
-											<!--end::Menu separator-->
-											<!--begin::Menu item-->
-											<div class="menu-item px-3">
-												<div class="menu-content px-3">
-													<!--begin::Switch-->
-													<label class="form-check form-switch form-check-custom form-check-solid">
-														<!--begin::Input-->
-														<input class="form-check-input w-30px h-20px" type="checkbox" value="1" checked="checked" name="notifications" />
-														<!--end::Input-->
-														<!--end::Label-->
-														<span class="form-check-label text-muted fs-6">Recuring</span>
-														<!--end::Label-->
-													</label>
-													<!--end::Switch-->
-												</div>
-											</div>
-											<!--end::Menu item-->
+									<!--begin::Body-->
+									<div class="pt-1">
+										<!--begin::Item-->
+										<div class="d-flex align-items-center mb-7">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited Users</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
 										</div>
-										<!--end::Menu sub-->
+										<!--end::Item-->
+										<!--begin::Item-->
+										<div class="d-flex align-items-center mb-7">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited Project Integrations</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
+										</div>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<div class="d-flex align-items-center mb-7">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Analytics Module</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
+										</div>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<div class="d-flex align-items-center mb-7">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Finance Module</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
+										</div>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<div class="d-flex align-items-center mb-7">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Accounting Module</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
+										</div>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<div class="d-flex align-items-center mb-7">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Network Platform</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
+										</div>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<div class="d-flex align-items-center">
+											<span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited Cloud Space</span>
+											<i class="ki-outline ki-check-circle fs-1 text-success"></i>
+										</div>
+										<!--end::Item-->
 									</div>
-									<!--end::Menu item-->
-									<!--begin::Menu item-->
-									<div class="menu-item px-3 my-1">
-										<a href="#" class="menu-link px-3">Settings</a>
-									</div>
-									<!--end::Menu item-->
+									<!--end::Body-->
 								</div>
-								<!--end::Menu 3-->
-								<!--end::Menu-->
+								<!--end::Tab Pane-->
 							</div>
-							<!--end::Toolbar-->
+							<!--end::Tab content-->
 						</div>
-						<!--end::Header-->
-						<!--begin::Body-->
-						<div class="card-body pt-5">
-							<!--begin::Chart container-->
-							<div id="kt_charts_widget_14_chart" class="w-100 h-350px"></div>
-							<!--end::Chart container-->
-						</div>
-						<!--end::Body-->
+						<!--end::Col-->
 					</div>
-					<!--end::Chart widget 14-->
+					<!--end::Row-->
 				</div>
-				<!--end::Col-->
+				<!--end::Plans-->
+				<!--begin::Actions-->
+				<div class="d-flex flex-center flex-row-fluid pt-12">
+					<button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-primary" id="kt_modal_upgrade_plan_btn">
+						<!--begin::Indicator label-->
+						<span class="indicator-label">Upgrade Plan</span>
+						<!--end::Indicator label-->
+						<!--begin::Indicator progress-->
+						<span class="indicator-progress">Please wait... 
+						<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+						<!--end::Indicator progress-->
+					</button>
+				</div>
+				<!--end::Actions-->
 			</div>
-			<!--end::Row-->
+			<!--end::Modal body-->
 		</div>
-		<!--end::Content container-->
+		<!--end::Modal content-->
 	</div>
-	<!--end::Content-->
-
-									
+	<!--end::Modal dialog-->
+</div>
 
 @endsection
 								
