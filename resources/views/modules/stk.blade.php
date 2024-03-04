@@ -6,7 +6,7 @@
        
         <div class="row mt-5">
             <div class="col-sm-8 mx-auto">
-                <div class="card mt-5">
+                <div class="card shadow mt-5">
                     <div class="card-header">Stk Transaction</div>
                     <div class="card-body">
                         <div id="c2b_response"></div>

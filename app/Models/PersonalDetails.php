@@ -14,7 +14,10 @@ class PersonalDetails extends Model
 
     protected $fillable = [
         'user_id',
-        'full_names',
+        'applications_id',
+        'surname',
+        'name',
+        'middle_name',
         'date_of_birth',
         'gender',
         'fathers_name',

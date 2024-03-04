@@ -17,6 +17,7 @@ return new class extends Migration
                 $table->id();
                 // $table->foreignId('user_id')->constrained();
                 $table->unsignedBigInteger('user_id')->constrained();
+                $table->unsignedBigInteger('applications_id')->constrained ();
                 $table->string('district_of_birth')->nullable();
                 $table->string('tribe')->nullable();
                 $table->string('clan')->nullable();

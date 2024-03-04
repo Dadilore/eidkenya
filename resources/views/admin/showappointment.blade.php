@@ -1,5 +1,5 @@
-@extends('includes.main')
-@section('pageTitle', 'Home')
+@extends('admin.layouts.main')
+@section('pageTitle', 'Appointments')
 @section('content')
 
    <div class="container-fluid page-body-wrapper">
@@ -11,8 +11,7 @@
                 <th style="padding:10px;">Appointment_time</th>
                 <th style="padding:10px;">Appointment_venue</th>
                 <th style="padding:10px;">Status</th>
-                <th style="padding:10px;">Approved</th>
-                <th style="padding:10px;">Cancelled</th>
+                <th style="padding:1px;">Actions</th>
             </tr>
 
             @foreach($data as $appoint)
@@ -24,11 +23,27 @@
                 <td>{{$appoint->appointment_venue}}</td>
                 <td>{{$appoint->status}}</td>
                 <td>
-                    <a class="btn btn-primary"  onclick="return confirm('are you sure you want to approve this appointment ?')" href="{{ url('approved', $appoint-> id) }}">Approve</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item btn btn-success" onclick="return confirm('Are you sure you want to approve this appointment?')" href="{{ url('approved', $appoint->id) }}">Approve</a>
+
+                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Cancel</a>
+
+                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to approve payment of this appointment?')" href="{{ url('paid', $appoint->id) }}">paid</a>
+
+                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">processed</a>
+
+                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Printing</a>
+
+                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Picked up</a>
+
+                        </div>
+                    </div>
                 </td>
-                <td>
-                    <a class="btn btn-danger"  onclick="return confirm('are you sure you want to cancell this appointment ?')" href="{{ url('cancelled', $appoint-> id) }}">Cancell</a>
-                </td>
+
             </tr>
 
             @endforeach

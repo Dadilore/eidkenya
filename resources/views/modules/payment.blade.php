@@ -2,7 +2,12 @@
 @section('pageTitle', 'Payment')
 @section('content')
 
-
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        
         <div class="step-six" id="6">
             <div class="card">
                 <div class="card-header bg-primary "><h3 class="mt-5">STEP 6/6 - PAYMENT</h3></div>

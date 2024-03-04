@@ -19,6 +19,7 @@ class CreateMpesaSTKSTable extends Migration
         Schema::create('mpesa_s_t_k_s', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->constrained ();
+            $table->string('applications_id')->nullable();
             $table->string('result_desc')->nullable();
             $table->string('result_code')->nullable();
             $table->string('merchant_request_id')->nullable();

@@ -1,5 +1,5 @@
 @extends('includes.main')
-@section('pageTitle', 'Home')
+@section('pageTitle', 'Apply for New ID')
 @section('content')
 
 <div class="container">

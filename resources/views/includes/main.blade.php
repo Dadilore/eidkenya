@@ -14,7 +14,7 @@
 				<meta property="og:url" content="https://keenthemes.com/metronic" />
 				<meta property="og:site_name" content="Metronic by Keenthemes" />
 				<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-				<link rel="shortcut icon" href=" {{ asset('user/images/logo/logo.png') }}" />
+				<link rel="shortcut icon" href=" {{ asset('assets/images/logo/logo.png') }}" />
 				<!--begin::Fonts(mandatory for all pages)-->
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 				<!--end::Fonts-->
@@ -28,6 +28,7 @@
 				<link href="{{ asset ('user/css/custom.css') }}" rel="stylesheet" type="text/css" />
 				<!--end::Global Stylesheets Bundle-->
 				<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 				@livewireStyles
 			</head>
 			<!--end::Head-->

@@ -10,29 +10,25 @@ use Illuminate\Support\Facades\Auth; // Import the Auth facade
 class AppointmentController extends Controller
 {
     public function make_appointment(Request $request)
-    {
-        $data = new appointments;
+{
+    $data = new Appointments;
+    $applicationId = Auth::user()->application_id; 
 
-        $data->appointment_date = $request->appointment_date;
-        $data->appointment_time = $request->appointment_time;
-        $data->appointment_date = $request->appointment_date;
-        $data->appointment_venue = $request->appointment_venue;
-        $data->status = 'In progress';
+    $data->appointment_date = $request->appointment_date;
+    $data->appointment_time = $request->appointment_time;
+    $data->appointment_venue = $request->appointment_venue;
+    $data->applications_id = $applicationId; // Assign the correct property
+    $data->status = 'In progress';
 
-
-        if(Auth::id())
-        {
-
+    if (Auth::id()) {
         $data->user_id = Auth::user()->id;
-
-        }
-
-        $data->save();
- 
-        return redirect()->back();
-          session()->flash('success', 'Application submitted successfully. Proceed to payment.');
-
     }
+
+    $data->save();
+
+    return redirect()->back()->with('success', 'Application submitted successfully. Proceed to payment.');
+}
+
 
     public function myappointment()
     {

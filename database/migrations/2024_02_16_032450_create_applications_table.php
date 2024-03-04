@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('personal_details_id')->nullable();
             $table->string('birthplaces_id')->nullable();
             $table->string('documents_id')->nullable();
-            $table->enum('application_status',['paid','unpaid'])->default('unpaid');
+            $table->enum('application_status',['pending','complete'])->default('pending');
             $table->timestamps();
         });
 

@@ -14,6 +14,7 @@ class Documents extends Model
 
     protected $fillable = [
         'user_id',
+        'applications_id',
         'birth_certificate_number',
         'passport_number',
         'parents_id_number',

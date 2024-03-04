@@ -11,13 +11,8 @@
 		<!--end::Sidebar toggle-->
 		<!--begin::Logo-->
 		<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
-<<<<<<< HEAD
-			<a href="index.html">
-				<img alt="Logo" src="{{ asset('user/media/logos/demo50.svg') }}" class="h-30px" />
-=======
 			<a href="{{ route ('home') }}">
-				<img alt="Logo" src="assets/media/logos/demo50.svg" class="h-30px" />
->>>>>>> cd15746ab46e93ba32b6539c9315d92a712273a0
+				<img alt="Logo" src="{{ asset('assets/images/logo/logo_t.png') }}" class="h-30px" />
 			</a>
 		</div>
 		<!--end::Logo-->

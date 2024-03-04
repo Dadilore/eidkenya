@@ -8,11 +8,17 @@ use App\models\Appointments;
 
 class AdminController extends Controller
 {
-    public function AdminDashboard(){
+    public function AdminDashboard()
+    {
+        $response = response()->view('admin.index');
 
-        return view('admin.index');
+        // Add no-cache headers to prevent browser caching
+        $response->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+        $response->header('Pragma', 'no-cache');
+        $response->header('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
 
-    } //End Method
+        return $response;
+    }//End Method
 
 
     public function AdminLogout(Request $request){
@@ -49,6 +55,16 @@ class AdminController extends Controller
 
         $data=appointments::find($id);
         $data->status='cancelled';
+        $data->save(); 
+
+        return redirect()->back();
+
+    }
+    public function paid($id)
+    {
+
+        $data=appointments::find($id);
+        $data->status='paid';
         $data->save(); 
 
         return redirect()->back();
