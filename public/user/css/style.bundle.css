@@ -29,7 +29,7 @@
 	--bs-light: #F9F9F9;
 	--bs-primary: #17C653;
 	--bs-secondary: #F1F1F4;
-	--bs-success: #1B84FF;
+	--bs-success: #17C653;
 	--bs-info: #7239EA;
 	--bs-warning: #F6C000;
 	--bs-danger: #F8285A;
@@ -34037,7 +34037,7 @@ textarea.form-control-lg {
 	--bs-dark-active: #111318;
 	--bs-primary-light: #DFFFEA;
 	--bs-secondary-light: #F9F9F9;
-	--bs-success-light: #E9F3FF;
+	--bs-success-light: #e9ffec;
 	--bs-info-light: #F8F5FF;
 	--bs-warning-light: #FFF8DD;
 	--bs-danger-light: #FFEEF3;
@@ -56229,8 +56229,8 @@ router-outlet {
 	}
 
 	:root {
-		--bs-app-sidebar-width: 340px;
-		--bs-app-sidebar-width-actual: 340px;
+		--bs-app-sidebar-width: 40px;
+		--bs-app-sidebar-width-actual: 40px;
 		--bs-app-sidebar-gap-start: 0px;
 		--bs-app-sidebar-gap-end: 0px;
 		--bs-app-sidebar-gap-top: 0px;

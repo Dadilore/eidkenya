@@ -2,6 +2,62 @@
 <div id="kt_app_sidebar" class="app-sidebar" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle" >
 <!--begin::Sidebar primary-->
 <div class="app-sidebar-primary">
+	<div class="app-sidebar-menu flex-grow-1 hover-scroll-y scroll-ms my-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px">
+		<!--begin::Menu-->
+		<div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-semibold fs-6" data-kt-menu="true">
+			<div class="menu-item here show py-2">
+				<a class="menu-link menu-center"  href="{{ route('dashboard') }}" >
+					<span class="menu-icon me-0">
+						<i class="ki-outline ki-home-1 fs-1"></i>
+					</span>
+				</a>
+			</div>
+			<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
+				<span class="menu-link menu-center">
+					<span class="menu-icon me-0">
+						<i class="ki-outline ki-shield-tick fs-1"></i>
+					</span>
+				</span>
+				<div class="menu-sub menu-sub-dropdown px-2 py-4 w-200px w-lg-225px mh-75 overflow-auto">
+					<div class="menu-item">
+						<div class="menu-content">
+							<span class="menu-section fs-5 fw-bolder ps-1 py-1">Applications</span>
+						</div>
+					</div>
+					<div class="menu-item">
+						<a class="menu-link" href="{{ route('applications.create') }}" target="_blank" title="Check out over 200 in-house components" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+							<span class="menu-bullet">
+								<span class="bullet bullet-dot"></span>
+							</span>
+							<span class="menu-title">New Application</span>
+						</a>
+					</div>
+					<div class="menu-item">
+						<a class="menu-link" href="{{ route('applications.index') }}" target="_blank" title="Check out the complete documentation" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+							<span class="menu-bullet">
+								<span class="bullet bullet-dot"></span>
+							</span>
+							<span class="menu-title">My Applications</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="menu-item py-2">
+				<a class="menu-link menu-center"  href="{{ route('appointments.index') }}" >
+					<span class="menu-icon me-0">
+						<i class="ki-outline ki-calendar fs-1"></i>
+					</span>
+				</a>
+			</div>
+			<div class="menu-item py-2">
+				<a class="menu-link menu-center"  href="{{ route('payments.index') }}" >
+					<span class="menu-icon me-0">
+						<i class="ki-outline ki-dollar fs-1"></i>
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
 	<!--begin::Footer-->
 	<div class="d-flex flex-column mt-5 flex-center pb-4 pb-lg-8" id="kt_app_sidebar_footer">
 		<!--begin::User menu-->
@@ -159,7 +215,7 @@
 			<!--begin:Menu item-->
 			<div class=" mt-5 menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{route('application')}}">
+				<a class="menu-link  active" href="{{route('applications.create')}}">
 					<span class="menu-bullet">
 						<span class="bullet bullet-dot"></span>
 					</span>
@@ -183,7 +239,7 @@
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{ route('appointments') }}">
+				<a class="menu-link  active" href="{{ route('appointments.index') }}">
 					<span class="menu-bullet">
 						<span class="bullet bullet-dot"></span>
 					</span>

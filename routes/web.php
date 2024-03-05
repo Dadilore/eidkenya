@@ -2,7 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\Applications;
 use App\Http\Controllers\payController;
 use App\http\Controllers\mpesa\mpesaController;
@@ -21,23 +25,39 @@ use App\Http\Controllers\MpesaSTKPUSHController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
 
-Route::get('/requirements', function () {
-    return view('requirements');
-})->name('requirements');
-
-Route::get('/applications', function () {
-    return view('applications');
-})->name('applications');
-
-Route::get('/application', function () {
-    return view('modules.application');
-})->name('application');
+// PUBLIC ROUTES
+Route::get('/', [PublicController::class, 'index'])->name('home');
+Route::get('/requirements', [PublicController::class, 'requirements'])->name('requirements');
+Route::get('/about-us', [PublicController::class, 'about_us'])->name('about_us');
+Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
+Route::get('/testing-livewire', [ApplicationsController::class, 'livewire'])->name('livewire');
 
 
+//AUTHENTICATED ROUTES
+
+Route::middleware('auth')->prefix('dashboard')->group(function () {
+    //Load dashboard
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    //APPLICATIONS
+    Route::resources([
+        //start applications
+        'applications' => ApplicationsController::class,
+        //start appointments
+        'appointments' => AppointmentsController::class,
+        //start payments
+        'payments' => PaymentsController::class,
+    ]);
+});
+
+// Route::get('/application', function () {
+//     return view('modules.application');
+// })->name('application');
+
+Route::get('/test', [ProfileController::class, 'test'])->name('test');
+
+Route::get('/testmail', [ProfileController::class, 'testmail'])->name('testmail');
 
 //Start payments
 Route::get('/payment', function () {
@@ -57,17 +77,8 @@ Route::post('get-token', [MPESAController::class, 'getAccessToken']);
 
 //end payments
 
-//start appointments
 
-Route::get('/appointments', function () {
-    return view('modules.appointments');
-})->name('appointments');
 
-//end appointments
-
-Route::get('/dashboard', function () {  
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -76,13 +87,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::middleware(['auth','role:admin'])->group(function(){
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-
-    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-
-});// End Group Admin Middleware
 
 //logout
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

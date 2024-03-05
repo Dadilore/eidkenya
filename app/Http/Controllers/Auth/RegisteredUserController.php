@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -21,11 +22,6 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         return view('auth.register');
-    }
-
-    public function create2(): View
-    {
-        return view('auth.test_register');
     }
 
     /**
@@ -53,6 +49,10 @@ class RegisteredUserController extends Controller
             'dob' => $request->dob,
             'password' => Hash::make($request->password),
         ]);
+
+
+       $role = Role::where('slug','user')->first();
+       $user->roles()->attach($role);
 
         event(new Registered($user));
 
