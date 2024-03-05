@@ -288,7 +288,6 @@
                                         @endforeach
                                     </select>
                                     <span class="text-danger">@error('county_of_birth'){{ $message }}@enderror</span>
-                                    {{$selectedCounty}}
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">

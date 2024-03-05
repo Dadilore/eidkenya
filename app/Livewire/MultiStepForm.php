@@ -76,7 +76,6 @@ class MultiStepForm extends Component
 
     public function updatedSelectedCounty($value)
     {
-        dd($value);
         if ($value) {
             $filteredSubcounties = SubCounty::orderBy('name')->where('county_id', $value)->get();
             $this->subcounties = $filteredSubcounties;

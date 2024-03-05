@@ -31,7 +31,6 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/requirements', [PublicController::class, 'requirements'])->name('requirements');
 Route::get('/about-us', [PublicController::class, 'about_us'])->name('about_us');
 Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
-Route::get('/testing-livewire', [ApplicationsController::class, 'livewire'])->name('livewire');
 
 
 //AUTHENTICATED ROUTES

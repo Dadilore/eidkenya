@@ -64,10 +64,4 @@ class ApplicationsController extends Controller
         //
     }
 
-    public function livewire(){
-        $all_counties = County::all();
-        $all_subcounties = SubCounty::all();
-
-        return view('dashboard.applications.test');
-    }
 }

@@ -10,7 +10,7 @@ class Documents extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     protected $foreignKey = 'user_id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'user_id',

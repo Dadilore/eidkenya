@@ -1,5 +1,5 @@
 <!--begin::Header-->
-<div id="kt_app_header" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '300px'}" data-kt-sticky-animation="false" >
+<div id="kt_app_header" class="app-header shadow" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '300px'}" data-kt-sticky-animation="false" >
 <!--begin::Header container-->
 <div class="app-container container-xxl d-flex align-items-stretch flex-stack" id="kt_app_header_container">
 	<!--begin::Header mobile-->
