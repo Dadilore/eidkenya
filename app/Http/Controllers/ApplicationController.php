@@ -42,51 +42,37 @@ class ApplicationController extends Controller
 
     public function my_application()
     {
-        $data = applications::all();
-
-        return view('modules.my_application',compact('data'));
+        // Fetch data from the applications table for the authenticated user
+        $data = Applications::where('user_id', Auth::user()->id)->get();
+    
+        return view('modules.my_application', compact('data'));
     }
 
     public function deleteapplication($id)
-    {
-        // Find the application record
-        $application = Applications::find($id);
+{
+    // Find the application record
+    $application = Applications::find($id);
 
-        if (!$application) {
-            // Handle case where application record doesn't exist
-            return redirect()->back()->with('error', 'Application not found.');
-        }
-
-        // Retrieve all personal details records for the authenticated user
-        $personalDetails = PersonalDetails::where('user_id', Auth::user()->id)->get();
-
-        // Retrieve all birthplaces records for the authenticated user
-        $birthplaces = Birthplaces::where('user_id', Auth::user()->id)->get();
-
-        // Retrieve all documents records for the authenticated user
-        $documents = Documents::where('user_id', Auth::user()->id)->get();
-
-        // Delete all personal details records
-        foreach ($personalDetails as $personalDetail) {
-            $personalDetail->delete();
-        }
-
-        // Delete all birthplaces records
-        foreach ($birthplaces as $birthplace) {
-            $birthplace->delete();
-        }
-
-        // Delete all documents records
-        foreach ($documents as $document) {
-            $document->delete();
-        }
-
-
-        // Delete the application record
-        $application->delete();
-
-        return redirect()->back()->with('success', 'Application deleted successfully.');
+    if (!$application) {
+        // Handle case where application record doesn't exist
+        return redirect()->back()->with('error', 'Application not found.');
     }
+
+    // Delete all personal details records related to the application
+    PersonalDetails::where('applications_id', $application->id)->delete();
+
+    // Delete all birthplaces records related to the application
+    Birthplaces::where('applications_id', $application->id)->delete();
+
+    // Delete all documents records related to the application
+    Documents::where('applications_id', $application->id)->delete();
+
+    // Delete the application record
+    $application->delete();
+
+    return redirect()->back()->with('success', 'Application deleted successfully.');
+}
+
 
     public function update_application($id)
     {

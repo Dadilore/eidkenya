@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'middle_name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'dob' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d') . '|after_or_equal:' . now()->subYears(100)->format('Y-m-d'),
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => [
                 'required',

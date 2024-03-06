@@ -19,7 +19,7 @@
 
               <!--begin::Footer-->
               <div
-                class="d-flex flex-column flex-center pb-4 mt-5 pb-lg-8"
+                class="d-flex flex-column flex-center pb-4 mt-5  pb-lg-8"
                 id="kt_app_sidebar_footer"
               >
                 <!--begin::User menu-->
@@ -251,7 +251,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -318,13 +318,20 @@
                   </div>
                   <!--end:Menu item-->
 
+                  <!-- Add this button wherever you want in your admin dashboard -->
+                  <form action="{{ route('seed.user.biometrics') }}" method="POST">
+                      @csrf
+                      <button type="submit" class="btn btn-primary">Add User Biometrics</button>
+                  </form>
+
+
                   <!--begin:Menu item-->
                   <div
                     data-kt-menu-trigger="click"
                     class="menu-item  menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -385,7 +392,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -433,7 +440,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -491,7 +498,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -525,7 +532,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>

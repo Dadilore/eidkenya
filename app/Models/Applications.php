@@ -14,9 +14,7 @@ class Applications extends Model
 
     protected $fillable = [
         'user_id',
-        'personal_details_id',
-        'birthplaces_id',
-        'documents_id',
+        'application_type',
         'application_status'
     ];
 }

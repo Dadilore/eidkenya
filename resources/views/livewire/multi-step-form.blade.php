@@ -1,13 +1,8 @@
 @include('sweetalert::alert')
     <div id="kt_app_content" class="app-content  flex-column-fluid ">
                 
-            <div id="kt_app_content_container" class="app-container  container-xxl ">
-                @if (session()->has('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                        <a href="{{route('payment')}}"><button type="" class="btn btn-md btn-primary" >Proceed to Payment</button></a>
-                    </div>
-                @endif
+            <div id="kt_app_content_container" class="app-container mt-5 container-xxl ">
+               
 
                 <div class="card my-5 mb-xxl-8 bg-light-primary">
                     <div class="card-body pt-9 pb-0">
@@ -435,11 +430,28 @@
                                 <button wire:click="saveApplication" type="submit" class="btn btn-md btn-primary">Submit</button>
                             @endif
 
+                            
+
                             </div>
                             </div>
                         </form>
+                        <div class="card mt-5 ">
+                            <!-- <div class="card-header"></div> -->
+                                <div class="card-body">
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
+                                        {{ session('success') }}
+                                        <a href="{{route('payment')}}"><button type="" class="btn btn-md btn-primary" >Proceed to Payment</button></a>
+                                        <button type="button" class="btn-close btn btn-danger me-5 mt-5 btn btn-lg " data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                @endif 
+                                </div>
+                        </div>
+                        
                     </div>
                 </div>
-                        
+                
+                 
+                
         </div>
     </div>

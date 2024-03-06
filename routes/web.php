@@ -122,11 +122,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/make_appointment', [AppointmentController::class, 'make_appointment']);
 
+    Route::get('/check-appointments', 'AppointmentController@checkAppointments');
+
     Route::get('/myappointment', [AppointmentController::class, 'myappointment']);
+
+    Route::get('/cancel_appoint/{id}', [AppointmentController::class, 'cancel_appoint']);
 
     //END APPOINTMENTS
 
 });
+
+Route::post('/seed-user-biometrics', [AdminController::class, 'seedUserBiometrics'])->name('seed.user.biometrics');
 
 //START TRACKING
 
@@ -155,8 +161,6 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
-    Route::get('/cancel_appoint/{id}', [AppointmentController::class, 'cancel_appoint']);
-
     Route::get('/showappointment', [AdminController::class, 'showappointment']);
     
     Route::get('/approved/{id}', [AdminController::class, 'approved']);
@@ -164,6 +168,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
 
     Route::get('/paid/{id}', [AdminController::class, 'paid']);
+
+    
 });
 
 // End Group Admin Middleware

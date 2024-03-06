@@ -2,32 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\ValidAppointmentDate;
 use Illuminate\Http\Request;
 use App\Models\Appointments;
+use App\Models\Applications;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
+
 class AppointmentController extends Controller
 {
+
     public function make_appointment(Request $request)
-{
-    $data = new Appointments;
-    $applicationId = Auth::user()->application_id; 
+    {
+        $request->validate([
+            'appointment_date' => ['required', 'date', new ValidAppointmentDate],
 
-    $data->appointment_date = $request->appointment_date;
-    $data->appointment_time = $request->appointment_time;
-    $data->appointment_venue = $request->appointment_venue;
-    $data->applications_id = $applicationId; // Assign the correct property
-    $data->status = 'In progress';
+            // other validation rules...
+        ]);
 
-    if (Auth::id()) {
-        $data->user_id = Auth::user()->id;
+        $data = new Appointments;
+        // $applicationsId = Auth::user()->application_id; 
+
+        $data->appointment_date = $request->appointment_date;
+        $data->appointment_time = $request->appointment_time;
+        $data->appointment_venue = $request->appointment_venue;
+        $data->status = 'In progress';
+
+        if (Auth::id()) {
+            $data->user_id = Auth::user()->id;
+        }
+
+        // Update the application status to "biometrics_appointment_booked"
+        Applications::where('user_id', Auth::user()->id)
+        ->update(['application_status' => 'biometrics_appointment_booked']);
+
+
+        $data->save();
+
+        return redirect()->back()->with('success', 'Appointment submitted successfully. click the button to view your appointment.');
     }
 
-    $data->save();
-
-    return redirect()->back()->with('success', 'Application submitted successfully. Proceed to payment.');
-}
 
 
     public function myappointment()
@@ -45,16 +60,18 @@ class AppointmentController extends Controller
             return redirect()->back();
         }
     }
-
     public function cancel_appoint($id)
     {
-        $data=appointments::find($id);
+        $data = appointments::find($id);
+
+        if (!$data) {
+            // Handle case where appointment does not exist
+            return redirect()->back()->with('error', 'Appointment not found.');
+        }
+
         $data->delete();
 
-        session()->flash('success', 'Appointment submitted successfully.');
-        
-
-        return redirect()->back();
-
+        return redirect()->back()->with('success', 'You have successfully canceled your appointment.');
     }
+
 }

@@ -17,10 +17,8 @@ return new class extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->constrained ();
-            $table->string('personal_details_id')->nullable();
-            $table->string('birthplaces_id')->nullable();
-            $table->string('documents_id')->nullable();
-            $table->enum('application_status',['pending','complete'])->default('pending');
+            $table->string('application_type')->nullable();
+            $table->string('application_status')->nullable();
             $table->timestamps();
         });
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->constrained(); // Assuming user_id is a foreign key to users table
             $table->unsignedBigInteger('applications_id')->nullable();
             $table->date('appointment_date')->nullable();
-            $table->time('appointment_time')->nullable();
+            $table->string('appointment_time')->nullable();
             $table->string('appointment_venue')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

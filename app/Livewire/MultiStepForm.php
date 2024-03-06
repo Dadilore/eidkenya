@@ -139,11 +139,26 @@ class MultiStepForm extends Component
         $personalDetails = null;
         $birthplaces = null;
         $document = null;
+    
 
         if ($this->currentStep == 4) {
+
+            $application = Applications::create([
+                'user_id' => $this->user_id,
+                'application_type' => 'New Application',
+                // ... Other fields ...
+                'application_status' => 'application_incomplete', // Set initial application_status
+            ]);
+        
+            // Check if the application was created successfully
+            if ($application) {
+                // Retrieve the ID of the created application
+                $applicationsId = $application->id;
+        
             // Insert into personal_details table
             $personalDetails = PersonalDetails::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'fathers_name' => $this->fathers_name,
                 'mothers_name' => $this->mothers_name,
                 'marital_status' => $this->marital_status,
@@ -154,6 +169,7 @@ class MultiStepForm extends Component
             // Insert into birthplaces table
             $birthplaces = Birthplaces::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'district_of_birth' => $this->district_of_birth,
                 'tribe' => $this->tribe,
                 'clan' => $this->clan,
@@ -171,6 +187,7 @@ class MultiStepForm extends Component
             // Insert into documents table
             $document = Documents::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'birth_certificate_number' => $this->birth_certificate_number,
                 'passport_number' => $this->passport_number,
                 'parents_id_number' => $this->parents_id_number,
@@ -183,20 +200,13 @@ class MultiStepForm extends Component
                 // ... Other fields ...
             ]);
 
-            // Retrieve the actual IDs from the created models
-            $personalDetailsId = $personalDetails->id ?? null;
-            $birthplacesId = $birthplaces->id ?? null;
-            $documentsId = $document->id ?? null;
+            $application->update(['application_status' => 'Application Complete']);
 
-            // Insert into applications table with actual IDs
-            Applications::create([
-                'user_id' => $this->user_id,
-                'personal_details_id' => $personalDetailsId,
-                'birthplaces_id' => $birthplacesId,
-                'documents_id' => $documentsId,
-                
-                // ... Other fields ...
-            ]);
+
+           
+          
+
+        
 
             // Handle file uploads (e.g., passport photo, ID card photos)
             if ($this->currentStep === 4) {
@@ -236,12 +246,14 @@ class MultiStepForm extends Component
                 // Store their file paths in the documents table
                 // ... (Similar logic for other images)
             }
+        }
             
 
             // ... (Your existing code below)
         }
 
-        session()->flash('success', 'Application submitted successfully. Proceed to payment.');
+        session()->flash('success', 'Application submitted successfully. click the button to proceed to payment.');
+        
     }
 
 

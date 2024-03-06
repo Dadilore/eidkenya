@@ -2,16 +2,22 @@
 @section('pageTitle', 'Payment')
 @section('content')
 
-        @if(session()->has('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+
         
         <div class="step-six" id="6">
             <div class="card">
+                
                 <div class="card-header bg-primary "><h3 class="mt-5">STEP 6/6 - PAYMENT</h3></div>
                 <div class="card-body">
+                @if (session()->has('success'))
+            <div class="container mt-5">
+            <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
+                {{ session('success') }}
+                <a href="{{url('make_appointment')}}"><button type="" class="btn btn-md btn-primary" > Make Appointment </button></a>
+                <button type="button" class="btn-close btn btn-danger me-5 mt-5" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            </div>
+        @endif
                     <!-- ======= payment Section ======= -->
                     <section id="payment" class="payment">
                         <div style="display: flex; justify-content: space-between;">

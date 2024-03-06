@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\models\Appointments;
+use App\models\UserBiometrics;
+use Illuminate\Support\Facades\Artisan;
 
 class AdminController extends Controller
 {
@@ -69,6 +71,14 @@ class AdminController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function seedUserBiometrics()
+    {
+        // Run the UserBiometricsSeeder
+        Artisan::call('db:seed', ['--class' => 'UserBiometricsSeeder']);
+
+        return redirect()->back()->with('success', 'User Biometrics seeded with demo data.');
     }
 
 

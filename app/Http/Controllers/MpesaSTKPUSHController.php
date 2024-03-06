@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mpesa\STKPush;
 use App\Models\MpesaSTK;
+use App\Models\Applications; 
 use Iankumu\Mpesa\Facades\Mpesa;//import the Facade
 use Illuminate\Http\Request;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
@@ -29,17 +30,32 @@ class MpesaSTKPUSHController extends Controller
         $result = json_decode((string)$response, true);
         $user_id = Auth::user()->id;
         // Uncomment the following lines if you need to store additional data
-        MpesaSTK::create([
+        $mpesaSTK = MpesaSTK::create([
             'merchant_request_id' => $result['MerchantRequestID'],
             'checkout_request_id' => $result['CheckoutRequestID'],
-            'amount' => $amount, // Use the previously defined $amount variable
-            'phonenumber' => $phoneno, // Using the retrieved phone number
-            'user_id' => $user_id, // Replace $user_id with the actual user ID
+            'amount' => $amount,
+            'phonenumber' => $phoneno,
+            'user_id' => $user_id,
         ]);
 
-        
+        // Update the application status to "application_paid" if payment is successful
+        if ($mpesaSTK) {
+            $user_id = Auth::user()->id;
+
+            // Check if there is a record in the payments table for the authenticated user
+            $paymentRecord = $user_id ? MpesaSTK::where('user_id', $user_id)->first() : null;
+
+            if ($mpesaSTK) {
+                $user_id = Auth::user()->id;
+    
+                // Update the application status to "application_paid" for all applications of the authenticated user
+                Applications::where('user_id', $user_id)->update(['application_status' => 'application_paid']);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Payment succesfull. click the button schedule your biometrics capture appointment.');
         // return $result;
-        return redirect()->back();
+        // return redirect()->back();
         // return redirect()->route('make_appointment');
     }
     
