@@ -203,7 +203,10 @@ class MultiStepForm extends Component
             $application->update(['application_status' => 'Application Complete']);
 
 
-           
+           // Send email after successful form submission
+           $homeController = new HomeController();
+           $homeController->sendnotification();
+
           
 
         
@@ -258,16 +261,5 @@ class MultiStepForm extends Component
 
 
 
-    public function saveApplication()
-    {
-        // Save application details to the database
-
-        // After saving, send email notification
-        $user = Auth::user(); // Assuming user is authenticated
-        app(HomeController::class)->sendnotification(); // Correct method name
-
-        // Additional logic if needed
-
-        return redirect()->back();
-    }
+    
 }

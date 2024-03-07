@@ -427,7 +427,7 @@
                             @endif
                             
                             @if ($currentStep == 4)
-                                <button wire:click="saveApplication" type="submit" class="btn btn-md btn-primary">Submit</button>
+                                <button  type="submit" class="btn btn-md btn-primary">Submit</button>
                             @endif
 
                             

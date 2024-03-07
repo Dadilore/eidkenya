@@ -16,6 +16,7 @@ class HomeController extends Controller
 
         if ($user) {
             $details = [
+                // 'Subject' => 'Application Submitted Successfully',
                 'greeting' => 'Hello ' . $user->name,
                 'body' => 'Congratulations! We are thrilled to inform you that your ID application with eID Kenya has been successfully submitted and and is being processed.',
                 'actiontext' => 'View Application',
