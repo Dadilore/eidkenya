@@ -37,6 +37,8 @@ Route::get('/requirements', function () {
 
 //START MAIL
 Route::get('send',[HomeController::class,"sendnotification"]);
+
+Route::get('send',[HomeController::class,"sendappointmentnotification"]);
 //END MAIL
 
 

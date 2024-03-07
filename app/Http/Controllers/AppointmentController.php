@@ -40,6 +40,10 @@ class AppointmentController extends Controller
 
         $data->save();
 
+        // Use the existing sendappointmentnotification method from HomeController
+        app(HomeController::class)->sendappointmentnotification();
+
+
         return redirect()->back()->with('success', 'Appointment submitted successfully. click the button to view your appointment.');
     }
 
