@@ -2,8 +2,8 @@
 @section('pageTitle', 'My Appointment')
 @section('content')
 
-<div class="container-fluid page-body-wrapper ">
-    <div align="center" style="padding: 70px;" class="mx-auto shadow " style="max-width: 800px;">
+<div class="container-fluid page-body-wrapper">
+    <div align="center" style="padding: 70px;" class="mx-auto shadow" style="max-width: 800px;">
         @if (session()->has('success'))
             <div class="container mt-5">
                 <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
@@ -23,13 +23,13 @@
             </div>
         @else
             <table class="table table-bordered">
-                <thead class="thead-dark">
+                <thead class="thead-dark" style="background-color:#17C653;">
                     <tr>
                         <th>Appointment Date</th>
                         <th>Appointment Time</th>
                         <th>Appointment Venue</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,10 +38,17 @@
                             <td>{{$appoints->appointment_date}}</td>
                             <td>{{$appoints->appointment_time}}</td>
                             <td>{{$appoints->appointment_venue}}</td>  
-                            <td>{{$appoints->status}}</td> 
+                            <td style="color: #8B0000;">{{$appoints->status}}</td> <!-- Add color style for the Status column -->
                             <td>
-                                <a class="btn btn-danger md" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('cancel_appoint',$appoints->id)}}">Cancel</a>
-                                <a class="btn btn-primary md"  href="#">Reschedule</a><br>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu mt-1">
+                                        <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('cancel_appoint',$appoints->id)}}">Cancel</a></li>
+                                        <li><a class="dropdown-item" href="#">Reschedule</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
