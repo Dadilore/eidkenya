@@ -45,40 +45,44 @@ class ApplicationController extends Controller
         // Fetch data from the applications table for the authenticated user
         $data = Applications::where('user_id', Auth::user()->id)->get();
     
-        return view('modules.my_application', compact('data'));
+        return view('applications.my_application', compact('data'));
     }
 
     public function deleteapplication($id)
-{
-    // Find the application record
-    $application = Applications::find($id);
+    {
+        // Find the application record
+        $application = Applications::find($id);
 
-    if (!$application) {
-        // Handle case where application record doesn't exist
-        return redirect()->back()->with('error', 'Application not found.');
+        if (!$application) {
+            // Handle case where application record doesn't exist
+            return redirect()->back()->with('error', 'Application not found.');
+        }
+
+        // Delete all personal details records related to the application
+        PersonalDetails::where('applications_id', $application->id)->delete();
+
+        // Delete all birthplaces records related to the application
+        Birthplaces::where('applications_id', $application->id)->delete();
+
+        // Delete all documents records related to the application
+        Documents::where('applications_id', $application->id)->delete();
+
+        // Delete the application record
+        $application->delete();
+
+        return redirect()->back()->with('success', 'Application deleted successfully.');
     }
-
-    // Delete all personal details records related to the application
-    PersonalDetails::where('applications_id', $application->id)->delete();
-
-    // Delete all birthplaces records related to the application
-    Birthplaces::where('applications_id', $application->id)->delete();
-
-    // Delete all documents records related to the application
-    Documents::where('applications_id', $application->id)->delete();
-
-    // Delete the application record
-    $application->delete();
-
-    return redirect()->back()->with('success', 'Application deleted successfully.');
-}
 
 
     public function update_application($id)
     {
-        $data = Applications::find($id);
+        $application = Applications::find($id);
+        
+        $user = Auth::user();
+
+        $data = PersonalDetails::where('applications_id', $application->id)->delete();
     
-        return view('modules.update_application');
+        return view('applications.update_application', compact('data'));
     }
     
 }

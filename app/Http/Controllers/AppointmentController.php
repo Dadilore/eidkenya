@@ -17,53 +17,70 @@ class AppointmentController extends Controller
     {
         $request->validate([
             'appointment_date' => ['required', 'date', new ValidAppointmentDate],
-
             // other validation rules...
         ]);
 
-        $data = new Appointments;
-        // $applicationsId = Auth::user()->application_id; 
+        // Get the user's ID
+        $userId = Auth::id();
 
-        $data->appointment_date = $request->appointment_date;
-        $data->appointment_time = $request->appointment_time;
-        $data->appointment_venue = $request->appointment_venue;
-        $data->status = 'In progress';
+        // Get the latest application for the user
+        $latestApplication = Applications::where('user_id', $userId)->latest()->first();
 
-        if (Auth::id()) {
-            $data->user_id = Auth::user()->id;
+        // If the user has no applications, create a new one
+        if (!$latestApplication) {
+            $latestApplication = Applications::create([
+                'user_id' => $userId,
+                'application_status' => 'application_incomplete',
+                // Add other fields as needed
+            ]);
         }
 
+        // Create a new appointment
+        $appointment = new Appointments;
+        $appointment->appointment_date = $request->appointment_date;
+        $appointment->appointment_time = $request->appointment_time;
+        $appointment->appointment_venue = $request->appointment_venue;
+        $appointment->status = 'In progress';
+        $appointment->user_id = $userId;
+        $appointment->applications_id = $latestApplication->id;
+
         // Update the application status to "biometrics_appointment_booked"
-        Applications::where('user_id', Auth::user()->id)
-        ->update(['application_status' => 'biometrics_appointment_booked']);
+        $latestApplication->update(['application_status' => 'biometrics_appointment_booked']);
 
-
-        $data->save();
+        // Save the appointment
+        $appointment->save();
 
         // Use the existing sendappointmentnotification method from HomeController
-        app(HomeController::class)->sendappointmentnotification();
+        // app(HomeController::class)->sendappointmentnotification();
 
-
-        return redirect()->back()->with('success', 'Appointment submitted successfully. click the button to view your appointment.');
+        return redirect()->back()->with('success', 'Appointment submitted successfully. Click the button to view your appointment.');
     }
+
 
 
 
     public function myappointment()
     {
-        if(Auth::id())
-        {
+        if (Auth::id()) {
             $user_id = Auth::user()->id;
 
-            $appoint=appointments::where('user_id',$user_id)->get();
+            $latestApplication = Auth::user()->applications()->latest()->first();
 
-            return view('modules.myappointment',compact('appoint'));
-        }
-        else
-        {
+            if ($latestApplication) {
+                $appoint = $latestApplication->appointments;
+                return view('biometrics.myappointment', compact('appoint'));
+            } else {
+                // Handle case where user has no applications
+                $appoint = collect(); // Set $appoint to an empty collection
+            }
+
+            return view('biometrics.myappointment', compact('appoint'));
+        } else {
             return redirect()->back();
         }
     }
+
+
     public function cancel_appoint($id)
     {
         $data = appointments::find($id);
@@ -76,6 +93,28 @@ class AppointmentController extends Controller
         $data->delete();
 
         return redirect()->back()->with('success', 'You have successfully canceled your appointment.');
+    }
+
+    public function reschedule_appointment($id)
+    {
+        $data = appointments::find($id);
+         
+        return view('biometrics.reschedule_appointment', compact('data'));
+
+    }
+
+    public function edit_appointment(Request $request , $id)
+    {
+        $appointments = appointments::find($id);
+
+        $appointments->appointment_date=$request->appointment_date;
+        $appointments->appointment_time=$request->appointment_time;
+        $appointments->appointment_venue=$request->appointment_venue;
+
+        $appointments->save();
+
+        return redirect()->back()->with('success', 'You have successfully rescheduled your appointment.');
+
     }
 
 }

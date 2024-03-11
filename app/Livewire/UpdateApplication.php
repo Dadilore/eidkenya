@@ -51,6 +51,7 @@ class UpdateApplication extends Component
     public $mothers_id_card_back;
     public $application_status;
     public $terms;
+    public $data;
 
     public $totalSteps = 4;
     public $currentStep = 1;
@@ -132,24 +133,7 @@ class UpdateApplication extends Component
         // } 
     }
 
-    public function getOldDetails()
-{
-    $user = Auth::user();
-
-    $personalDetails = PersonalDetails::where('user_id', $user->id)->first();
-
-    $this->gender = $personalDetails->sex;
-    $this->phone = $personalDetails->phone;
-    $this->marital_status = $personalDetails->marital_status;
-    $this->occupation = $personalDetails->occupation;
-    $this->telephone_number = $personalDetails->telephone_number;
-    $this->email = $personalDetails->email;
-    $this->occupation = $personalDetails->occupation;
-    // Add more fields as needed...
-
-    // Trigger Livewire to refresh the displayed data
-    $this->emit('refreshLivewireComponent');
-}
+   
 
 
 

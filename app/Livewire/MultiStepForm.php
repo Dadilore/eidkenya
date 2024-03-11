@@ -204,8 +204,8 @@ class MultiStepForm extends Component
 
 
            // Send email after successful form submission
-           $homeController = new HomeController();
-           $homeController->sendnotification();
+        //    $homeController = new HomeController();
+        //    $homeController->sendnotification();
 
           
 

@@ -4,6 +4,26 @@
 
 <div class="container-fluid page-body-wrapper ">
    
+    <div class="card my-5 mb-xxl-8 bg-light-primary">
+        <div class="card-body pt-9 pb-0">
+            <div class="d-flex flex-wrap flex-sm-nowrap">
+                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">My Application </span>
+                            </div>
+                            <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                    You can delete or edit you application before it is confirmed and your biometrics taken  <span class="fw-bolder ms-1"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div align="center" style="padding: 100px;" class="mx-auto shadow " style="max-width: 800px;">
         @if (session()->has('success'))
             <div class="container mt-5">
@@ -27,7 +47,7 @@
                 <tr align="center">
                     <td>{{$applications->id}}</td>
                     <td>{{$applications->application_type}}</td>         
-                    <td style="color: #8B0000;" >{{$applications->application_status}}</td>
+                    <td style="color: #000;" ><p style="background-color:#FF6961; border-radius:10px; me-0">{{$applications->application_status}}</p></td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

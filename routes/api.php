@@ -12,3 +12,6 @@ Route::post('stkpush', [MPESAResponsesController::class, 'stkPush']);
 Route::post('b2ccallback', [MPESAResponsesController::class, 'b2cCallback']);
 Route::post('transaction-status/result_url', [MPESAResponsesController::class, 'transactionStatusResponse']);
 Route::post('reversal/result_url', [MPESAResponsesController::class, 'transactionReversal']);
+
+// webhook
+Route::post('/mpesa-callback', 'PaymentController@mpesaCallback')->name('mpesa.callback');

@@ -13,6 +13,9 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\MpesaWebhookController;
+use App\Http\Controllers\UsersController;
+
 
 
 /*
@@ -48,21 +51,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //START APPLICATIONS
     Route::get('/new_applications', function () {
-        return view('modules.new_applications');
+        return view('applications.new_applications');
     })->name('new_applications');
 
-    // Route::get('/update_application', function () {
-    //     return view('modules.update_application');
-    // })->name('update_application');
+
 
     Route::get('/update_application/{id}', [ApplicationController::class, 'update_application']);
     
     Route::get('/replacement_applications', function () {
-        return view('modules.replacement_applications');
+        return view('applications.replacement_applications');
     })->name('replacement_applications');
     
     Route::get('/change_of_particulars', function () {
-        return view('modules.change_of_particulars');
+        return view('applications.change_of_particulars');
     })->name('change_of_particulars');
     
     Route::get('/my_application', [ApplicationController::class, 'my_application']);
@@ -74,7 +75,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //START PAYMENTS
     Route::get('/payment', function () {
-        return view('modules.payment');
+        return view('payments.payment');
     })->name('payment');
 
     // Route::get('/pay', [PayController::class, 'stk'])->name('pay.stk');
@@ -89,6 +90,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('register-urls', [MPESAC2BController::class, 'registerURLS']);
 
+    //webhook
+    // Route::post('/mpesa-webhook', [MpesaWebhookController::class, 'handleWebhook']);
+    Route::post('/mpesa-callback', 'PaymentController@mpesaCallback')->name('mpesa.callback');
+
     //codewithben
     Route::post('get-token', [MPESAController::class, 'getAccessToken']);
     Route::post('register-urls', [MPESAController::class, 'registerURLS']);
@@ -99,15 +104,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('reversal', [MPESAController::class, 'reverseTransaction']);
     
     Route::get('/test', function () {
-        return view('modules.test');
+        return view('payments.test');
     })->name('test');
 
     Route::get('/stk', function () {
-        return view('modules.stk');
+        return view('payments.stk');
     })->name('stk');
 
     Route::get('/transaction_status', function () {
-        return view('modules.transaction_status');
+        return view('payments.transaction_status');
     })->name('transaction_status');
 
     //END PAYMENTS
@@ -115,14 +120,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     //START APPOINTMENTS
     Route::get('/make_appointment', function () {
-        return view('modules.make_appointment');
-    })->name('make_appointment');
+        return view('biometrics.make_appointment');
+    })->name('make_appointment');  
 
     Route::get('/myappointment', function () {
-        return view('modules.myappointment');
+        return view('biometrics.myappointment');
     })->name('myappointment');
 
+    
+    // Route::get('/reschedule_appointment', function () {
+    //     return view('biometrics.reschedule_appointment');
+    // })->name('reschedule_appointment');
+
     Route::post('/make_appointment', [AppointmentController::class, 'make_appointment']);
+
+    Route::get('/reschedule_appointment/{id}', [AppointmentController::class, 'reschedule_appointment']);
+
+    Route::post('/edit_appointment/{id}', [AppointmentController::class, 'edit_appointment']);
 
     Route::get('/check-appointments', 'AppointmentController@checkAppointments');
 
@@ -164,6 +178,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
     Route::get('/showappointment', [AdminController::class, 'showappointment']);
+
+    Route::get('/view_users', [UsersController::class, 'view_users']);
     
     Route::get('/approved/{id}', [AdminController::class, 'approved']);
     

@@ -29,7 +29,7 @@
                   data-kt-attach="parent"
                   data-kt-menu-placement="right-end"
                 >
-                  <img src="{{ asset('user/media/avatars/300-2.jpg') }}" alt="user" />
+                  <img src="{{asset ('assets/images/profile/augustine.jpg') }}" alt="user" />
                 </div>
                 <!--begin::User account menu-->
                 <div
@@ -41,7 +41,7 @@
                     <div class="menu-content d-flex align-items-center px-3">
                       <!--begin::Avatar-->
                       <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{ asset('user/media/avatars/300-2.jpg') }}" />
+                        <img alt="Logo" src="{{asset ('assets/images/profile/augustine.jpg') }}" />
                       </div>
                       <!--end::Avatar-->
                       <!--begin::Username-->
@@ -285,12 +285,12 @@
                         <!--begin:Menu link-->
                         <a
                           class="menu-link"
-                          href="pages/user-profile/projects.html"
+                          href="{{ url('view_users') }}"
                         >
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">View User</span>
+                          <span class="menu-title">View Users</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -319,10 +319,11 @@
                   <!--end:Menu item-->
 
                   <!-- Add this button wherever you want in your admin dashboard -->
-                  <form action="{{ route('seed.user.biometrics') }}" method="POST">
+                  
+                  <!-- <form action="{{ route('seed.user.biometrics') }}" method="POST">
                       @csrf
                       <button type="submit" class="btn btn-primary">Add User Biometrics</button>
-                  </form>
+                  </form> -->
 
 
                   <!--begin:Menu item-->

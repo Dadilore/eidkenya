@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MpesaSTK extends Model
 {
+    public function application()
+    {
+        return $this->belongsTo(Applications::class, 'applications_id');
+    }
+    
     use HasFactory;
 
     protected $guarded = [];
@@ -16,6 +21,7 @@ class MpesaSTK extends Model
 
     protected $fillable = [
         'user_id',
+        'applications_id',
         'result_desc',
         'result_code',
         'merchant_request_id',

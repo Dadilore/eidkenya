@@ -7,6 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Applications extends Model
 {
+    public function application()
+    {
+        return $this->belongsTo(Users::class, 'user_id');
+    }
+    
+    public function appointments()
+    {
+        return $this->hasMany(Appointments::class, 'applications_id');
+    }
+
+    public function mpesaSTKs()
+    {
+        return $this->hasMany(MpesaSTK::class, 'applications_id');
+    }
+
+
     use HasFactory;
     protected $primaryKey = 'id';
     protected $foreignKey = 'user_id';

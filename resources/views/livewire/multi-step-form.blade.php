@@ -23,6 +23,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="card mb-5">
                     <div class="card-header">
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
@@ -435,7 +436,12 @@
                             </div>
                             </div>
                         </form>
-                        <div class="card mt-5 ">
+                        
+                        
+                    </div>
+                </div>
+                
+                <div class="card mt-5 ">
                             <!-- <div class="card-header"></div> -->
                                 <div class="card-body">
                                 @if (session()->has('success'))
@@ -447,11 +453,6 @@
                                 @endif 
                                 </div>
                         </div>
-                        
-                    </div>
-                </div>
-                
-                 
                 
         </div>
     </div>

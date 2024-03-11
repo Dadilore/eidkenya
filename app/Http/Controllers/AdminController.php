@@ -37,7 +37,7 @@ class AdminController extends Controller
     public function showappointment(){
 
         $data=appointments::all();
-        return view('admin.showappointment',compact('data'));
+        return view('admin.appointments.showappointment',compact('data'));
 
     } //End Method
 
@@ -62,16 +62,16 @@ class AdminController extends Controller
         return redirect()->back();
 
     }
-    public function paid($id)
-    {
+    // public function paid($id)
+    // {
 
-        $data=appointments::find($id);
-        $data->status='paid';
-        $data->save(); 
+    //     $data=appointments::find($id);
+    //     $data->status='paid';
+    //     $data->save(); 
 
-        return redirect()->back();
+    //     return redirect()->back();
 
-    }
+    // }
 
     public function seedUserBiometrics()
     {

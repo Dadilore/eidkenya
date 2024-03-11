@@ -29,6 +29,8 @@ class CreateMpesaSTKSTable extends Migration
             $table->string('transaction_date')->nullable();
             $table->string('phonenumber')->nullable();
             $table->timestamps();
+
+            
         });
         
         // Enable foreign key checks after creating the table

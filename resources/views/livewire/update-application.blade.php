@@ -124,7 +124,7 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="sex" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Gender</label>
-                                                <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="sex" disabled>
+                                                <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="sex">
                                                     <option value="">Choose Gender</option>
                                                     <option value="M" @if(Auth::user()->sex === "M") selected @endif>Male</option>
                                                     <option value="F" @if(Auth::user()->sex === "F") selected @endif>Female</option>
@@ -135,7 +135,7 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="dob" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Date of Birth</label>
-                                                <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('dob') ?? Auth::user()->dob }}" wire:model="dob" disabled>
+                                                <input type="date" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('dob') ?? Auth::user()->dob }}" wire:model="dob">
                                                 <span class="text-danger">@error('dob'){{ $message }}@enderror</span>
                                             </div>
                                         </div>                        
@@ -176,7 +176,7 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Occupation</label>
-                                                <input value="{{ $occupation }}" type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Where do you work?" wire:model="occupation">
+                                                <input value="#" type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Where do you work?" wire:model="occupation">
                                                 <span class="text-danger">@error('occupation'){{ $message }}@enderror</span>
                                             </div>
                                         </div>

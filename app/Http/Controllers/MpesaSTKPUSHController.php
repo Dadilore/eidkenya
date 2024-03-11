@@ -9,6 +9,7 @@ use Iankumu\Mpesa\Facades\Mpesa;//import the Facade
 use Illuminate\Http\Request;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
+use Illuminate\Support\Facades\Log; 
 
 class MpesaSTKPUSHController extends Controller
 {
@@ -21,43 +22,58 @@ class MpesaSTKPUSHController extends Controller
         // Set the fixed amount (Ksh 1000) and account number ("eidkenya")
         $amount = 1;
         $account_number = 'eIDKenya';
-    
+
         // Get the phone number from the request
         $phoneno = $request->input('phonenumber');
-    
+
+         // Retrieve the most recent application ID for the authenticated user
+         $latestApplicationId = Applications::where('user_id', Auth::user()->id)
+         ->latest()
+         ->first()
+         ->id;
+
         // Call the Mpesa STK push API
         $response = Mpesa::stkpush($phoneno, $amount, $account_number);
         $result = json_decode((string)$response, true);
         $user_id = Auth::user()->id;
-        // Uncomment the following lines if you need to store additional data
-        $mpesaSTK = MpesaSTK::create([
-            'merchant_request_id' => $result['MerchantRequestID'],
-            'checkout_request_id' => $result['CheckoutRequestID'],
-            'amount' => $amount,
-            'phonenumber' => $phoneno,
-            'user_id' => $user_id,
-        ]);
 
-        // Update the application status to "application_paid" if payment is successful
-        if ($mpesaSTK) {
-            $user_id = Auth::user()->id;
+        // Log the Mpesa response for debugging or further analysis
+        Log::info('Mpesa STK Push Response: ' . json_encode($result));
 
-            // Check if there is a record in the payments table for the authenticated user
-            $paymentRecord = $user_id ? MpesaSTK::where('user_id', $user_id)->first() : null;
+        // Check if the payment was successful or canceled by the user
+        if (isset($result['ResponseCode']) && $result['ResponseCode'] == '0') {
+            // Payment successful, update the database
 
-            if ($mpesaSTK) {
-                $user_id = Auth::user()->id;
-    
-                // Update the application status to "application_paid" for all applications of the authenticated user
-                Applications::where('user_id', $user_id)->update(['application_status' => 'application_paid']);
+            // Uncomment the following lines if you need to store additional data
+            $mpesaSTK = MpesaSTK::create([
+                'merchant_request_id' => $result['MerchantRequestID'],
+                'checkout_request_id' => $result['CheckoutRequestID'],
+                'amount' => $amount,
+                'phonenumber' => $phoneno,
+                'user_id' => $user_id,
+                'applications_id' => $latestApplicationId,
+            ]);
+
+            // Update the application status to "application_paid" for all applications of the authenticated user
+            Applications::where('user_id', $user_id)->update(['application_status' => 'application_paid']);
+
+            return redirect()->back()->with('success', 'Payment successful. Click the button to schedule your biometrics capture appointment.');
+        } else {
+            // Log the cancellation response
+            Log::warning('Mpesa STK Push Response: ' . json_encode($result));
+
+            // Payment canceled by the user or encountered an error
+
+            if (isset($result['ResponseCode']) && $result['ResponseCode'] == '1032') {
+                // Payment canceled by the user
+                return redirect()->back()->with('error', 'Payment canceled by the user.');
+            } else {
+                // Payment encountered an error
+                return redirect()->back()->with('error', 'An error occurred during payment.');
             }
         }
-
-        return redirect()->back()->with('success', 'Payment succesfull. click the button schedule your biometrics capture appointment.');
-        // return $result;
-        // return redirect()->back();
-        // return redirect()->route('make_appointment');
     }
+
     
 
 
