@@ -10,7 +10,7 @@
         @endif
 
         
-        <form action="get"  wire:submit.prevent="register" enctype="multipart/form-data" >
+        <form action="get"  wire:submit.prevent="register2" enctype="multipart/form-data" >
             @csrf
             {{-- STEP 1 --}}
 

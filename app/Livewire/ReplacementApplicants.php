@@ -135,7 +135,7 @@ class ReplacementApplicants extends Component
         }
     }
 
-    public function register()
+    public function register2()
     {
         $this->resetErrorBag();
 

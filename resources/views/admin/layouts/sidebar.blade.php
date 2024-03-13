@@ -192,7 +192,7 @@
                 id="kt_app_sidebar_logo"
               >
                 <!--begin::Logo image-->
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('admin.index') }}">
                   <img
                     alt="Logo"
                     src="{{ asset ('assets/images/logo/logo_w_t.png') }}"
@@ -235,7 +235,7 @@
                   <!--begin:Menu item-->
                   <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link  active" href="{{ route('dashboard') }}">
+                    <a class="menu-link  active" href="{{ route('admin.index') }}">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -345,7 +345,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="account/overview.html">
+                        <a class="menu-link" href="{{ url('add_application') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
@@ -357,7 +357,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="account/settings.html">
+                        <a class="menu-link" href="{{ url('view_applications') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>

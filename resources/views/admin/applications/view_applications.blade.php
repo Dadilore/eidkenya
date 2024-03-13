@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('pageTitle', 'Users')
+@section('pageTitle', 'Applications')
 @section('content')
 
 <div class="card my-5 mb-xxl-8 bg-light-primary">
@@ -24,49 +24,38 @@
 </div>
 
 
+
 <div align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
 
+<a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:15%;" href="{{ url('generate_applications_pdf') }}">Export Applications</a>
 
 
-<a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:15%;" href="{{ url('generate_pdf') }}">Export Users</a>
+<a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:15%;" href="#">Add Application</a>
 
-
-<a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:15%;" href="#">Add User</a>
-
-
-    <table class="table table-bordered mx-auto" style="margin-right: 20px; width: 80%;">
+    <table class="table table-bordered mx-auto" style="margin-right: 0px; width: 100%;">
 
         <tr class="bg-secondary">
-            <th>User ID</th>
-            <th>Surname</th>
-            <th>Middle Name</th>
-            <th>Other Names</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Gender</th>
-            <th>Date of Birth</th>
+
+            <th>User id</th>
+            <th>Application id</th>
+            <th>Application type</th>
             <th>Status</th>
-            <th>Role</th>
             <th>Actions</th>
+            
         </tr>
 
         @foreach($data as $appoint)
         <tr align="center">
+            <td>{{$appoint->user_id}}</td>
             <td>{{$appoint->id}}</td>
-            <td>{{$appoint->surname}}</td>
-            <td>{{$appoint->middle_name}}</td>
-            <td>{{$appoint->name}}</td>
-            <td>{{$appoint->email}}</td>
-            <td>{{$appoint->phone}}</td>
-            <td>{{$appoint->sex}}</td>
-            <td>{{$appoint->dob}}</td>
+            <td>{{$appoint->application_type}}</td>
 
             <td style="color: #000;">
-                <p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoint->status}}
+                <p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoint->application_status}}
                 </p>
             </td>
 
-            <td>{{$appoint->role}}</td>
+
 
             <td>
                 <div class="btn-group">
@@ -101,10 +90,6 @@
 
 
 
-
-
 </div>
-
-    
 
 @endsection

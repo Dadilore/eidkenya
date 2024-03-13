@@ -46,13 +46,13 @@
 				</div>
 				<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 pt-3 pb-2 active" href="{{ route('dashboard') }}">Dashboard</a>
+						<a class="nav-link text-active-primary ms-0 me-10 pt-3 pb-2 active" href="{{ route('admin.index') }}">Dashboard</a>
 					</li>
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 pt-3 pb-2 " href="{{ route('dashboard') }}">Recent Applications</a>
+						<a class="nav-link text-active-primary ms-0 me-10 pt-3 pb-2 " href="{{ route('admin.index') }}">Recent Applications</a>
 					</li>
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 pt-3 pb-2 " href="{{ route('dashboard') }}">Notifications</a>
+						<a class="nav-link text-active-primary ms-0 me-10 pt-3 pb-2 " href="{{ route('admin.index') }}">Notifications</a>
 					</li>
 				</ul>
 			</div>

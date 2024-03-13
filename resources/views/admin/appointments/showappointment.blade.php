@@ -24,60 +24,66 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            <div class="card-body">
-                <div class=" page-body-wrapper">
-                    <div allign="center" style="padding:100px;" class="">
-                        <table>
-                            <tr style="background-color:#17C653;" >
-                                <th style="padding:10px;">Applicant id</th>
-                                <th style="padding:10px;">Appointment Date</th>
-                                <th style="padding:10px;">Appointment_time</th>
-                                <th style="padding:10px;">Appointment_venue</th>
-                                <th style="padding:10px;">Status</th>
-                                <th style="padding:1px;">Actions</th>
-                            </tr>
 
-                            @foreach($data as $appoint)
+    <div align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
 
-                            <tr allign="center" style="padding:100px;" >
-                                <td>{{$appoint->user_id}}</td>
-                                <td>{{$appoint->appointment_date}}</td>
-                                <td>{{$appoint->appointment_time}}</td>
-                                <td>{{$appoint->appointment_venue}}</td>
-                                <td>{{$appoint->status}}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Actions
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item btn" onclick="return confirm('Are you sure you want to approve this appointment?')" href="{{ url('approved', $appoint->id) }}">Approve</a>
+    <table class="table table-bordered mx-auto" style="margin-right: 20px; width: 100%;">
 
-                                            <a class="dropdown-item btn mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Cancel</a>
+        <tr class="bg-secondary">
+            <th>Applicant id</th>
+            <th>Appointment Date</th>
+            <th>Appointment_time</th>
+            <th>Appointment_venue</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
 
-                                            <!-- <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to approve payment of this appointment?')" href="{{ url('paid', $appoint->id) }}">paid</a>
+        @foreach($data as $appoint)
+        <tr align="center">
+            <td>{{$appoint->user_id}}</td>
+            <td>{{$appoint->appointment_date}}</td>
+            <td>{{$appoint->appointment_time}}</td>
+            <td>{{$appoint->appointment_venue}}</td>
 
-                                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">processed</a>
+            <td style="color: #000;">
+                <p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoint->status}}
+                </p>
+            </td>
 
-                                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Printing</a>
 
-                                            <a class="dropdown-item btn btn-success mt-3" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Picked up</a> -->
 
-                                        </div>
-                                    </div>
-                                </td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Actions
+                    </button>
+                    <ul class="dropdown-menu mt-1">
+                        <li>
+                            <a class="dropdown-item" onclick="return confirm('Are you sure you want to approve this appointment?')" href="{{ url('approved', $appoint->id) }}">Approve
+                            </a>
+                        </li>
 
-                            </tr>
+                        <li>
+                            <a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">
+                                Cancel
+                            </a>
+                        </li>
 
-                            @endforeach
-                        </table>
-                    </div>
-                </div> 
-            </div>
-        </div>
-    </div>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+    
+    <nav aria-label="...">
+        <ul class="pagination">
+            {{ $data->links('pagination::bootstrap-4') }}
+        </ul>
+    </nav>
+
+</div>
 
 
 

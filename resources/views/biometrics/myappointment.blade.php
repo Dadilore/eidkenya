@@ -24,7 +24,7 @@
             </div>
         </div>
 
-    <div align="center" style="padding: 70px;" class="mx-auto shadow" style="max-width: 800px;">
+    <div align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
 
          
 
@@ -48,15 +48,15 @@
             </div>
         @else
             <table class="table table-bordered">
-                <thead class="thead-dark" style="background-color:#17C653;">
-                    <tr>
+                
+                    <tr class="bg-secondary">
                         <th>Appointment Date</th>
                         <th>Appointment Time</th>
                         <th>Appointment Venue</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
-                </thead>
+                
                 <tbody>
                     @foreach($appoint as $appoints)
                         <tr align="center">

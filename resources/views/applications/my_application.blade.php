@@ -24,7 +24,8 @@
         </div>
     </div>
 
-    <div align="center" style="padding: 100px;" class="mx-auto shadow " style="max-width: 800px;">
+    <div  align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
+
         @if (session()->has('success'))
             <div class="container mt-5">
                 <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
@@ -33,10 +34,11 @@
                 </div>
             </div>
         @endif
-        @if(count($data) > 0)
-        <table class="table table-bordered " style="margin-right: 100px; ">
 
-            <tr style="background-color:#17C653;">
+        @if(count($data) > 0)
+        <table class="table table-bordered "  style="margin-right: 20px; width: 80%;">
+
+            <tr class="bg-secondary">
                 <th>Application ID</th>
                 <th>Application type</th>
                 <th> Status</th>
@@ -47,7 +49,7 @@
                 <tr align="center">
                     <td>{{$applications->id}}</td>
                     <td>{{$applications->application_type}}</td>         
-                    <td style="color: #000;" ><p style="background-color:#FF6961; border-radius:10px; me-0">{{$applications->application_status}}</p></td>
+                    <td style="color: #000;" ><p>{{$applications->application_status}}</p></td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

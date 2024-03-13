@@ -10,10 +10,13 @@ class UsersController extends Controller
 
     public function view_users(){
 
-        $data=User::all();
-        return view('admin.users.view_users',compact('data'));
+        $data = User::paginate(5); // You can adjust the number (10) based on your desired items per page.
+        return view('admin.users.view_users', compact('data'));
 
     } 
 
-    
+    public function export_user_pdf(){
+        
+    }
 }
+

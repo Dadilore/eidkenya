@@ -15,6 +15,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\MpesaWebhookController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\pdfController;
 
 
 
@@ -180,12 +182,22 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/showappointment', [AdminController::class, 'showappointment']);
 
     Route::get('/view_users', [UsersController::class, 'view_users']);
+
+    Route::get('/view_applications', [ApplicationsController::class, 'view_applications']);
+
+    Route::get('/add_application', [ApplicationsController::class, 'add_application']);
     
     Route::get('/approved/{id}', [AdminController::class, 'approved']);
     
     Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
 
-    Route::get('/paid/{id}', [AdminController::class, 'paid']);
+    Route::get('/generate_pdf', [pdfController::class, 'generate_pdf']);
+    
+    Route::get('/generate_applications_pdf', [pdfController::class, 'generate_applications_pdf']);
+
+
+
+
 
     
 });

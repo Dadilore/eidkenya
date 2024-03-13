@@ -35,11 +35,10 @@ class AdminController extends Controller
 
 
     public function showappointment(){
-
-        $data=appointments::all();
-        return view('admin.appointments.showappointment',compact('data'));
-
-    } //End Method
+        $data = appointments::paginate(5); // You can adjust the number (10) based on your desired items per page.
+        return view('admin.appointments.showappointment', compact('data'));
+    }
+     //End Method
 
     public function approved($id)
     {
