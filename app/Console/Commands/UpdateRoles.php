@@ -44,8 +44,7 @@ class UpdateRoles extends Command
             foreach ($roles as $role) {
                 Role::updateOrCreate(
                     ['name' => $role['name']],
-                    [
-                    ]
+                    []
                 );
             }
 

@@ -35,6 +35,7 @@ class UpdateSubCounties extends Command
         foreach($config_counties as $county){
             $db_county = County::where('name', $county['name'])->first();
             $id = $db_county->id;
+            
             foreach($county['subcounties'] as $subcounty){
                 SubCounty::updateOrCreate([
                     'name' => $subcounty['name'],],

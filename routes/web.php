@@ -33,8 +33,7 @@ Route::get('/about-us', [PublicController::class, 'about_us'])->name('about_us')
 Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
 
 
-//AUTHENTICATED ROUTES
-
+// AUTHENTICATED ROUTES
 Route::middleware('auth')->prefix('dashboard')->group(function () {
     //Load dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

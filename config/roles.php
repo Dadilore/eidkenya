@@ -22,7 +22,7 @@ return[
             'abilities' =>  null
         ],
         'applicant' => [
-            'name' => 'Innovator',
+            'name' => 'Applicant',
             'slug' => 'applicant',
             'abilities' =>  null
         ],
