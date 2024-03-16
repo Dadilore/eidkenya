@@ -1,6 +1,6 @@
 
 
-<h2>Title: {{ $title }}</h2>
+<h2 align="center"> {{ $title }}</h2>
 <h2>Date: {{ $date }}</h2>
 
 <table class="table table-bordered">

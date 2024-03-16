@@ -25,12 +25,12 @@
 
 
 
-<div align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
+<div align="center" style="padding: 50px;   " class="text-center mx-auto shadow" >
 
-<a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:15%;" href="{{ url('generate_applications_pdf') }}">Export Applications</a>
+    <a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:5%;" href="{{ url('generate_applications_pdf') }}">Export Applications</a>
 
 
-<a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:15%;" href="#">Add Application</a>
+    <a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:5%;" href="#">Add Application</a>
 
     <table class="table table-bordered mx-auto" style="margin-right: 0px; width: 100%;">
 
