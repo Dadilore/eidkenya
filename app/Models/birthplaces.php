@@ -14,6 +14,7 @@ class Birthplaces extends Model
 
     protected $fillable = [
         'user_id',
+        'applications_id',
         'district_of_birth',
         'tribe',
         'clan',

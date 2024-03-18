@@ -60,4 +60,9 @@ class User extends Authenticatable
 
 		return false;
 	}
+
+    public function applications()
+    {
+        return $this->hasMany(Applications::class);
+    }
 }

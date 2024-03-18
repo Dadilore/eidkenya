@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Domains\Auth\Events\Login;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
         $url = '';
         if($request->user()->role ===  'admin'){
-            $url = 'admin/dashboard';
+            $url = 'admin/index';
         }elseif($request->user()->role ===  'user'){
             $url ='/dashboard';
         }
@@ -45,14 +46,16 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
-    {
-        Auth::guard('web')->logout();
+        public function destroy(Request $request): RedirectResponse
+        {
+            Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+            Session::flush();
 
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
 
-        return redirect('/');
-    }
+            $request->session()->regenerateToken();
+
+            return redirect('/login'); // Redirect to the login page
+        }
 }

@@ -2,19 +2,19 @@
 
 return [
     //This is the mpesa environment.Can be sanbox or production
-    'environment' => env('MPESA_ENVIRONMENT', 'sandbox'),
+    'environment' => env('MPESA_ENVIRONMENT', '0'),
 
     /*-----------------------------------------
         |The Mpesa Consumer Key
         |------------------------------------------
         */
-    'mpesa_consumer_key' => env('MPESA_CONSUMER_KEY','FxTLq8Fn5v6HAgFmd1ay8yXgTZhFwL6B1gTQDSvEOYGpOzzb'),
+    'mpesa_consumer_key' => env('MPESA_CONSUMER_KEY','StJxglpH0DxpwviAr6xh0SV2f5AnHtZ05ptnEOJroK08WRgo'),
 
     /*-----------------------------------------
         |The Mpesa Consumer Secret
         |------------------------------------------
         */
-    'mpesa_consumer_secret' => env('MPESA_CONSUMER_SECRET','LfdYSSeFR2CFX6RCv2aXLT7lDu6ylTxGadHMjwNbHC1tIN8wfv73vSCA4sJia09a'),
+    'mpesa_consumer_secret' => env('MPESA_CONSUMER_SECRET','1rRdAEgG6Mz1AA7GX2zuQli4oilWdgwqbUP7bONeC7GQc3m48U7uCfNQmgLKyHGr'),
 
     /*-----------------------------------------
         |The Lipa na Mpesa Online Passkey
@@ -26,7 +26,7 @@ return [
         |The Lipa na Mpesa Online ShortCode
         |------------------------------------------
         */
-    'shortcode' => env('MPESA_BUSINESS_SHORTCODE', '174379'),
+    'shortcode' => env('MPESA_BUSINESS_SHORTCODE', '600982'),
 
     /*-----------------------------------------
         |The Mpesa Initator Name
@@ -50,13 +50,13 @@ return [
         |Mpesa C2B Validation url
         |------------------------------------------
         */
-    'c2b_validation_url' => env('MPESA_C2B_VALIDATION_URL'),
+    'c2b_validation_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
 
     /*-----------------------------------------
         |Mpesa C2B Confirmation url
         |------------------------------------------
         */
-    'c2b_confirmation_url' => env('MPESA_C2B_CONFIRMATION_URL'),
+    'c2b_confirmation_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
 
     /*-----------------------------------------
         |Mpesa B2C Result url
@@ -74,19 +74,19 @@ return [
         |Mpesa Lipa Na Mpesa callback url
         |------------------------------------------
         */
-    'callback_url' => env('MPESA_CALLBACK_URL','https://c814-105-161-149-26.ngrok-free.app'),
+    'callback_url' => env('MPESA_CALLBACK_URL','https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Result url
         |------------------------------------------
         */
-    'status_result_url' => env('MPESA_STATUS_RESULT_URL'),
+    'status_result_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Timeout url
         |------------------------------------------
         */
-    'status_timeout_url' => env('MPESA_STATUS_TIMEOUT_URL'),
+    'status_timeout_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
 
     /*-----------------------------------------
         |Mpesa Account Balance Result url

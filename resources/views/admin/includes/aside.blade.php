@@ -42,7 +42,7 @@
                                 </span>
                                 <span class="menu-title">Applications Summary</span>
                             </a>
-                            <a class="menu-link" href="">
+                            <a class="menu-link" href="{{ route('all_applications.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

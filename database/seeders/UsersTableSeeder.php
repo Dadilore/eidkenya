@@ -53,6 +53,8 @@ class UsersTableSeeder extends Seeder
                 'role' => 'user',
                 'status' => 'active',
             ],
+
+           
         ]);
     }
 }

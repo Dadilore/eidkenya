@@ -19,7 +19,7 @@
 
               <!--begin::Footer-->
               <div
-                class="d-flex flex-column flex-center pb-4 mt-5 pb-lg-8"
+                class="d-flex flex-column flex-center pb-4 mt-5  pb-lg-8"
                 id="kt_app_sidebar_footer"
               >
                 <!--begin::User menu-->
@@ -29,7 +29,7 @@
                   data-kt-attach="parent"
                   data-kt-menu-placement="right-end"
                 >
-                  <img src="{{ asset('user/media/avatars/300-2.jpg') }}" alt="user" />
+                  <img src="{{asset ('assets/images/profile/augustine.jpg') }}" alt="user" />
                 </div>
                 <!--begin::User account menu-->
                 <div
@@ -41,7 +41,7 @@
                     <div class="menu-content d-flex align-items-center px-3">
                       <!--begin::Avatar-->
                       <div class="symbol symbol-50px me-5">
-                        <img alt="Logo" src="{{ asset('user/media/avatars/300-2.jpg') }}" />
+                        <img alt="Logo" src="{{asset ('assets/images/profile/augustine.jpg') }}" />
                       </div>
                       <!--end::Avatar-->
                       <!--begin::Username-->
@@ -192,7 +192,7 @@
                 id="kt_app_sidebar_logo"
               >
                 <!--begin::Logo image-->
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('admin.index') }}">
                   <img
                     alt="Logo"
                     src="{{ asset ('assets/images/logo/logo_w_t.png') }}"
@@ -235,7 +235,7 @@
                   <!--begin:Menu item-->
                   <div class="menu-item">
                     <!--begin:Menu link-->
-                    <a class="menu-link  active" href="{{ route('dashboard') }}">
+                    <a class="menu-link  active" href="{{ route('admin.index') }}">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -251,7 +251,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -285,12 +285,12 @@
                         <!--begin:Menu link-->
                         <a
                           class="menu-link"
-                          href="pages/user-profile/projects.html"
+                          href="{{ url('view_users') }}"
                         >
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">View User</span>
+                          <span class="menu-title">View Users</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -318,13 +318,21 @@
                   </div>
                   <!--end:Menu item-->
 
+                  <!-- Add this button wherever you want in your admin dashboard -->
+                  
+                  <!-- <form action="{{ route('seed.user.biometrics') }}" method="POST">
+                      @csrf
+                      <button type="submit" class="btn btn-primary">Add User Biometrics</button>
+                  </form> -->
+
+
                   <!--begin:Menu item-->
                   <div
                     data-kt-menu-trigger="click"
                     class="menu-item  menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -337,7 +345,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="account/overview.html">
+                        <a class="menu-link" href="{{ url('add_application') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
@@ -349,7 +357,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="account/settings.html">
+                        <a class="menu-link" href="{{ url('view_applications') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
@@ -385,7 +393,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -433,7 +441,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -446,11 +454,11 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="pages/social/feeds.html">
+                        <a class="menu-link" href="{{ url('showappointment') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">add appointment</span>
+                          <span class="menu-title">View appointments</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -462,7 +470,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">view appointment</span>
+                          <span class="menu-title">edit appointments</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -491,7 +499,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>
@@ -525,7 +533,7 @@
                     class="menu-item menu-accordion"
                   >
                     <!--begin:Menu link-->
-                    <span class="menu-link active mt-5">
+                    <span class="menu-link active ">
                       <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                       </span>

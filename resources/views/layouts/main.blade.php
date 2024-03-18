@@ -42,7 +42,7 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@eidkenya.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>0200012120</span></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>0743316661</span></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -64,7 +64,6 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{ route ('home') }}">Home</a></li>
-          <!-- <li><a class="nav-link scrollto" href="{{route('applications.create')}}">Apply for ID</a></li> -->
           <li><a class="nav-link scrollto" href="{{route('requirements')}}">Requirements</a></li>
           <li><a class="nav-link scrollto" href="#">About us</a></li>        
           <!-- <li><a class="nav-link scrollto" href="#">News and Updates</a></li> -->

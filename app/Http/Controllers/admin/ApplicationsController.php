@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Freshbitsweb\Laratables\Laratables;
 use App\Laratables\ApplicationLaratable;
+use App\Models\Application;
 
 class ApplicationsController extends Controller
 {

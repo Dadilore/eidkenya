@@ -14,6 +14,7 @@ class Documents extends Model
 
     protected $fillable = [
         'user_id',
+        'applications_id',
         'birth_certificate_number',
         'passport_number',
         'parents_id_number',
@@ -23,7 +24,10 @@ class Documents extends Model
         'fathers_id_card_front',
         'fathers_id_card_back',
         'mothers_id_card_front',
-        'mothers_id_card_back'
+        'mothers_id_card_back',
+        'lost_id',
+        'old_id',
+        'police_report'
     ];
     
 }

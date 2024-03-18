@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.1",
         "africastalking/africastalking": "^3.0",
+        "barryvdh/laravel-dompdf": "^2.1",
         "carbonphp/carbon-doctrine-types": "^2.1.0",
         "freshbitsweb/laratables": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -19,7 +20,9 @@
         "rappasoft/laravel-authentication-log": "^3.0",
         "safaricom/mpesa": "^1.0",
         "spatie/laravel-sluggable": "^3.6",
-        "torann/geoip": "^3.0"
+        "torann/geoip": "^3.0",
+        "realrashid/sweet-alert": "^7.1",
+        "safaricom/mpesa": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

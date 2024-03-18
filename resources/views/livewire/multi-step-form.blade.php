@@ -186,7 +186,7 @@
                             <div class="col-md-12 mb-4">
                                 <div class="form-group">
                                     <label for="" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Citizen By</label>
-                                    <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0">
+                                    <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="nature_of_citizenship">
                                         <option value="Birth">Birth</option>
                                         <option value="Naturalisation">Naturalisation</option>
                                         <option value="Registration">Registration</option>
@@ -281,7 +281,7 @@
                             <div class="col-md-6 mb-4">
                                 <div class="form-group">
                                     <label for="" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">County of birth</label>
-                                    <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" data-control="select2" wire:model="selectedCounty">
+                                    <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" data-control="select2" wire:model="county_of_birth">
                                         <option value="">---</option>
                                         @foreach($counties as $county)
                                         <option value="{{ $county->id }}">{{ $county->name }}</option>
@@ -441,21 +441,21 @@
                     @endif
                     <div class="d-flex flex-stack pt-10 justify-content-between">
                         <div>
-                        @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5 )
+                        @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4)
                             <button type="button" class="btn btn-md btn-secondary" wire:click="decreaseStep()">Back
                                 <i class="ki-outline ki-arrow-left fs-3 ms-1 me-0"></i>
                             </button>
                         @endif
                         </div>
                     <div>
-                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3 || $currentStep == 4)
+                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
                         <button type="button" class="btn btn-md btn-primary" wire:click="increaseStep()">
                             Next
                             <i class="ki-outline ki-arrow-right fs-3 ms-1 me-0"></i>
                         </button>
                     @endif
                     
-                    @if ($currentStep == 5)
+                    @if ($currentStep == 4)
                         <button type="submit" class="btn btn-md btn-primary">Submit</button>
                     @endif
                     </div>

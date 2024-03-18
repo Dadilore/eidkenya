@@ -9,8 +9,11 @@ use App\Models\PersonalDetails;
 use App\Models\Documents;
 use App\Models\County;
 use App\Models\SubCounty;
+use App\Models\Applications;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
-use Illuminate\Support\Facades\Auth; // Import the Auth facade
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert; 
+use App\Http\Controllers\HomeController;
 
 class MultiStepForm extends Component
 {
@@ -24,17 +27,20 @@ class MultiStepForm extends Component
     public $dob;
     public $phone;
     public $email;
+    public $marital_status;
+    public $occupation;
+    public $nature_of_citizenship;
     public $birth_certificate_number;
     public $passport_number;
-    public $certificate_of_registration_number;
+    public $registration_naturalization_number;
     public $spouses_name;
     public $spouses_id_number;
     public $fathers_name;
     public $fathers_id_number;
     public $mothers_name;
     public $mothers_id_number;
-    public $marital_status;
-    public $occupation;
+    public $county_of_birth;
+    public $subcounty_of_birth;
     public $district_of_birth;
     public $tribe;
     public $clan;
@@ -52,14 +58,14 @@ class MultiStepForm extends Component
     public $fathers_id_card_back;
     public $mothers_id_card_front;
     public $mothers_id_card_back;
+    public $application_status;
     public $terms;
 
-    public $totalSteps = 6;
+    public $totalSteps = 4;
     public $currentStep = 1;
 
     public $counties;
     public $subcounties;
-    public $selectedCounty;
 
     public function mount()
     {
@@ -113,19 +119,17 @@ class MultiStepForm extends Component
     public function validateData()
     {
         // Add your validation rules here
-        // if ($this->currentStep == 1) {
+
+        // if ($this->currentStep == 2) {
         //     $this->validate([
-        //         'full_names' => 'required|string',
-        //         'date_of_birth' => 'required|string',
-        //         'gender' => 'required',
-        //         'fathers_name' => 'required|string',
-        //         'mothers_name' => 'required|string',
+        //         'phone' => 'required',
+        //         'email' => 'required|email',
         //         'marital_status' => 'required',
         //         'occupation' => 'required|string',
-        //         'telephone_number' => 'required',
-        //         'email' => 'required|email',
+        //         'fathers_name' => 'required|string',
+        //         'mothers_name' => 'required|string',
         //     ]);
-        // } elseif ($this->currentStep == 2) {
+        // } elseif ($this->currentStep == 3) {
         //     $this->validate([
         //         'district_of_birth' => 'required|string',
         //         'clan' => 'required|string',
@@ -138,50 +142,65 @@ class MultiStepForm extends Component
         //         'village' => 'required|string',
         //         'home_address' => 'required',
         //     ]);
-        // } elseif ($this->currentStep == 3) {
+        // } elseif ($this->currentStep == 4) {
         //     $this->validate([
         //         'birth_certificate_number' => 'string',
         //         'passport_number' => 'string',
         //         'parents_id_number' => 'string',
         //         'certificate_of_registration_number' => 'string',
-        //     ]);
-        // } elseif ($this->currentStep == 4) {
-        //     $this->validate([
+
         //         'birth_certificate' => 'required|string',
         //         'fathers_id_card_front' => 'required|string',
         //         'fathers_id_card_back' => 'required',
         //         'mothers_id_card_front' => 'required|string',
         //         'mothers_id_card_back' => 'required|string',
         //     ]);
-        // }
+        // } 
     }
 
     public function register()
     {
+        dd($this);
         $this->resetErrorBag();
 
-        if ($this->currentStep == 5) {
+        $personalDetails = null;
+        $birthplaces = null;
+        $document = null;
+    
 
-            // Insert into personal_details table
-            PersonalDetails::create([
+        if ($this->currentStep == 4) {
+
+            $application = Applications::create([
                 'user_id' => $this->user_id,
+                'application_type' => 'New Application',
+                'application_status' => 'incomplete', // Set initial application_status
+            ]);
+        
+            // Check if the application was created successfully
+            if ($application) {
+                // Retrieve the ID of the created application
+                $applicationsId = $application->id;
+        
+            // Insert into personal_details table
+            $personalDetails = PersonalDetails::create([
+                'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'fathers_name' => $this->fathers_name,
                 'mothers_name' => $this->mothers_name,
                 'marital_status' => $this->marital_status,
-                'spouses_name' => $this->spouses_name,
-                'spouses_id_number' => $this->spouses_id_number,
                 'occupation' => $this->occupation,
                 // ... Other fields ...
             ]);
 
             // Insert into birthplaces table
-            Birthplaces::create([
+            $birthplaces = Birthplaces::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'district_of_birth' => $this->district_of_birth,
                 'tribe' => $this->tribe,
                 'clan' => $this->clan,
                 'family' => $this->family,
-                'home_district' => $this->clan,
+                'home_district' => $this->clan, // Note: Check if this is intended
                 'division' => $this->division,
                 'constituency' => $this->constituency,
                 'location' => $this->location,
@@ -194,6 +213,7 @@ class MultiStepForm extends Component
             // Insert into documents table
             $document = Documents::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'birth_certificate_number' => $this->birth_certificate_number,
                 'passport_number' => $this->passport_number,
                 'parents_id_number' => $this->parents_id_number,
@@ -206,40 +226,66 @@ class MultiStepForm extends Component
                 // ... Other fields ...
             ]);
 
+            $application->update(['application_status' => 'Application Complete']);
+
+
+           // Send email after successful form submission
+           $homeController = new HomeController();
+           $homeController->sendnotification();
+
+          
+
+        
+
             // Handle file uploads (e.g., passport photo, ID card photos)
-            if ($this->currentStep === 5) {
-                $this->currentDocumentId = $document->id;
-                // Assuming you have stored the uploaded files in a folder named 'uploads'
-                $birthCertificatePath = $this->birth_certificate->store('uploads', 'public');
-                Documents::where('id', $this->currentDocumentId)->update(['birth_certificate' => $birthCertificatePath]);
-
-                $passportPhotoPath = $this->passport_photo->store('uploads', 'public');               
-                Documents::where('id', $this->currentDocumentId)->update(['passport_photo' => $passportPhotoPath]);
-                     
-
-                $fathersIdCardFrontPath = $this->fathers_id_card_front->store('uploads', 'public');                
-                Documents::where('id', $this->currentDocumentId)->update(['fathers_id_card_front' => $fathersIdCardFrontPath]);
-
-                $fathersIdCardBackPath = $this->fathers_id_card_back->store('uploads', 'public');               
-                Documents::where('id', $this->currentDocumentId)->update(['fathers_id_card_back' => $fathersIdCardBackPath]);
-                     
-
-                $mothersIdCardFrontPath = $this->mothers_id_card_front->store('uploads', 'public');               
-                Documents::where('id', $this->currentDocumentId)->update(['mothers_id_card_front' => $mothersIdCardFrontPath]);
-                     
-                $mothersIdCardBackPath = $this->mothers_id_card_back->store('uploads', 'public');
-                Documents::where('id', $this->currentDocumentId)->update(['mothers_id_card_back' => $mothersIdCardBackPath]);
-
+            if ($this->currentStep === 4) {
+                // Check if birth_certificate file is present
+                if ($this->birth_certificate) {
+                    // Assuming you have stored the uploaded files in a folder named 'uploads'
+                    $birthCertificatePath = $this->birth_certificate->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['birth_certificate' => $birthCertificatePath]);
+                }
+            
                 // Repeat the same for other image fields (passport_photo, fathers_id_card_front, fathers_id_card_back, mothers_id_card_front, mothers_id_card_back)
+                if ($this->passport_photo) {
+                    $passportPhotoPath = $this->passport_photo->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['passport_photo' => $passportPhotoPath]);
+                }
+            
+                if ($this->fathers_id_card_front) {
+                    $fathersIdCardFrontPath = $this->fathers_id_card_front->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['fathers_id_card_front' => $fathersIdCardFrontPath]);
+                }
+            
+                if ($this->fathers_id_card_back) {
+                    $fathersIdCardBackPath = $this->fathers_id_card_back->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['fathers_id_card_back' => $fathersIdCardBackPath]);
+                }
+            
+                if ($this->mothers_id_card_front) {
+                    $mothersIdCardFrontPath = $this->mothers_id_card_front->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['mothers_id_card_front' => $mothersIdCardFrontPath]);
+                }
+            
+                if ($this->mothers_id_card_back) {
+                    $mothersIdCardBackPath = $this->mothers_id_card_back->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['mothers_id_card_back' => $mothersIdCardBackPath]);
+                }
+            
                 // Store their file paths in the documents table
                 // ... (Similar logic for other images)
             }
+        }
             
+
+            // ... (Your existing code below)
         }
 
+        session()->flash('success', 'Application submitted successfully. click the button to proceed to payment.');
         
-
-        
-         session()->flash('success', 'Application submitted successfully. Proceed to payment.');
     }
+
+
+
+    
 }

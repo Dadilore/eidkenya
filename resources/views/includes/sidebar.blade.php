@@ -62,7 +62,7 @@
 	<div class="d-flex flex-column mt-5 flex-center pb-4 pb-lg-8" id="kt_app_sidebar_footer">
 		<!--begin::User menu-->
 		<div class="cursor-pointer symbol symbol-40px mb-9" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-attach="parent" data-kt-menu-placement="right-end">
-			<img src="{{asset ('user/media/avatars/300-2.jpg') }}"  alt="user" />
+		<img style="height:70%;" src="{{asset ('assets/images/profile/augustine.jpg') }}" alt="image">
 		</div>
 		<!--begin::User account menu-->
 		<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -71,7 +71,7 @@
 				<div class="menu-content d-flex align-items-center px-3">
 					<!--begin::Avatar-->
 					<div class="symbol symbol-50px me-5">
-						<img alt="Logo" src="{{asset ('user/media/avatars/300-2.jpg') }}" />
+					<img style="height:70%;" src="{{asset ('assets/images/profile/augustine.jpg') }}" alt="image">
 					</div>
 					<!--end::Avatar-->
 					<!--begin::Username-->
@@ -179,11 +179,13 @@
 
 		<!--begin::Logo-->
 		<div class="app-sidebar-logo d-none d-md-flex flex-center pt-10 pb-2" id="kt_app_sidebar_logo">
+
 		<!--begin::Logo image-->
 		<a href="{{ route('dashboard') }}">
 			<img alt="Logo" src="{{ asset ('assets/images/logo/logo_w_t.png') }}" class="h-30px" />
 		</a>
 		<!--end::Logo image-->
+		
 	</div>
 	<!--end::Logo-->
 
@@ -227,7 +229,7 @@
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="#">
+				<a class="menu-link  active" href="{{ route('applications.index') }}">
 					<span class="menu-bullet">
 						<span class="bullet bullet-dot"></span>
 					</span>
@@ -236,6 +238,7 @@
 				<!--end:Menu link-->
 			</div>
 			<!--end:Menu item-->
+
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
 				<!--begin:Menu link-->

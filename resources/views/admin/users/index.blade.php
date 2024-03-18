@@ -88,7 +88,7 @@
         $(document).ready(function(){
             $("#users-laratable").DataTable({
                 serverSide: true,
-                ajax: "{{ route('users') }}",
+                ajax: "{{ route('all_users') }}",
                 columns: [
                     { name: 'surname' },
                     { name: 'name' },

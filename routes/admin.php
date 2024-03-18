@@ -21,16 +21,16 @@ use App\Http\Controllers\admin\PaymentsController;
 Route::middleware('auth')->group(function () {
     //Load dashboard
     Route::get('/', [AdminController::class, 'index'])->name('admin_dashboard');
-    Route::get('/users', [AdminController::class, 'users'])->name('users');
+    Route::get('/all_users', [AdminController::class, 'users'])->name('all_users');
 
     //APPLICATIONS
     Route::resources([
         //start applications
-        'admin_applications' => ApplicationsController::class,
+        'all_applications' => ApplicationsController::class,
         //start appointments
-        'admin_appointments' => AppointmentsController::class,
+        'all_appointments' => AppointmentsController::class,
         //start payments
-        'admin_payments' => PaymentsController::class,
+        'all_payments' => PaymentsController::class,
     ]);
 });
 

@@ -17,18 +17,13 @@ return new class extends Migration
                 Schema::create('personal_details', function (Blueprint $table) {
                     $table->id();
                     $table->unsignedBigInteger('user_id')->nullable();
-                    // $table->foreignId('user_id')->constrained();
-                    $table->string('full_names')->nullable();
-                    $table->string('date_of_birth')->nullable();
-                    $table->string('gender')->nullable();
+                    $table->unsignedBigInteger('applications_id')->constrained ();
                     $table->string('fathers_name')->nullable();
                     $table->string('mothers_name')->nullable();
                     $table->string('marital_status')->nullable();
-                    $table->string('husbands_names')->nullable();
-                    $table->string('husbands_id_number')->nullable();
+                    // $table->string('husbands_names')->nullable();
+                    // $table->string('husbands_id_number')->nullable();
                     $table->string('occupation')->nullable();
-                    $table->string('telephone_number')->nullable();
-                    $table->string('email')->nullable();
                     $table->timestamps();
 
                     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
