@@ -28,10 +28,10 @@
 
 
 
-<a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:15%;" href="{{ url('generate_pdf') }}">Export Users</a>
+<a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:5%;" href="{{ url('generate_pdf') }}">Export Users</a>
 
 
-<a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:15%;" href="#">Add User</a>
+<a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:5%;" href="#">Add User</a>
 
 
     <table class="table table-bordered mx-auto" style="margin-right: 20px; width: 80%;">
