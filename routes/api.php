@@ -14,4 +14,4 @@ Route::post('transaction-status/result_url', [MPESAResponsesController::class, '
 Route::post('reversal/result_url', [MPESAResponsesController::class, 'transactionReversal']);
 
 // webhook
-Route::post('/mpesa-callback', 'PaymentController@mpesaCallback')->name('mpesa.callback');
+// Route::post('/mpesa-callback', 'PaymentController@mpesaCallback')->name('mpesa.callback');

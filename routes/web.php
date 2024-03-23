@@ -92,9 +92,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('register-urls', [MPESAC2BController::class, 'registerURLS']);
 
-    //webhook
-    // Route::post('/mpesa-webhook', [MpesaWebhookController::class, 'handleWebhook']);
-    Route::post('/mpesa-callback', 'PaymentController@mpesaCallback')->name('mpesa.callback');
 
     //codewithben
     Route::post('get-token', [MPESAController::class, 'getAccessToken']);

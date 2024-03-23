@@ -50,13 +50,13 @@ return [
         |Mpesa C2B Validation url
         |------------------------------------------
         */
-    'c2b_validation_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
+    'c2b_validation_url' => env(' https://f687-197-180-12-62.ngrok-free.app'),
 
     /*-----------------------------------------
         |Mpesa C2B Confirmation url
         |------------------------------------------
         */
-    'c2b_confirmation_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
+    'c2b_confirmation_url' => env(' https://f687-197-180-12-62.ngrok-free.app'),
 
     /*-----------------------------------------
         |Mpesa B2C Result url
@@ -74,19 +74,19 @@ return [
         |Mpesa Lipa Na Mpesa callback url
         |------------------------------------------
         */
-    'callback_url' => env('MPESA_CALLBACK_URL','https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
+    'callback_url' => env('MPESA_CALLBACK_URL',' https://f687-197-180-12-62.ngrok-free.app'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Result url
         |------------------------------------------
         */
-    'status_result_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
+    'status_result_url' => env(' https://f687-197-180-12-62.ngrok-free.app'),
 
     /*-----------------------------------------
         |Mpesa Transaction Status Timeout url
         |------------------------------------------
         */
-    'status_timeout_url' => env('https://webhook.site/845b0d39-09ed-4193-b3e4-05ef79eb10f3'),
+    'status_timeout_url' => env(' https://f687-197-180-12-62.ngrok-free.app'),
 
     /*-----------------------------------------
         |Mpesa Account Balance Result url
