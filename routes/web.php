@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\Applications;
 use App\Http\Controllers\payController;
 use App\http\Controllers\payments\mpesa\mpesaController;
@@ -10,12 +13,11 @@ use App\http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MpesaSTKPUSHController;
 use App\Http\Controllers\MPESAC2BController;
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\MpesaWebhookController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\pdfController;
 
 
@@ -31,13 +33,15 @@ use App\Http\Controllers\pdfController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
 
-Route::get('/requirements', function () {
-    return view('requirements');
-})->name('requirements');
+// PUBLIC ROUTES
+Route::get('/', [PublicController::class, 'index'])->name('home');
+Route::get('/requirements', [PublicController::class, 'requirements'])->name('requirements');
+Route::get('/about-us', [PublicController::class, 'about_us'])->name('about_us');
+Route::get('/faqs', [PublicController::class, 'faqs'])->name('faqs');
+// Route::get('/requirements', function () {
+//     return view('requirements');
+// })->name('requirements');
 
 
 //START MAIL
@@ -47,16 +51,38 @@ Route::get('send',[HomeController::class,"sendappointmentnotification"]);
 //END MAIL
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Your user dashboard route here
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     // Your user dashboard route here
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    //START APPLICATIONS
-    Route::get('/new_applications', function () {
-        return view('applications.new_applications');
-    })->name('new_applications');
+//     //START APPLICATIONS
+//     Route::get('/new_applications', function () {
+//         return view('applications.new_applications');
+//     })->name('new_applications');
 
 
+// AUTHENTICATED ROUTES
+Route::middleware('auth')->prefix('dashboard')->group(function () {
+    //Load dashboard
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    //APPLICATIONS
+    Route::resources([
+        //start applications
+        'applications' => ApplicationsController::class,
+        //start appointments
+        'appointments' => AppointmentsController::class,
+        //start payments
+        'payments' => PaymentsController::class,
+    ]);
+
+// Route::get('/application', function () {
+//     return view('modules.application');
+// })->name('application');
+
+Route::get('/test', [ProfileController::class, 'test'])->name('test');
+
+Route::get('/testmail', [ProfileController::class, 'testmail'])->name('testmail');
 
     Route::get('/update_application/{id}', [ApplicationController::class, 'update_application']);
     
@@ -145,7 +171,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //END APPOINTMENTS
 
-});
+ });
 
 Route::post('/seed-user-biometrics', [AdminController::class, 'seedUserBiometrics'])->name('seed.user.biometrics');
 
@@ -170,34 +196,34 @@ require __DIR__.'/auth.php';
 
 // ADMIN ROUTES
 
-Route::middleware(['auth','role:admin'])->group(function(){
+// Route::middleware(['auth','role:admin'])->group(function(){
 
-    Route::get('/admin/index', [AdminController::class, 'AdminDashboard'])->name('admin.index');
+//     Route::get('/admin/index', [AdminController::class, 'AdminDashboard'])->name('admin.index');
 
-    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+//     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
-    Route::get('/showappointment', [AdminController::class, 'showappointment']);
+//     Route::get('/showappointment', [AdminController::class, 'showappointment']);
 
-    Route::get('/view_users', [UsersController::class, 'view_users']);
+//     Route::get('/view_users', [UsersController::class, 'view_users']);
 
-    Route::get('/view_applications', [ApplicationsController::class, 'view_applications']);
+//     Route::get('/view_applications', [ApplicationsController::class, 'view_applications']);
 
-    Route::get('/add_application', [ApplicationsController::class, 'add_application']);
+//     Route::get('/add_application', [ApplicationsController::class, 'add_application']);
     
-    Route::get('/approved/{id}', [AdminController::class, 'approved']);
+//     Route::get('/approved/{id}', [AdminController::class, 'approved']);
     
-    Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
+//     Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
 
-    Route::get('/generate_pdf', [pdfController::class, 'generate_pdf']);
+//     Route::get('/generate_pdf', [pdfController::class, 'generate_pdf']);
     
-    Route::get('/generate_applications_pdf', [pdfController::class, 'generate_applications_pdf']);
+//     Route::get('/generate_applications_pdf', [pdfController::class, 'generate_applications_pdf']);
 
 
 
 
 
     
-});
+// });
 
 // End Group Admin Middleware
 

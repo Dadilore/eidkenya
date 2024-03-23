@@ -7,6 +7,8 @@ use Livewire\WithFileUploads;
 use App\Models\Birthplaces;
 use App\Models\PersonalDetails;
 use App\Models\Documents;
+use App\Models\County;
+use App\Models\SubCounty;
 use App\Models\Applications;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth;
@@ -18,16 +20,27 @@ class MultiStepForm extends Component
     use WithFileUploads;
 
     public $user_id;
-    public $gender;
+    public $name;
+    public $middle_name;
+    public $surname;
+    public $sex;
+    public $dob;
     public $phone;
-    public $fathers_name;
-    public $mothers_name;
-    public $marital_status;
-    public $husbands_names;
-    public $husbands_id_number;
-    public $occupation;
-    public $telephone_number;
     public $email;
+    public $marital_status;
+    public $occupation;
+    public $nature_of_citizenship;
+    public $birth_certificate_number;
+    public $passport_number;
+    public $registration_naturalization_number;
+    public $spouses_name;
+    public $spouses_id_number;
+    public $fathers_name;
+    public $fathers_id_number;
+    public $mothers_name;
+    public $mothers_id_number;
+    public $county_of_birth;
+    public $subcounty_of_birth;
     public $district_of_birth;
     public $tribe;
     public $clan;
@@ -39,10 +52,6 @@ class MultiStepForm extends Component
     public $sub_location;
     public $village;
     public $home_address;
-    public $birth_certificate_number;
-    public $passport_number;
-    public $parents_id_number;
-    public $certificate_of_registration_number;
     public $birth_certificate;
     public $passport_photo;
     public $fathers_id_card_front;
@@ -56,12 +65,29 @@ class MultiStepForm extends Component
     public $currentStep = 1;
 
     public $counties;
+    public $subcounties;
 
     public function mount()
     {
         $this->currentStep = 1;
         $this->user_id = Auth::user()->id;
-        $this->counties = config('counties.counties');
+        $this->counties = County::all(); 
+        $this->loadAllSubcounties();
+    }
+    private function loadAllSubcounties() {
+        $all_subcounties = SubCounty::orderBy('name')->get();
+
+        $this->subcounties = $all_subcounties;
+    }
+
+    public function updatedSelectedCounty($value)
+    {
+        if ($value) {
+            $filteredSubcounties = SubCounty::orderBy('name')->where('county_id', $value)->get();
+            $this->subcounties = $filteredSubcounties;
+        } else {
+            $this->loadAllSubcounties();
+        }
     }
 
     public function render()
@@ -134,6 +160,7 @@ class MultiStepForm extends Component
 
     public function register()
     {
+        dd($this);
         $this->resetErrorBag();
 
         $personalDetails = null;
@@ -146,8 +173,7 @@ class MultiStepForm extends Component
             $application = Applications::create([
                 'user_id' => $this->user_id,
                 'application_type' => 'New Application',
-                // ... Other fields ...
-                'application_status' => 'application_incomplete', // Set initial application_status
+                'application_status' => 'incomplete', // Set initial application_status
             ]);
         
             // Check if the application was created successfully

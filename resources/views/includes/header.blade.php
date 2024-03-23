@@ -39,7 +39,7 @@
 			<!--begin::Page title-->
 			<div class="page-title d-flex align-items-center">
 				<!--begin::Title-->
-				<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-2x flex-column justify-content-center my-0">User Dashboard</h1>
+				<h1 class="page-heading d-flex text-gray-900 fw-bolder fs-2x flex-column justify-content-center my-0">@yield('pageTitle')</h1>
 				<!--end::Title-->
 			</div>
 			<!--end::Page title-->
