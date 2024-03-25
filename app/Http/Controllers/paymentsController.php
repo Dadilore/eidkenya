@@ -19,7 +19,7 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.payments.index');
+        return view('dashboard.payments.create');
     }
 
     /**

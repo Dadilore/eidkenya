@@ -160,7 +160,7 @@ class MultiStepForm extends Component
 
     public function register()
     {
-        dd($this);
+        // dd($this);
         $this->resetErrorBag();
 
         $personalDetails = null;
@@ -214,10 +214,10 @@ class MultiStepForm extends Component
             $document = Documents::create([
                 'user_id' => $this->user_id,
                 'applications_id' => $applicationsId,
-                'birth_certificate_number' => $this->birth_certificate_number,
-                'passport_number' => $this->passport_number,
-                'parents_id_number' => $this->parents_id_number,
-                'certificate_of_registration_number' => $this->certificate_of_registration_number,
+                // 'birth_certificate_number' => $this->birth_certificate_number,
+                // 'passport_number' => $this->passport_number,
+                // 'parents_id_number' => $this->parents_id_number,
+                // 'certificate_of_registration_number' => $this->certificate_of_registration_number,
                 'birth_certificate' => $this->birth_certificate,
                 'fathers_id_card_front' => $this->fathers_id_card_front,
                 'fathers_id_card_back' => $this->fathers_id_card_back,
@@ -230,8 +230,8 @@ class MultiStepForm extends Component
 
 
            // Send email after successful form submission
-           $homeController = new HomeController();
-           $homeController->sendnotification();
+        //    $homeController = new HomeController();
+        //    $homeController->sendnotification();
 
           
 
@@ -281,8 +281,11 @@ class MultiStepForm extends Component
             // ... (Your existing code below)
         }
 
-        session()->flash('success', 'Application submitted successfully. click the button to proceed to payment.');
-        
+         // Flash success message
+    session()->flash('success', 'Application submitted successfully. You can now proceed to payment.');
+
+    // Redirect to the payments page
+    return redirect()->route('payments.create');
     }
 
 

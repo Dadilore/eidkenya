@@ -43,7 +43,7 @@
 							</div>
 						</div>
 						<div class="text-center mb-1"> 
-							<a class="btn btn-sm btn-primary me-2" href="{{route('applications.create')}}">
+							<a class="btn btn-sm btn-primary me-2" href="#">
 								Start Application
 							</a>
 							<a class="btn btn-sm btn-light" href="{{ route('testmail') }}">

@@ -49,14 +49,11 @@
     
                                 <td class="text-end">
                                     <div class="flex">
-                                    <a href="#" class="btn btn-sm btn-icon-white btn-bg-primary text-white me-2">
+                                    <a href="{{ route('payments.create') }}" class="btn btn-sm btn-icon-white btn-bg-primary text-white me-2">
                                         Pay
                                     </a>
                                     <a href="#" class="btn btn-sm btn-icon-primary btn-light-primary btn-active-bg-primary text-active-white">
-                                        <i class="ki-duotone ki-file-down">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
+                                       
                                         Download Invoice
                                     </a>
                                     </div>

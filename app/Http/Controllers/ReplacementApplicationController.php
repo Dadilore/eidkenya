@@ -2,25 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Applications;
-use App\Models\PersonalDetails;
-use App\Models\Birthplaces;
-use App\Models\Documents;
-use App\http\Controllers\Auth\AuthenticatedSessionController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class ApplicationsController extends Controller
+class ReplacementApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Fetch data from the applications table for the authenticated user
-        $data = Applications::where('user_id', Auth::user()->id)->get();
-
-        return view('dashboard.applications.index', compact('data'));
+        //
     }
 
     /**
@@ -28,7 +19,7 @@ class ApplicationsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.applications.create');
+        return view('dashboard.applications.replacement_applications.create');
     }
 
     /**

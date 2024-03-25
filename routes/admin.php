@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     //Load dashboard
     Route::get('/', [AdminController::class, 'index'])->name('admin_dashboard');
     Route::get('/all_users', [AdminController::class, 'users'])->name('all_users');
+    
 
     //APPLICATIONS
     Route::resources([

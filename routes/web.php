@@ -19,6 +19,7 @@ use App\Http\Controllers\MpesaWebhookController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\pdfController;
+use App\Http\Controllers\ReplacementApplicationController;
 
 
 
@@ -74,7 +75,13 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
         'appointments' => AppointmentsController::class,
         //start payments
         'payments' => PaymentsController::class,
+        //start payments
+        'replacementApplications' => ReplacementApplicationController::class,
     ]);
+
+    
+
+    Route::resource('replacementApplications', ReplacementApplicationController::class);
 
 // Route::get('/application', function () {
 //     return view('modules.application');
@@ -173,7 +180,7 @@ Route::get('/testmail', [ProfileController::class, 'testmail'])->name('testmail'
 
  });
 
-Route::post('/seed-user-biometrics', [AdminController::class, 'seedUserBiometrics'])->name('seed.user.biometrics');
+// Route::post('/seed-user-biometrics', [AdminController::class, 'seedUserBiometrics'])->name('seed.user.biometrics');
 
 //START TRACKING
 

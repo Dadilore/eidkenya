@@ -6,11 +6,13 @@
         
     <div id="kt_app_content_container" class="app-container  container-xxl ">
 		@include('dashboard.components.profile')
+
         @if (session()->has('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success my-3 py-3 px-4 rounded-lg shadow-lg text-lg font-bold text-center">
                 {{ session('success') }}
             </div>
         @endif
+
 
     
         <div class="card my-5">
@@ -65,7 +67,7 @@
                                                 <div class="row">
                                                     <label for="" class="required">M-Pesa Phone Number</label>
                                                     <div class="col-md-12">
-                                                        <input type="number" class="form-control" name="number" placeholder="" required>
+                                                    <input type="number" class="form-control" name="phonenumber" placeholder="Enter your Phone number" required>
                                                     </div>
                                                     
                                                 </div>

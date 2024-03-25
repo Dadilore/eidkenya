@@ -28,23 +28,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                                                    
+                                
+                        @foreach($data as $applications)
                             <tr>                            
                                 <td>
                                     <div class="d-flex align-items-center">                                            
                                         <div class="d-flex justify-content-start flex-column">
-                                            <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">New ID Application 07</a>
-                                            <span class="text-gray-500 fw-semibold d-block fs-7">uid2358</span>
+                                            <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">Application ID  {{$applications->id}} </a>
+                                            <span class="text-gray-500 fw-semibold d-block fs-7">uid {{$applications->user_id}}</span>
                                         </div>
                                     </div>                                
                                 </td>
     
                                 <td class="text-end pe-0">
-                                    <span class="text-gray-600 fw-bold fs-6">16 April, 2023</span>                                
+                                    <span class="text-gray-600 fw-bold fs-6">{{$applications->created_at}}</span>                                
                                 </td>                           
                                 
                                 <td class="text-end pe-12">
-                                    <span class="badge py-3 px-4 fs-7 badge-light-danger">Payment</span>
+                                    <span class="badge py-3 px-4 fs-7 badge-light-danger">{{$applications->application_status}}</span>
                                 </td>   
     
                                 <td class="text-end">
@@ -53,17 +54,21 @@
                                         Pay
                                     </a>
                                     <a href="#" class="btn btn-sm btn-icon-primary btn-light-primary btn-active-bg-primary text-active-white">
-                                        <i class="ki-duotone ki-file-down">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
                                         Download Invoice
                                     </a>
+
+                                    <a href="{{ route('appointments.create') }}" class="btn btn-sm btn-icon-white btn-bg-primary text-white me-2">
+                                        Make Appointment
+                                    </a>
+                                    
                                     </div>
                                 </td>
-                            </tr>  
-                                                    
-                            <tr>                            
+                            </tr>
+
+                        @endforeach
+                                  
+                            
+                            <!-- <tr>                            
                                 <td>
                                     <div class="d-flex align-items-center">                                            
                                         <div class="d-flex justify-content-start flex-column">
@@ -88,9 +93,9 @@
                                     </a>
                                     </div>
                                 </td>
-                            </tr>  
+                            </tr>   -->
                                                     
-                            <tr>                            
+                            <!-- <tr>                            
                                 <td>
                                     <div class="d-flex align-items-center">                                            
                                         <div class="d-flex justify-content-start flex-column">
@@ -115,7 +120,8 @@
                                         </a>
                                     </div>
                                 </td>
-                            </tr>    
+                            </tr>     -->
+
                         </tbody>
                     </table>
                 </div>    

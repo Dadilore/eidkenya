@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Rules\ValidAppointmentDate;
-use Illuminate\Http\Request;
-use App\Models\Appointments;
 use App\Models\Applications;
+use App\Models\Appointments;
+use App\Rules\ValidAppointmentDate;
+use Illuminate\Support\Facades\Request;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
