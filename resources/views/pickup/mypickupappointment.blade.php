@@ -11,7 +11,7 @@
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                             <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mb-2">
-                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Biometrics Capture Appointment </span>
+                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Pickup Appointment </span>
                                 </div>
                                 <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                     <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
@@ -70,7 +70,7 @@
                                         Actions
                                     </button>
                                     <ul class="dropdown-menu mt-1">
-                                        <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('cancel_appoint',$appoints->id)}}">Cancel</a></li>
+                                        <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('delete_appoint',$appoints->id)}}">Cancel</a></li>
                                         <li><a class="dropdown-item" href="{{ url('reschedule_appointment',$appoints->id) }}">Reschedule</a></li>
                                     </ul>
                                 </div>

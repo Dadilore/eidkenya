@@ -118,6 +118,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     
     //START APPOINTMENTS
+    //BIOMETRICS CAPTURE APPOINTMENTS
     Route::get('/make_appointment', function () {
         return view('biometrics.make_appointment');
     })->name('make_appointment');  
@@ -125,11 +126,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/myappointment', function () {
         return view('biometrics.myappointment');
     })->name('myappointment');
-
-    
-    // Route::get('/reschedule_appointment', function () {
-    //     return view('biometrics.reschedule_appointment');
-    // })->name('reschedule_appointment');
 
     Route::post('/make_appointment', [AppointmentController::class, 'make_appointment']);
 
@@ -142,6 +138,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/myappointment', [AppointmentController::class, 'myappointment']);
 
     Route::get('/cancel_appoint/{id}', [AppointmentController::class, 'cancel_appoint']);
+
+    //ID PICKUP APPOINTMENTS
+    Route::get('/pickup_appointment', function () {
+        return view('pickup.pickup_appointment');
+    })->name('pickup_appointment'); 
+
+    Route::get('/mypickupappointment', function () {
+        return view('biometrics.mypickupappointment');
+    })->name('mypickupappointment');
+    
+    Route::post('/pickup_appointment', [AppointmentController::class, 'pickup_appointment']);
+
+    Route::get('/mypickupappointment', [AppointmentController::class, 'mypickupappointment']);
+
+    Route::get('/pickup_reschedule/{id}', [AppointmentController::class, 'pickup_reschedule']);
+
+    Route::post('/edit_pickup/{id}', [AppointmentController::class, 'edit_pickup']);
+
+    Route::get('/delete_appoint/{id}', [AppointmentController::class, 'delete_appoint']);
+
 
     //END APPOINTMENTS
 
@@ -191,6 +207,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/generate_pdf', [pdfController::class, 'generate_pdf']);
     
     Route::get('/generate_applications_pdf', [pdfController::class, 'generate_applications_pdf']);
+
+    Route::get('/admin/index', [AdminController::class, 'index2'])->name('admin.index');
 
 
 

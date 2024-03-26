@@ -36,9 +36,7 @@
             color: #000; /* White color */
         }
 
-        /* Add more styles as needed */
-
-        /* Example: Logo styling */
+        /* Logo styling */
         .logo-container {
             text-align: center;
             margin-bottom: 20px;
@@ -48,16 +46,18 @@
             max-width: 200px;
             height: auto;
         }
+
+        /* Add more styles as needed */
     </style>
 </head>
 <body>
-
-<!-- <div class="logo-container">
+<!-- 
+<div class="logo-container">
     <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo" class="logo">
 </div> -->
 
-<h2>Title: {{ $title }}</h2>
-<h2>Date: {{ $date }}</h2>
+<h2> {{ $title }}</h2>
+<h2> {{ $date }}</h2>
 
 <table class="table table-bordered">
     <thead>

@@ -172,18 +172,56 @@
 			</div>
 			<!--end:Menu item-->
 
+			
+
 			<!--begin:Menu item-->
-			<div class="mt-5 menu-item">
+			<div
+				data-kt-menu-trigger="click"
+				class="menu-item m-5  menu-accordion"
+				style="width:95%;"
+				>
 				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{ url('myappointment') }}">
+				<span class="menu-link active ">
 					<span class="menu-bullet">
-						<span class="bullet bullet-dot"></span>
+					<span class="bullet bullet-dot"></span>
 					</span>
-					<span class="menu-title">My appointments</span>
-				</a>
+					<span class="menu-title">Appointments</span>
+					<span class="menu-arrow"></span>
+				</span>
 				<!--end:Menu link-->
+				<!--begin:Menu sub-->
+				<div class="menu-sub menu-sub-accordion">
+					<!--begin:Menu item-->
+					<div class="menu-item">
+					<!--begin:Menu link-->
+					<a class="menu-link" href="{{ url('myappointment') }}">
+						<span class="menu-bullet">
+						<span class="bullet bullet-dot"></span>
+						</span>
+						<span class="menu-title">Biometrics Capture</span>
+					</a>
+					<!--end:Menu link-->
+					</div>
+					<!--end:Menu item-->
+					<!--begin:Menu item-->
+					<div class="menu-item">
+					<!--begin:Menu link-->
+					<a class="menu-link" href="{{ url('mypickupappointment') }}">
+						<span class="menu-bullet">
+						<span class="bullet bullet-dot"></span>
+						</span>
+						<span class="menu-title">ID pickup</span>
+					</a>
+					<!--end:Menu link-->
+					</div>
+					<!--end:Menu item-->
+
+					
+				</div>
+				<!--end:Menu sub-->
 			</div>
 			<!--end:Menu item-->
+
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
 				<!--begin:Menu link-->
