@@ -13,15 +13,16 @@ class PasswordResetLinkController extends Controller
     /**
      * Display the password reset link request view.
      */
+
     public function create(): View
     {
         return view('auth.forgot-password');
     }
 
-    // public function create2(): View
-    // {
-    //     return view('auth.test-forgot-password');
-    // }
+    public function create2(): View
+    {
+        return view('auth.test-forgot-password');
+    }
 
     /**
      * Handle an incoming password reset link request.

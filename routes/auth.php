@@ -27,13 +27,16 @@ Route::middleware('guest')->group(function () {
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
 
-    // Route::get('test-forgot-password', [PasswordResetLinkController::class, 'create2'])
-    //             ->name('password.request');
+    Route::get('test-forgot-password', [PasswordResetLinkController::class, 'create2'])
+                ->name('password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
                 ->name('password.email');
 
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+                ->name('password.reset');
+    
+    Route::get('test-reset-password/{token}', [NewPasswordController::class, 'create2'])
                 ->name('password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
