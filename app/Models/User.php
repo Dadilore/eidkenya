@@ -46,4 +46,10 @@ class User extends Authenticatable
     public function full_name(){
         return $this->name.' '.$this->middle_name.' '.$this->surname;
     }
+
+    public function routeNotificationForAfricasTalking($notification)
+    {
+        return $this->phone;
+    }
+
 }

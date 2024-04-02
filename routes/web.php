@@ -1,22 +1,26 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Applications;
 use App\Http\Controllers\payController;
+use App\Http\Controllers\pdfController;
+use App\Http\Controllers\smsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MPESAC2BController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\MpesaSTKPUSHController;
+use App\Http\Controllers\MpesaWebhookController;
 use App\http\Controllers\payments\mpesa\mpesaController;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\MpesaSTKPUSHController;
-use App\Http\Controllers\MPESAC2BController;
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\MpesaWebhookController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\ApplicationsController;
-use App\Http\Controllers\pdfController;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\NewsWasPublished;
 
 
 
@@ -34,6 +38,10 @@ use App\Http\Controllers\pdfController;
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+Route::get('/sending_sms', function () {
+    return view('sending_sms');
+})->name('sending_sms');
 
 Route::get('/requirements', function () {
     return view('requirements');
@@ -73,6 +81,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/deleteapplication/{id}', [ApplicationController::class, 'deleteapplication']);
 
     //END APPLICATIONS 
+
+    Route::get('/send-notification', function () {
+        $userId = Auth::id(); // Retrieve the ID of the currently authenticated user
+        $user = User::find($userId); // Retrieve the user you want to notify
+        $user->notify(new NewsWasPublished()); // Trigger the notification
+
+    })->name('send.notification');
 
 
     //START PAYMENTS
@@ -116,6 +131,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //END PAYMENTS
 
+    // Route::get('/send-sms', [smscontroller::class, 'sms']);
     
     //START APPOINTMENTS
     //BIOMETRICS CAPTURE APPOINTMENTS
@@ -210,7 +226,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::get('/admin/index', [AdminController::class, 'index2'])->name('admin.index');
 
+    Route::get('/send-sms', [smscontroller::class, 'sms']);
 
+    Route::get("/sendsms",[smsController::class,'sendsms']);
+    
+    Route::get("/send_sms",[smsController::class,'send_sms']);
 
 
 
