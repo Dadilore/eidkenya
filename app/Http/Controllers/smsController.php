@@ -30,7 +30,7 @@ class smsController extends Controller
         $message = $twilio->messages->create(
             $receiverPhoneNumber,
             [
-                "body" => "Your ID is ready for pickup",
+                "body" => "Your ID is ready for pickup, visit eidkenya.co.ke to book an appointment for picking up your ID ",
                 "from" => $sendernumber
             ]
         );

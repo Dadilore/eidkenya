@@ -83,32 +83,32 @@ class AdminController extends Controller
     }
 
     public function index2()
-{
-    $totalApplications = DB::table('applications')->count();
-    $newApplications = \DB::table('applications')->where('application_type', 'New Application')->count();
-    $replacementApplications = \DB::table('applications')->where('application_type', 'Replacement Application')->count();
-    $changeOfParticulars = \DB::table('applications')->where('application_type', 'Change of Particulars ')->count();
+    {
+        $totalApplications = DB::table('applications')->count();
+        $newApplications = \DB::table('applications')->where('application_type', 'New Application')->count();
+        $replacementApplications = \DB::table('applications')->where('application_type', 'Replacement Application')->count();
+        $changeOfParticulars = \DB::table('applications')->where('application_type', 'Change of Particulars ')->count();
 
-    $totalAppointments = \DB::table('appointments')->count();
-    // $totalPayments = \DB::table('mpesa_s_t_k')->count();
+        $totalAppointments = \DB::table('appointments')->count();
+        $totalPayments = \DB::table('mpesa_s_t_k_s')->count();
 
-    $totalAllUsers = \DB::table('users')->count();
-    $totalUser = \DB::table('users')->where('role', 'user')->count();
-    $totalAdmin = \DB::table('users')->where('role', 'admin')->count();
+        $totalAllUsers = \DB::table('users')->count();
+        $totalUser = \DB::table('users')->where('role', 'user')->count();
+        $totalAdmin = \DB::table('users')->where('role', 'admin')->count();
 
-    $todayDate = Carbon::now()->format('Y-m-d');
-    $thisMonth = Carbon::now()->format('m');
-    $thisYear = Carbon::now()->format('Y');
+        $todayDate = Carbon::now()->format('Y-m-d');
+        $thisMonth = Carbon::now()->format('m');
+        $thisYear = Carbon::now()->format('Y');
 
-    $totalPickupAppointments = \DB::table('pickupappointments')->count();
+        $totalPickupAppointments = \DB::table('pickupappointments')->count();
 
-    $todayApplications = \DB::table('applications')->whereDate('created_at', $todayDate)->count();
-    $thisMonthApplications = \DB::table('applications')->whereMonth('created_at', $thisMonth)->count();
-    $thisYearApplications = \DB::table('applications')->whereYear('created_at', $thisYear)->count();
+        $todayApplications = \DB::table('applications')->whereDate('created_at', $todayDate)->count();
+        $thisMonthApplications = \DB::table('applications')->whereMonth('created_at', $thisMonth)->count();
+        $thisYearApplications = \DB::table('applications')->whereYear('created_at', $thisYear)->count();
 
-    // Pass all variables to the view
-    return view('admin.index', compact('totalApplications', 'totalAppointments', 'totalAllUsers', 'totalUser', 'totalAdmin', 'totalPickupAppointments', 'todayApplications', 'thisMonthApplications', 'thisYearApplications','newApplications','replacementApplications','changeOfParticulars'));
-}
+        // Pass all variables to the view
+        return view('admin.index', compact('totalApplications','totalPayments', 'totalAppointments', 'totalAllUsers', 'totalUser', 'totalAdmin', 'totalPickupAppointments', 'todayApplications', 'thisMonthApplications', 'thisYearApplications','newApplications','replacementApplications','changeOfParticulars'));
+    }
 
 
 

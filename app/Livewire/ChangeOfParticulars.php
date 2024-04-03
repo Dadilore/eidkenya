@@ -9,16 +9,17 @@ use App\Models\PersonalDetails;
 use App\Models\Documents;
 use App\Models\Applications;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
-use Illuminate\Support\Facades\Auth; // Import the Auth facade
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert; 
+use App\Http\Controllers\HomeController;
 
-class ReplacementApplicants extends Component
+class ChangeOfParticulars extends Component
 {
     use WithFileUploads;
 
     public $user_id;
-    public $full_names;
-    public $date_of_birth;
     public $gender;
+    public $phone;
     public $fathers_name;
     public $mothers_name;
     public $marital_status;
@@ -48,29 +49,33 @@ class ReplacementApplicants extends Component
     public $fathers_id_card_back;
     public $mothers_id_card_front;
     public $mothers_id_card_back;
-    public $lost_id;
-    public $police_report;
+    public $old_id;
     public $application_status;
     public $terms;
 
-    public $totalSteps = 6;
+    public $totalSteps = 4;
     public $currentStep = 1;
+
+    public $counties;
 
     public function mount()
     {
         $this->currentStep = 1;
         $this->user_id = Auth::user()->id;
-
+        $this->counties = config('counties.counties');
     }
+
     public function render()
     {
-        return view('livewire.replacement-applicants');
+        return view('livewire.change-of-particulars');
     }
 
     public function increaseStep()
     {
-        $this->resetErrorBag();
-        $this->validateData();
+        // $this->resetErrorBag();
+        // $this->validateData();
+
+
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
             $this->currentStep = $this->totalSteps;
@@ -79,7 +84,7 @@ class ReplacementApplicants extends Component
 
     public function decreaseStep()
     {
-        $this->resetErrorBag();
+        // $this->resetErrorBag();
         $this->currentStep--;
         if ($this->currentStep < 1) {
             $this->currentStep = 1;
@@ -89,17 +94,15 @@ class ReplacementApplicants extends Component
     public function validateData()
     {
         // Add your validation rules here
+
         if ($this->currentStep == 2) {
             $this->validate([
-                'full_names' => 'required|string',
-                'date_of_birth' => 'required|string',
-                'gender' => 'required',
-                'fathers_name' => 'required|string',
-                'mothers_name' => 'required|string',
+                'phone' => 'required',
+                'email' => 'required|email',
                 'marital_status' => 'required',
                 'occupation' => 'required|string',
-                'telephone_number' => 'required',
-                'email' => 'required|email',
+                'fathers_name' => 'required|string',
+                'mothers_name' => 'required|string',
             ]);
         } elseif ($this->currentStep == 3) {
             $this->validate([
@@ -120,52 +123,59 @@ class ReplacementApplicants extends Component
                 'passport_number' => 'string',
                 'parents_id_number' => 'string',
                 'certificate_of_registration_number' => 'string',
+
+                'birth_certificate' => 'required|string',
+                'fathers_id_card_front' => 'required|string',
+                'fathers_id_card_back' => 'required',
+                'mothers_id_card_front' => 'required|string',
+                'mothers_id_card_back' => 'required|string',
             ]);
-        } elseif ($this->currentStep == 5) {
-            $this->validate([
-                'birth_certificate' => 'required|image|mimes:jpg,jpeg,png|max:5120', // max:5120 is 5MB in kilobytes
-                'fathers_id_card_front' => 'required|image|mimes:jpg,jpeg,png|max:5120',
-                'fathers_id_card_back' => 'required|image|mimes:jpg,jpeg,png|max:5120',
-                'mothers_id_card_front' => 'required|image|mimes:jpg,jpeg,png|max:5120',
-                'mothers_id_card_back' => 'required|image|mimes:jpg,jpeg,png|max:5120',
-                'lost_id' => 'required|image|mimes:jpg,jpeg,png|max:5120',
-                'police_report' => 'required|mimes:pdf|max:5120', // for PDF files
-            ]);
-            
-        }
+        } 
     }
 
     public function register2()
     {
         $this->resetErrorBag();
 
-        if ($this->currentStep == 5) {
+        $personalDetails = null;
+        $birthplaces = null;
+        $document = null;
+    
 
-            // Insert into personal_details table
-            PersonalDetails::create([
+        if ($this->currentStep == 4) {
+
+            $application = Applications::create([
                 'user_id' => $this->user_id,
-                'full_names' => $this->full_names,
-                'date_of_birth' => $this->date_of_birth,
-                'gender' => $this->gender,
+                'application_type' => 'Change of Particulars',
+                // ... Other fields ...
+                'application_status' => 'application_incomplete', // Set initial application_status
+            ]);
+        
+            // Check if the application was created successfully
+            if ($application) {
+                // Retrieve the ID of the created application
+                $applicationsId = $application->id;
+        
+            // Insert into personal_details table
+            $personalDetails = PersonalDetails::create([
+                'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'fathers_name' => $this->fathers_name,
                 'mothers_name' => $this->mothers_name,
                 'marital_status' => $this->marital_status,
-                'husbands_names' => $this->husbands_names,
-                'husbands_id_number' => $this->husbands_id_number,
                 'occupation' => $this->occupation,
-                'telephone_number' => $this->telephone_number,
-                'email' => $this->email,
                 // ... Other fields ...
             ]);
 
             // Insert into birthplaces table
-            Birthplaces::create([
+            $birthplaces = Birthplaces::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'district_of_birth' => $this->district_of_birth,
                 'tribe' => $this->tribe,
                 'clan' => $this->clan,
                 'family' => $this->family,
-                'home_district' => $this->clan,
+                'home_district' => $this->clan, // Note: Check if this is intended
                 'division' => $this->division,
                 'constituency' => $this->constituency,
                 'location' => $this->location,
@@ -175,19 +185,10 @@ class ReplacementApplicants extends Component
                 // ... Other fields ...
             ]);
 
-             // Insert into applications table
-            Applications::create([
-                'user_id' => $this->user_id,
-                // 'personal_details_id' => $personalDetails->id,
-                // 'birthplaces_id' => $birthplaces->id,
-                // 'documents_id' => $documents->id,
-                // 'application_status' => $this->application_status,
-                // ... Other fields ...
-            ]);
-
             // Insert into documents table
             $document = Documents::create([
                 'user_id' => $this->user_id,
+                'applications_id' => $applicationsId,
                 'birth_certificate_number' => $this->birth_certificate_number,
                 'passport_number' => $this->passport_number,
                 'parents_id_number' => $this->parents_id_number,
@@ -197,52 +198,68 @@ class ReplacementApplicants extends Component
                 'fathers_id_card_back' => $this->fathers_id_card_back,
                 'mothers_id_card_front' => $this->mothers_id_card_front,
                 'mothers_id_card_back' => $this->mothers_id_card_back,
-                'lost_id' => $this->lost_id,
-                'police_report' => $this->police_report,
+                'old_id' => $this->old_id,
                 // ... Other fields ...
             ]);
 
+            $application->update(['application_status' => 'Application Complete']);
+
+
+           // Send email after successful form submission
+        //    $homeController = new HomeController();
+        //    $homeController->sendnotification();
+
+          
+
+        
+
             // Handle file uploads (e.g., passport photo, ID card photos)
-            if ($this->currentStep === 5) {
-                $this->currentDocumentId = $document->id;
-                // Assuming you have stored the uploaded files in a folder named 'uploads'
-                $birthCertificatePath = $this->birth_certificate->store('uploads', 'public');
-                Documents::where('id', $this->currentDocumentId)->update(['birth_certificate' => $birthCertificatePath]);
-
-                $passportPhotoPath = $this->passport_photo->store('uploads', 'public');               
-                Documents::where('id', $this->currentDocumentId)->update(['passport_photo' => $passportPhotoPath]);
-                     
-
-                $fathersIdCardFrontPath = $this->fathers_id_card_front->store('uploads', 'public');                
-                Documents::where('id', $this->currentDocumentId)->update(['fathers_id_card_front' => $fathersIdCardFrontPath]);
-
-                $fathersIdCardBackPath = $this->fathers_id_card_back->store('uploads', 'public');               
-                Documents::where('id', $this->currentDocumentId)->update(['fathers_id_card_back' => $fathersIdCardBackPath]);
-                     
-
-                $mothersIdCardFrontPath = $this->mothers_id_card_front->store('uploads', 'public');               
-                Documents::where('id', $this->currentDocumentId)->update(['mothers_id_card_front' => $mothersIdCardFrontPath]);
-                     
-                $mothersIdCardBackPath = $this->mothers_id_card_back->store('uploads', 'public');
-                Documents::where('id', $this->currentDocumentId)->update(['mothers_id_card_back' => $mothersIdCardBackPath]);
-
-                $lostIdPath = $this->lost_id->store('uploads', 'public');
-                Documents::where('id', $this->currentDocumentId)->update(['lost_id' => $lostIdPath]);
-
-                $policeReportPath = $this->police_report->store('uploads', 'public');
-                Documents::where('id', $this->currentDocumentId)->update(['police_report' => $policeReportPath]);
-
-
+            if ($this->currentStep === 4) {
+                // Check if birth_certificate file is present
+                if ($this->birth_certificate) {
+                    // Assuming you have stored the uploaded files in a folder named 'uploads'
+                    $birthCertificatePath = $this->birth_certificate->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['birth_certificate' => $birthCertificatePath]);
+                }
+            
                 // Repeat the same for other image fields (passport_photo, fathers_id_card_front, fathers_id_card_back, mothers_id_card_front, mothers_id_card_back)
+                if ($this->passport_photo) {
+                    $passportPhotoPath = $this->passport_photo->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['passport_photo' => $passportPhotoPath]);
+                }
+            
+                if ($this->fathers_id_card_front) {
+                    $fathersIdCardFrontPath = $this->fathers_id_card_front->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['fathers_id_card_front' => $fathersIdCardFrontPath]);
+                }
+            
+                if ($this->fathers_id_card_back) {
+                    $fathersIdCardBackPath = $this->fathers_id_card_back->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['fathers_id_card_back' => $fathersIdCardBackPath]);
+                }
+            
+                if ($this->mothers_id_card_front) {
+                    $mothersIdCardFrontPath = $this->mothers_id_card_front->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['mothers_id_card_front' => $mothersIdCardFrontPath]);
+                }
+            
+                if ($this->mothers_id_card_back) {
+                    $mothersIdCardBackPath = $this->mothers_id_card_back->store('uploads', 'public');
+                    Documents::where('id', $document->id)->update(['mothers_id_card_back' => $mothersIdCardBackPath]);
+                }
+
+               
+            
                 // Store their file paths in the documents table
                 // ... (Similar logic for other images)
             }
+        }
             
+
+            // ... (Your existing code below)
         }
 
+        session()->flash('success', 'Application submitted successfully. click the button to proceed to payment.');
         
-
-        
-         session()->flash('success', 'Application submitted successfully. Proceed to payment.');
     }
 }

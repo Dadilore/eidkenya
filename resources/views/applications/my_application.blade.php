@@ -14,15 +14,27 @@
                                 <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">My Application </span>
                             </div>
                             <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
-                                    You can delete or edit you application before it is confirmed and your biometrics taken  <span class="fw-bolder ms-1"></span></span>
+                                
                             </div>
+                            <h3>Instructions</h3>
+                            <h6>1. Ensure to download the receipt prior to visiting any Huduma Centre as it will be necessary.</h6><br>
+
+                            <h6> 2. Click on appointments to schedule a biometrics capture appointment if you haven't already booked one.</h6> <br>
+                            
+                            <h6>
+                            3. If your ID is ready for pickup and you've received a notification from eIDKenya, please schedule a pickup appointment by clicking on "appointments".
+                            </h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
+    
+        
+    
+
 
     <div  align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
 
@@ -42,7 +54,9 @@
                 <th>Application ID</th>
                 <th>Application type</th>
                 <th> Status</th>
-                <th>Actions</th>
+                <!-- <th>Actions</th> -->
+                <th>Appointments</th>
+                <th>Receipt</th>
             </tr>
 
             @foreach($data as $applications)
@@ -50,7 +64,7 @@
                     <td>{{$applications->id}}</td>
                     <td>{{$applications->application_type}}</td>         
                     <td style="color: #000;" ><p>{{$applications->application_status}}</p></td>
-                    <td>
+                    <!-- <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 Actions
@@ -60,7 +74,24 @@
                                 <li><a class="dropdown-item" href="{{url('update_application',$applications->id)}}">Update</a></li>
                             </ul>
                         </div>
+                    </td> -->
+
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Appointments
+                            </button>
+                            <ul class="dropdown-menu mt-1">
+                                <li><a class="dropdown-item" href="{{url('make_appointment')}}"> Make Biometrics Capture Appointment</a></li>
+                                <li><a class="dropdown-item" href="{{url('pickup_appointment')}}">Make ID pickup Appointment</a></li>
+                            </ul>
+                        </div>
                     </td>
+                    <td>
+                        <a href="{{ url('generate_invoice_pdf') }}" class="btn btn-primary">Download Receipt</a>
+                        
+                    </td>
+                    <!-- <td><a href="#" class="btn btn-primary">View Receipt</a></td> -->
                 </tr>
             @endforeach
         </table>

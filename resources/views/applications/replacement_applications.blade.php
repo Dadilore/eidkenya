@@ -6,7 +6,7 @@
        <div class="row" style="margin-top:50px">
              <div class="col-md-11  justify-content-center">
                  <h1>ID Application</h1><hr>
-                 @livewire('replacement-applicants')
+                 @livewire('replacement-application')
              </div>
        </div>
    </div>

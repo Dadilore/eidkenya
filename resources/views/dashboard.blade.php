@@ -89,7 +89,7 @@
 							</div>
 						</div>
 						<div class="text-center mb-1"> 
-							<a class="btn btn-sm btn-primary me-2" href="{{route('new_applications')}}">
+							<a class="btn btn-sm btn-primary me-2" href="{{route('replacement_applications')}}">
 								Start Application
 							</a>
 							<a class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">
@@ -112,7 +112,7 @@
 							</div>
 						</div>
 						<div class="text-center mb-1"> 
-							<a class="btn btn-sm btn-primary me-2" href="{{route('new_applications')}}">
+							<a class="btn btn-sm btn-primary me-2" href="{{route('change_of_particulars')}}">
 								Start Application
 							</a>
 							<a class="btn btn-sm btn-light">

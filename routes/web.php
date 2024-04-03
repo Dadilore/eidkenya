@@ -131,6 +131,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //END PAYMENTS
 
+    //START INVOICE
+    Route::get('/generate_invoice_pdf', [pdfController::class, 'generate_invoice_pdf']);
+    //END INVOICE
+
     // Route::get('/send-sms', [smscontroller::class, 'sms']);
     
     //START APPOINTMENTS

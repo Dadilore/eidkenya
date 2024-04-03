@@ -26,7 +26,7 @@
 
 
 <div align="center" style="padding: 50px;   " class="text-center mx-auto shadow" >
-
+   
     <a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:5%;" href="{{ url('generate_applications_pdf') }}">Export Applications</a>
 
 
