@@ -94,42 +94,42 @@ class MultiStepForm extends Component
     {
         // Add your validation rules here
 
-        if ($this->currentStep == 2) {
-            $this->validate([
-                'phone' => 'required',
-                'email' => 'required|email',
-                'marital_status' => 'required',
-                'occupation' => 'required|string',
-                'fathers_name' => 'required|string',
-                'mothers_name' => 'required|string',
-            ]);
-        } elseif ($this->currentStep == 3) {
-            $this->validate([
-                'district_of_birth' => 'required|string',
-                'clan' => 'required|string',
-                'family' => 'required',
-                'home_district' => 'required|string',
-                'division' => 'required|string',
-                'constituency' => 'required',
-                'location' => 'required|string',
-                'sub_location' => 'required|string',
-                'village' => 'required|string',
-                'home_address' => 'required',
-            ]);
-        } elseif ($this->currentStep == 4) {
-            $this->validate([
-                'birth_certificate_number' => 'string',
-                'passport_number' => 'string',
-                'parents_id_number' => 'string',
-                'certificate_of_registration_number' => 'string',
+        // if ($this->currentStep == 2) {
+        //     $this->validate([
+        //         'phone' => 'required',
+        //         'email' => 'required|email',
+        //         'marital_status' => 'required',
+        //         'occupation' => 'required|string',
+        //         'fathers_name' => 'required|string',
+        //         'mothers_name' => 'required|string',
+        //     ]);
+        // } elseif ($this->currentStep == 3) {
+        //     $this->validate([
+        //         'district_of_birth' => 'required|string',
+        //         'clan' => 'required|string',
+        //         'family' => 'required',
+        //         'home_district' => 'required|string',
+        //         'division' => 'required|string',
+        //         'constituency' => 'required',
+        //         'location' => 'required|string',
+        //         'sub_location' => 'required|string',
+        //         'village' => 'required|string',
+        //         'home_address' => 'required',
+        //     ]);
+        // } elseif ($this->currentStep == 4) {
+        //     $this->validate([
+        //         'birth_certificate_number' => 'string',
+        //         'passport_number' => 'string',
+        //         'parents_id_number' => 'string',
+        //         'certificate_of_registration_number' => 'string',
 
-                'birth_certificate' => 'required|string',
-                'fathers_id_card_front' => 'required|string',
-                'fathers_id_card_back' => 'required',
-                'mothers_id_card_front' => 'required|string',
-                'mothers_id_card_back' => 'required|string',
-            ]);
-        } 
+        //         'birth_certificate' => 'required|string',
+        //         'fathers_id_card_front' => 'required|string',
+        //         'fathers_id_card_back' => 'required',
+        //         'mothers_id_card_front' => 'required|string',
+        //         'mothers_id_card_back' => 'required|string',
+        //     ]);
+        // } 
     }
 
     public function register()
@@ -204,8 +204,8 @@ class MultiStepForm extends Component
 
 
            // Send email after successful form submission
-           $homeController = new HomeController();
-           $homeController->sendnotification();
+        //    $homeController = new HomeController();
+        //    $homeController->sendnotification();
 
           
 

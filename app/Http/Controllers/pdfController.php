@@ -39,13 +39,20 @@ class pdfController extends Controller
     {
         // Fetch authenticated user's details
         $user = User::findOrFail(Auth::user()->id);
-
+    
         // Fetch the first application for the authenticated user
-        $application = Applications::where('user_id', $user->id)->first();
+        $application = Applications::where('user_id', $user->id)
+        ->latest() // Order by the latest application
+        ->first();
 
+    
         // Generate a random receipt number of 10 characters (including both letters and numbers) starting with "eID"
         $receiptNumber = 'eID' . Str::random(7, 'alnum'); // Total length is 10 (3 characters for "eID" and 7 alphanumeric characters)
-
+    
+        // Update the receipt number of the application
+        $application->receipt_number = $receiptNumber;
+        $application->save(); // Save the changes to the database
+    
         // Prepare data for the PDF view
         $data = [
             'title' => 'eIDKenya Invoice',
@@ -54,13 +61,14 @@ class pdfController extends Controller
             'application' => $application,
             'receiptNumber' => $receiptNumber // Pass the receipt number to the view
         ];
-
+    
         // Load the PDF view with the data
         $pdf = Pdf::loadView('applications.generate_invoice_pdf', $data);
-
+    
         // Download the generated PDF
         return $pdf->download('eIDKenya_invoice.pdf');
     }
+    
 
 
 

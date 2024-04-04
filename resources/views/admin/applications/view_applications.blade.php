@@ -40,6 +40,7 @@
             <th>Application id</th>
             <th>Application type</th>
             <th>Status</th>
+            <th>Receipt Number</th>
             <th>Actions</th>
             
         </tr>
@@ -54,6 +55,8 @@
                 <p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoint->application_status}}
                 </p>
             </td>
+
+            <td>{{$appoint->receipt_number}}</td>
 
 
 

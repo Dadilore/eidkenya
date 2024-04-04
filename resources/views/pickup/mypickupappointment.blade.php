@@ -71,7 +71,7 @@
                                     </button>
                                     <ul class="dropdown-menu mt-1">
                                         <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('delete_appoint',$appoints->id)}}">Cancel</a></li>
-                                        <li><a class="dropdown-item" href="{{ url('reschedule_appointment',$appoints->id) }}">Reschedule</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('pickup_reschedule',$appoints->id) }}">Reschedule</a></li>
                                     </ul>
                                 </div>
                             </td>
