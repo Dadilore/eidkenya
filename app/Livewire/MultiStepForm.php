@@ -255,7 +255,7 @@ class MultiStepForm extends Component
             // ... (Your existing code below)
         }
 
-        session()->flash('success', 'Application submitted successfully. click the button to proceed to payment.');
+         return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.');
         
     }
 

@@ -54,7 +54,7 @@ class AppointmentController extends Controller
         // Use the existing sendappointmentnotification method from HomeController
         // app(HomeController::class)->sendappointmentnotification();
 
-        return redirect()->back()->with('success', 'Appointment submitted successfully. Click the button to view your appointment.');
+        return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to get your biometrics captured.');
     }
 
 
@@ -98,7 +98,9 @@ class AppointmentController extends Controller
         // Use the existing sendappointmentnotification method from HomeController
         // app(HomeController::class)->sendappointmentnotification();
 
-        return redirect()->back()->with('success', 'Appointment submitted successfully. Click the button to view your appointment.');
+        return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to pick up your ID .');
+
+        return redirect()->route('myappointment')->with('success', 'Appointment submitted successfully. Avail yourself on time at the appointment venue to get your biometrics captured .');
     }
 
 

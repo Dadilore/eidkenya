@@ -35,7 +35,6 @@
                 <div class="container mt-5">
                 <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
                     {{ session('success') }}
-                    <a href="{{url('make_appointment')}}"><button type="" class="btn btn-md btn-primary" > Make Appointment </button></a>
                     <button type="button" class="btn-close btn btn-danger me-5 mt-5" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 </div>

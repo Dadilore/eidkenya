@@ -29,7 +29,7 @@
         <div class="container mt-5 ">
         <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
             {{ session('success') }}
-            <a href="{{url('myappointment')}}"><button type="" class="btn btn-md btn-primary" > View Appointment </button></a>
+            
             <button type="button" class="btn-close btn btn-danger me-5 mt-5" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         </div>
@@ -38,6 +38,9 @@
         
 
     <div class="container">
+        
+    <a href="{{url('myappointment')}}"><button type="" class="btn btn-md btn-primary" > View Appointment </button></a>
+
         <form action="{{url('make_appointment')}}"  method="POST" enctype="multipart/form-data" >
                 @csrf
                 

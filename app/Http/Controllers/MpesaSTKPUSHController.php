@@ -57,7 +57,8 @@ class MpesaSTKPUSHController extends Controller
             // Update the application status to "application_paid" for all applications of the authenticated user
             Applications::where('user_id', $user_id)->update(['application_status' => 'application_paid']);
 
-            return redirect()->back()->with('success', 'Payment successful. Click the button to schedule your biometrics capture appointment.');
+            return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
+
         } else {
             // Log the cancellation response
             Log::warning('Mpesa STK Push Response: ' . json_encode($result));
