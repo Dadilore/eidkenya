@@ -48,53 +48,55 @@
         @endif
 
         @if(count($data) > 0)
-        <table class="table table-bordered "  style="margin-right: 20px; width: 80%;">
-
-            <tr class="bg-secondary">
-                <th>Application ID</th>
-                <th>Application type</th>
-                <th> Status</th>
-                <!-- <th>Actions</th> -->
-                <th>Appointments</th>
-                <th>Receipt</th>
-            </tr>
-
-            @foreach($data as $applications)
-                <tr align="center">
-                    <td>{{$applications->id}}</td>
-                    <td>{{$applications->application_type}}</td>         
-                    <td style="color: #000;" ><p>{{$applications->application_status}}</p></td>
-                    <!-- <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Actions
-                            </button>
-                            <ul class="dropdown-menu mt-1">
-                                <li><a class="dropdown-item" href="{{url('deleteapplication',$applications->id)}}" onclick="return confirm('Are you sure you want to delete this application')">Delete</a></li>
-                                <li><a class="dropdown-item" href="{{url('update_application',$applications->id)}}">Update</a></li>
-                            </ul>
-                        </div>
-                    </td> -->
-
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Appointments
-                            </button>
-                            <ul class="dropdown-menu mt-1">
-                                <li><a class="dropdown-item" href="{{url('make_appointment')}}"> Make Biometrics Capture Appointment</a></li>
-                                <li><a class="dropdown-item" href="{{url('pickup_appointment')}}">Make ID pickup Appointment</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td>
-                        <a href="{{ url('generate_invoice_pdf') }}" class="btn btn-primary">Download Receipt</a>
-                        
-                    </td>
-                    <!-- <td><a href="#" class="btn btn-primary">View Receipt</a></td> -->
-                </tr>
-            @endforeach
-        </table>
+        <div class="card-body pt-6 ">
+        <div class="table-responsive " >
+            <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                <thead>
+                    <tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
+                        <th class="p-0 pb-3 min-w-175px text-start">APPLICATION</th>
+                        <th class="p-0 pb-3 min-w-100px text-end">CREATED ON</th>
+                        <th class="p-0 pb-3 min-w-100px text-end pe-12">STATUS</th>
+                        <th class="p-0 pb-3 min-w-150px text-end">APPOINTMENTS</th>
+                        <th class="p-0 pb-3 min-w-150px text-end">RECEIPT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($data as $applications)
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex justify-content-start flex-column">
+                                        <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $applications->application_type }}</a>
+                                        <span class="text-gray-500 fw-semibold d-block fs-7">{{ $applications->id }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-end pe-0">
+                                <span class="text-gray-600 fw-bold fs-6">{{ $applications->created_at }}</span>
+                            </td>
+                            <td class="text-end pe-12">
+                                <span class="badge py-3 px-4 fs-7 badge-light-{{ $applications->application_status == 'Approved'? 'success' : 'danger' }}">{{ $applications->application_status }}</span>
+                            </td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Appointments
+                                    </button>
+                                    <ul class="dropdown-menu mt-1">
+                                        <li><a class="dropdown-item" href="{{url('make_appointment')}}"> Make Biometrics Capture Appointment</a></li>
+                                        <li><a class="dropdown-item" href="{{url('pickup_appointment')}}">Make ID pickup Appointment</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td class="text-end pe-0">
+                                <a href="{{ url('generate_invoice_pdf') }}" class="btn btn-primary btn-sm">Download Receipt</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+</div>
 
         @else
         <div class="card shadow">

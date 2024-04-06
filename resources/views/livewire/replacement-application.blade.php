@@ -11,7 +11,7 @@
                                     <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                                         <div class="d-flex flex-column">
                                             <div class="d-flex align-items-center mb-2">
-                                                <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Application for New ID</span>
+                                                <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Application for Replacement ID</span>
                                             </div>
                                             <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                                 <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
@@ -458,17 +458,22 @@
                     </div>
                     
                     <div class="card mt-5 ">
-                                <!-- <div class="card-header"></div> -->
-                                    <div class="card-body">
-                                    @if (session()->has('success'))
-                                        <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
-                                            {{ session('success') }}
-                                            <a href="{{route('payment')}}"><button type="" class="btn btn-md btn-primary" >Proceed to Payment</button></a>
-                                            <button type="button" class="btn-close btn btn-danger me-5 mt-5 btn btn-lg " data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    @endif 
-                                    </div>
+                        <div class="card-body">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
+                                {{ session('success') }}
+                                <a href="{{route('payment')}}"><button type="" class="btn btn-md btn-primary" >Proceed to Payment</button></a>
+                                <button type="button" class="btn-close btn btn-danger me-5 mt-5 btn btn-lg " data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
+                        @endif 
+                        </div>
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close btn btn-danger btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
                     
             </div>
         </div>

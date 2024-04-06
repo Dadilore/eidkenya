@@ -452,6 +452,14 @@
                                     </div>
                                 @endif 
                                 </div>
+
+                                @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                    <button type="button" class="btn-close btn btn-danger btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+
+                                @endif
                         </div>
                 
         </div>

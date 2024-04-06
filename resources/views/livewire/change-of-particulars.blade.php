@@ -47,7 +47,7 @@
                         </ul>
                         </div>
                         <div class="card-body">
-                            <form action="get"  wire:submit.prevent="register2" enctype="multipart/form-data" >
+                            <form action="get"  wire:submit.prevent="register3" enctype="multipart/form-data" >
                                 @csrf
     
                                 @if ($currentStep == 1)
@@ -468,6 +468,12 @@
                                         </div>
                                     @endif 
                                     </div>
+                                    @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                        <button type="button" class="btn-close btn btn-danger btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    @endif
                             </div>
                     
             </div>

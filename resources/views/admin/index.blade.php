@@ -65,6 +65,7 @@
 	  <hr style="height: 4px; background-color: #000; border: none; margin: 20px 0;">
 
 	  <div class="row">
+            
             <div class="col-md-3">
                 <div class="card card-body bg-primary text-white mb-3 h-100">
                     <label for="">Total Applications</label>
