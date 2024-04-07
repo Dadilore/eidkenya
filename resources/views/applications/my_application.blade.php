@@ -83,7 +83,7 @@
                                         Appointments
                                     </button>
                                     <ul class="dropdown-menu mt-1">
-                                        <li><a class="dropdown-item" href="{{url('make_appointment')}}"> Make Biometrics Capture Appointment</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('biometrics_form', ['application_id' => $applications->id]) }}"> Make Biometrics Capture Appointment</a></li>
 
                                         <li>
                                         <a class="dropdown-item" href="{{ route('pickup_form', ['application_id' => $applications->id]) }}">Make ID pickup Appointment</a>

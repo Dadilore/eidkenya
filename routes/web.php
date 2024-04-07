@@ -140,15 +140,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     //START APPOINTMENTS
     //BIOMETRICS CAPTURE APPOINTMENTS
-    Route::get('/make_appointment', function () {
-        return view('biometrics.make_appointment');
-    })->name('make_appointment');  
 
     Route::get('/myappointment', function () {
         return view('biometrics.myappointment');
     })->name('myappointment');
 
-    Route::post('/make_appointment', [AppointmentController::class, 'make_appointment']);
+    Route::get('/biometrics_form/{application_id}', [AppointmentController::class, 'showBiometricsForm'])->name('biometrics_form');
+
+    Route::post('/make_appointment/{application_id}', [AppointmentController::class, 'make_biometrics_appointment'])->name('make_biometrics_appointment');
+
+    // Route::post('/make_appointment/{application_id}', [AppointmentController::class, 'make_appointment']);
 
     Route::get('/reschedule_appointment/{id}', [AppointmentController::class, 'reschedule_appointment']);
 

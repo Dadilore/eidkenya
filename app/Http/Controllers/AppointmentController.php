@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
 class AppointmentController extends Controller
 {
+    public function showBiometricsForm(Request $request,$application_id)
+    {
+        $application = Applications::findOrFail($application_id);
+        return view('biometrics.make_appointment', ['applications' => $application]);
 
-    public function make_appointment(Request $request)
+    }
+
+    public function make_biometrics_appointment(Request $request)
     {
         $request->validate([
             'appointment_date' => ['required', 'date', new ValidAppointmentDate],

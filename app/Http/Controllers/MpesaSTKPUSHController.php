@@ -62,8 +62,8 @@ class MpesaSTKPUSHController extends Controller
             // return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
 
             // Redirect to the payment page with the application ID
-            return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.')
-            ->with('application_id', $latestApplicationId);
+            return redirect()->route('biometrics_form', ['application_id' => $latestApplicationId])->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
+
 
 
         } else {

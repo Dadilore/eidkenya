@@ -48,11 +48,10 @@
         
     <a href="{{url('myappointment')}}"><button type="" class="btn btn-md btn-primary" > View Appointment </button></a>
 
-        <form action="{{url('make_appointment')}}"  method="POST" enctype="multipart/form-data" >
-                @csrf
-
-                <!-- Hidden input field to carry the application ID -->
-                <input type="hidden" name="application_id" value="{{ session('application_id') }}">
+    <form action="{{ route('make_biometrics_appointment', ['application_id' => $applications->id]) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <!-- Hidden input field to carry the application ID -->
+        <input type="hidden" name="application_id" value="{{ $applications->id }}">
                 
             <div class="step-one" id="2">
                 <div class="card shadow_lg">
