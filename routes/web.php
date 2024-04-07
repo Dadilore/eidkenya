@@ -102,6 +102,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //iankumu
     Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush'])->name('mpesa.stkpush');
+    
     // Mpesa STK Push Callback Route
     Route::post('v1/confirm', [MpesaSTKPUSHController::class, 'STKConfirm'])->name('mpesa.confirm');
 
@@ -168,7 +169,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('biometrics.mypickupappointment');
     })->name('mypickupappointment');
     
-    Route::post('/pickup_appointment', [AppointmentController::class, 'pickup_appointment']);
+    Route::post('/pickup_appointment/{application_id}', [AppointmentController::class, 'make_pickup_appointment'])->name('make_pickup_appointment');
+
+    Route::get('/pickup_form/{application_id}', [AppointmentController::class, 'showPickupForm'])->name('pickup_form');
+
+
 
     Route::get('/mypickupappointment', [AppointmentController::class, 'mypickupappointment']);
 

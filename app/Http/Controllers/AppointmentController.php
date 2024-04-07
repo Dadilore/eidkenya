@@ -20,22 +20,13 @@ class AppointmentController extends Controller
             'appointment_date' => ['required', 'date', new ValidAppointmentDate],
             // other validation rules...
         ]);
-
+    
         // Get the user's ID
         $userId = Auth::id();
-
-        // Get the latest application for the user
-        $latestApplication = Applications::where('user_id', $userId)->latest()->first();
-
-        // If the user has no applications, create a new one
-        if (!$latestApplication) {
-            $latestApplication = Applications::create([
-                'user_id' => $userId,
-                'application_status' => 'application_incomplete',
-                // Add other fields as needed
-            ]);
-        }
-
+    
+        // Get the application ID from the request
+        $applicationId = $request->input('application_id');
+    
         // Create a new appointment
         $appointment = new Appointments;
         $appointment->appointment_date = $request->appointment_date;
@@ -43,22 +34,23 @@ class AppointmentController extends Controller
         $appointment->appointment_venue = $request->appointment_venue;
         $appointment->status = 'In progress';
         $appointment->user_id = $userId;
-        $appointment->applications_id = $latestApplication->id;
-
-        // Update the application status to "biometrics_appointment_booked"
-        $latestApplication->update(['application_status' => 'biometrics appointment booked']);
-
+        $appointment->applications_id = $applicationId; // Use the application ID from the request
+    
         // Save the appointment
         $appointment->save();
-
+    
+        // Update the application status to "biometrics_appointment_booked"
+        Applications::where('id', $applicationId)->update(['application_status' => 'biometrics appointment booked']);
+    
         // Use the existing sendappointmentnotification method from HomeController
         // app(HomeController::class)->sendappointmentnotification();
-
+    
         return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to get your biometrics captured.');
     }
+    
 
 
-    public function pickup_appointment(Request $request)
+    public function make_pickup_appointment(Request $request, $application_id)
     {
         $request->validate([
             'appointment_date' => ['required', 'date', new ValidAppointmentDate],
@@ -68,40 +60,36 @@ class AppointmentController extends Controller
         // Get the user's ID
         $userId = Auth::id();
 
-        // Get the latest application for the user
-        $latestApplication = Applications::where('user_id', $userId)->latest()->first();
+        // Find the application by ID
+        $applications = Applications::findOrFail($application_id);
 
-        // If the user has no applications, create a new one
-        if (!$latestApplication) {
-            $latestApplication = Applications::create([
-                'user_id' => $userId,
-                'application_status' => 'application_incomplete',
-                // Add other fields as needed
-            ]);
-        }
-
-        // Create a new appointment
+        // Create a new pickup appointment
         $appointment = new Pickupappointment;
         $appointment->appointment_date = $request->appointment_date;
         $appointment->appointment_time = $request->appointment_time;
         $appointment->appointment_venue = $request->appointment_venue;
         $appointment->status = 'In progress';
         $appointment->user_id = $userId;
-        $appointment->applications_id = $latestApplication->id;
+        $appointment->applications_id = $applications->id; // Use the fetched application_id
 
-        // Update the application status to "biometrics_appointment_booked"
-        $latestApplication->update(['application_status' => 'pickup appointment booked']);
+        // Update the application status to "pickup appointment booked"
+        $applications->update(['application_status' => 'pickup appointment booked']);
 
         // Save the appointment
         $appointment->save();
 
-        // Use the existing sendappointmentnotification method from HomeController
-        // app(HomeController::class)->sendappointmentnotification();
-
-        return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to pick up your ID .');
-
-        return redirect()->route('myappointment')->with('success', 'Appointment submitted successfully. Avail yourself on time at the appointment venue to get your biometrics captured .');
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to pick up your ID.');
     }
+
+    public function showPickupForm(Request $request,$application_id)
+    {
+        $application = Applications::findOrFail($application_id);
+        return view('pickup.pickup_appointment', ['applications' => $application]);
+
+    }
+
+
 
 
 

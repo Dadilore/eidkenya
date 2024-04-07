@@ -258,8 +258,10 @@ class ChangeOfParticulars extends Component
                     // ... (Similar logic for other images)
                 }
 
-                // Redirect to the payment page
-                return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.');
+
+                // Redirect to the payment page with the application ID
+                return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.')
+                ->with('application_id', $applicationsId);
             }
         }
 

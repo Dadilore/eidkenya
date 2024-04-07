@@ -141,14 +141,13 @@ class MultiStepForm extends Component
         $document = null;
 
         // Check if the user has already applied for a new ID
-        $existingApplication = Applications::where('user_id', auth()->id())
-            ->where('application_type', 'New Application')
-            ->first();
+        // $existingApplication = Applications::where('user_id', auth()->id())
+        //     ->where('application_type', 'New Application')
+        //     ->first();
 
-        if ($existingApplication) {
-            // Redirect the user back with an error message
-            return redirect()->back()->with('error', 'You have already applied for a new ID. You cannot apply for a second one.');
-        }
+        // if ($existingApplication) {
+        //     return redirect()->back()->with('error', 'You have already applied for a new ID. You cannot apply for a second one.');
+        // }
 
         if ($this->currentStep == 4) {
             // Proceed with form submission since there is no existing application
@@ -250,8 +249,12 @@ class MultiStepForm extends Component
                     // ... (Similar logic for other images)
                 }
 
-                // Redirect to the payment page
-                return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.');
+                
+                   // Redirect to the payment page with the application ID
+                    return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.')
+                    ->with('application_id', $applicationsId);
+
+
             }
         }
 

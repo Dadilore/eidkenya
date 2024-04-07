@@ -29,11 +29,18 @@
         <div class="container mt-5 ">
         <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
             {{ session('success') }}
-            
             <button type="button" class="btn-close btn btn-danger me-5 mt-5" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         </div>
     @endif
+
+    
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+                <button type="button" class="btn-close btn btn-danger btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         
 
@@ -43,6 +50,9 @@
 
         <form action="{{url('make_appointment')}}"  method="POST" enctype="multipart/form-data" >
                 @csrf
+
+                <!-- Hidden input field to carry the application ID -->
+                <input type="hidden" name="application_id" value="{{ session('application_id') }}">
                 
             <div class="step-one" id="2">
                 <div class="card shadow_lg">

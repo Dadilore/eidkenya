@@ -48,24 +48,27 @@
                             <section id="payment" class="payment">
                                 <div style="display: flex; justify-content: space-between;">
 
-                                    <form action="{{ route('mpesa.stkpush') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div style="background-color: #f0f0f0;  padding: 30px; margin-right:50px;">
-                                            <h2>Pay via stk push</h2>
-                                            <div class="col-lg-12">
-                                                <div class="row ">
-                                                    <label for=""><h4 style="color:green;">Enter Your Safaricon M-PESA Phone number</h4></label>
-                                                    <div class="col-md-6 ">
-                                                        <input type="number" class="form-control" name="phonenumber" placeholder="Enter your Phone number" required>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="action-buttons d-flex justify-content-between flex-end pt-3 pb-2 mb-5 shadow_lg">
-                                                    <button type="submit" class="btn btn-lg btn-primary mt-5">Pay</button>
+                                <form action="{{ route('mpesa.stkpush') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <!-- Hidden input field to carry the application ID -->
+                                    <input type="hidden" name="application_id" value="{{ session('application_id') }}">
+
+                                    <div style="background-color: #f0f0f0; padding: 30px; margin-right:50px;">
+                                        <h2>Pay via STK Push</h2>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <label for=""><h4 style="color:green;">Enter Your Safaricon M-PESA Phone number</h4></label>
+                                                <div class="col-md-6">
+                                                    <input type="number" class="form-control" name="phonenumber" placeholder="Enter your Phone number" required>
                                                 </div>
                                             </div>
-                                        </div>     
-                                    </form>
+                                            <div class="action-buttons d-flex justify-content-between flex-end pt-3 pb-2 mb-5 shadow_lg">
+                                                <button type="submit" class="btn btn-lg btn-primary mt-5">Pay</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
 
                                     <div style="background-color: #e0e0e0;  padding: 30px;">
                                         <h2>Pay via paybill</h2>

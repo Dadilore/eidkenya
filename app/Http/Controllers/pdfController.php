@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\MpesaSTK;
+use Illuminate\Support\Str;
 use App\Models\Applications;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class pdfController extends Controller
 {
@@ -42,16 +43,31 @@ class pdfController extends Controller
     
         // Fetch the first application for the authenticated user
         $application = Applications::where('user_id', $user->id)
-        ->latest() // Order by the latest application
-        ->first();
-
+            ->latest() // Order by the latest application
+            ->first();
     
-        // Generate a random receipt number of 10 characters (including both letters and numbers) starting with "eID"
-        $receiptNumber = 'eID' . Str::random(7, 'alnum'); // Total length is 10 (3 characters for "eID" and 7 alphanumeric characters)
+        // Check if the user has paid for the application
+        $payment = MpesaSTK::where('user_id', $user->id)
+            ->latest() // Order by the latest payment
+            ->first();
     
-        // Update the receipt number of the application
-        $application->receipt_number = $receiptNumber;
-        $application->save(); // Save the changes to the database
+        if (!$payment) {
+            // User hasn't paid, redirect to payments page with a message
+            return redirect()->route('payment')->with('error', 'Please make the payment first to download the receipt.');
+        }
+    
+        // Check if there is a receipt number already generated and stored in the database
+        if (!$application->receipt_number) {
+            // Generate a random receipt number of 10 characters (including both letters and numbers) starting with "eID"
+            $receiptNumber = 'eID' . Str::random(7, 'alnum'); // Total length is 10 (3 characters for "eID" and 7 alphanumeric characters)
+    
+            // Update the receipt number of the application and save it to the database
+            $application->receipt_number = $receiptNumber;
+            $application->save();
+        } else {
+            // Retrieve the receipt number from the database
+            $receiptNumber = $application->receipt_number;
+        }
     
         // Prepare data for the PDF view
         $data = [
@@ -69,6 +85,7 @@ class pdfController extends Controller
         return $pdf->download('eIDKenya_invoice.pdf');
     }
     
+
 
 
 

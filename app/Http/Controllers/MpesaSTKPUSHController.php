@@ -26,6 +26,8 @@ class MpesaSTKPUSHController extends Controller
         // Get the phone number from the request
         $phoneno = $request->input('phonenumber');
 
+        $application_id = $request->input('application_id');
+
          // Retrieve the most recent application ID for the authenticated user
          $latestApplicationId = Applications::where('user_id', Auth::user()->id)
          ->latest()
@@ -57,7 +59,12 @@ class MpesaSTKPUSHController extends Controller
             // Update the application status to "application_paid" for all applications of the authenticated user
             Applications::where('user_id', $user_id)->update(['application_status' => 'application_paid']);
 
-            return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
+            // return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
+
+            // Redirect to the payment page with the application ID
+            return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.')
+            ->with('application_id', $latestApplicationId);
+
 
         } else {
             // Log the cancellation response
