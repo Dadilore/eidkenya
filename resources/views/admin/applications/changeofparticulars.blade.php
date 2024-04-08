@@ -30,19 +30,6 @@
                 </div>
             @endif  
 
-            <form action="{{ route('view_applications4') }}" method="GET" class="mb-3">
-                <div class="input-group">
-                    <div class="container">
-                        <div class="row justify-content-end">
-                            <div class="col-md-6">
-                                <b>Search User</b>
-                                <input type="text" name="search" class="form-control" placeholder="Search by user name" value="{{ request()->query('search') }}">
-                                <button type="submit" class="btn mt-3 mb-3 btn-primary btn-sm float-end">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
 
 
     <div align="center" style="padding: 50px;" class="text-center mx-auto shadow">
@@ -58,7 +45,6 @@
                     <tr class="bg-secondary">
                         <th>User id</th>
                         <th>Application id</th>
-                        <th>User Name</th>
                         <th>Application type</th>
                         <th>Status</th>
                         <th>Receipt Number</th>
@@ -73,7 +59,6 @@
                     <tr align="center">
                         <td>{{$appoint->user_id}}</td>
                         <td>{{$appoint->id}}</td>
-                        <td>{{$appoint->surname}} {{$appoint->middle_name}} {{$appoint->name}}</td>
                         <td>{{$appoint->application_type}}</td>
 
                         <td style="color: #000;">

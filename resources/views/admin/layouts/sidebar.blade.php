@@ -354,6 +354,7 @@
                         <!--end:Menu link-->
                       </div>
                       <!--end:Menu item-->
+
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
@@ -361,11 +362,14 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">view application</span>
+                          <span class="menu-title">View Applications</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
                       <!--end:Menu item-->
+
+
+
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
@@ -406,7 +410,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="pages/about.html">
+                        <a class="menu-link" href="{{ url('view_payments') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
@@ -415,6 +419,7 @@
                         <!--end:Menu link-->
                       </div>
                       <!--end:Menu item-->
+
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
@@ -422,7 +427,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">Edit payment</span>
+                          <!-- <span class="menu-title">Edit payment</span> -->
                         </a>
                         <!--end:Menu link-->
                       </div>

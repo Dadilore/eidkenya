@@ -1,16 +1,19 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Applications;
 use App\Http\Controllers\payController;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\smsController;
+use App\Notifications\NewsWasPublished;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MPESAC2BController;
+use App\Http\Controllers\paymentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AppointmentController;
@@ -19,8 +22,6 @@ use App\Http\Controllers\MpesaSTKPUSHController;
 use App\Http\Controllers\MpesaWebhookController;
 use App\http\Controllers\payments\mpesa\mpesaController;
 use App\http\Controllers\Auth\AuthenticatedSessionController;
-use Illuminate\Support\Facades\Auth;
-use App\Notifications\NewsWasPublished;
 
 
 
@@ -236,7 +237,11 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::get('/view_users', [UsersController::class, 'view_users']);
 
-    Route::get('/view_applications', [ApplicationsController::class, 'view_applications']);
+    Route::get('/view_applications', [ApplicationsController::class, 'view_applications'])->name('view_applications');
+
+    Route::get('/view_applications4', [ApplicationsController::class, 'view_applications4'])->name('view_applications4');
+
+    Route::get('/view_payments', [paymentsController::class, 'view_payments']);
 
     Route::get('/add_application', [ApplicationsController::class, 'add_application']);
     
@@ -256,7 +261,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::get('/send-sms', [smscontroller::class, 'sms']);
 
-    Route::get("/sendsms",[smsController::class,'sendsms']);
+    Route::get("/sendsms", [smsController::class, 'sendsms'])->name('sendsms');
     
     Route::get("/send_sms",[smsController::class,'send_sms']);
 

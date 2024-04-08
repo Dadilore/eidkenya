@@ -22,6 +22,11 @@ class Applications extends Model
         return $this->hasMany(MpesaSTK::class, 'applications_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 
     use HasFactory;
     protected $primaryKey = 'id';
