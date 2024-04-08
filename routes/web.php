@@ -52,6 +52,11 @@ Route::get('/requirements', function () {
 Route::get('send',[HomeController::class,"sendnotification"]);
 
 Route::get('send',[HomeController::class,"sendappointmentnotification"]);
+
+// Route::get('send',[HomeController::class,"sendpickupnotification"]);
+
+Route::get('send/{applicationId}', [HomeController::class, 'sendpickupnotification'])->name('send.pickup.notification');
+
 //END MAIL
 
 
@@ -205,6 +210,8 @@ Route::get('/tracking', function () {
 //END TRACKING
 
 
+
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -225,6 +232,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::get('/showappointment', [AdminController::class, 'showappointment']);
 
+    Route::get('/showpickupappointment', [AdminController::class, 'showappointment2']);
+
     Route::get('/view_users', [UsersController::class, 'view_users']);
 
     Route::get('/view_applications', [ApplicationsController::class, 'view_applications']);
@@ -232,8 +241,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/add_application', [ApplicationsController::class, 'add_application']);
     
     Route::get('/approved/{id}', [AdminController::class, 'approved']);
+
+    Route::get('/approved2/{id}', [AdminController::class, 'approved2']);
     
     Route::get('/cancelled/{id}', [AdminController::class, 'cancelled']);
+
+    Route::get('/cancelled2/{id}', [AdminController::class, 'cancelled2']);
 
     Route::get('/generate_pdf', [pdfController::class, 'generate_pdf']);
     
@@ -247,7 +260,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
     
     Route::get("/send_sms",[smsController::class,'send_sms']);
 
-
+    Route::get('/test', [ProfileController::class, 'test'])->name('test');
 
     
 });

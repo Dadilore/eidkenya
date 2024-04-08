@@ -57,7 +57,7 @@ class MpesaSTKPUSHController extends Controller
             ]);
 
             // Update the application status to "application_paid" for all applications of the authenticated user
-            Applications::where('user_id', $user_id)->update(['application_status' => 'application_paid']);
+            Applications::where('user_id', $user_id)->update(['application_status' => 'paid']);
 
             // return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
 

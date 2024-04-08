@@ -24,7 +24,7 @@
             </div>
         </div>
 
-    <div align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
+    <div align="center"  class="text-center mx-auto shadow" >
 
          
 
@@ -54,38 +54,40 @@
                 </div>
             </div>
         @else
-            <table class="table table-bordered">
-                
-                    <tr class="bg-secondary">
-                        <th>Appointment Date</th>
-                        <th>Appointment Time</th>
-                        <th>Appointment Venue</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                
-                <tbody>
-                    @foreach($appoint as $appoints)
-                        <tr align="center">
-                            <td>{{$appoints->appointment_date}}</td>
-                            <td>{{$appoints->appointment_time}}</td>
-                            <td>{{$appoints->appointment_venue}}</td>  
-                            <td style="color: #000;"><p  style="background-color:#FF6961; border-radius:10px; me-0">{{$appoints->status}}</p></td> 
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Actions
-                                    </button>
-                                    <ul class="dropdown-menu mt-1">
-                                        <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('delete_appoint',$appoints->id)}}">Cancel</a></li>
-                                        <li><a class="dropdown-item" href="{{ url('pickup_reschedule',$appoints->id) }}">Reschedule</a></li>
-                                    </ul>
-                                </div>
-                            </td>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    
+                        <tr class="bg-secondary">
+                            <th>Appointment Date</th>
+                            <th>Appointment Time</th>
+                            <th>Appointment Venue</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    
+                    <tbody>
+                        @foreach($appoint as $appoints)
+                            <tr align="center">
+                                <td>{{$appoints->appointment_date}}</td>
+                                <td>{{$appoints->appointment_time}}</td>
+                                <td>{{$appoints->appointment_venue}}</td>  
+                                <td style="color: #000;"><p  style="background-color:#FF6961; border-radius:10px; me-0">{{$appoints->status}}</p></td> 
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                        </button>
+                                        <ul class="dropdown-menu mt-1">
+                                            <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('delete_appoint',$appoints->id)}}">Cancel</a></li>
+                                            <li><a class="dropdown-item" href="{{ url('pickup_reschedule',$appoints->id) }}">Reschedule</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @endif
     </div>
 </div>

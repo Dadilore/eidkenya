@@ -458,7 +458,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">View appointments</span>
+                          <span class="menu-title">Biometrics Capture appointments</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -466,11 +466,11 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="pages/social/activity.html">
+                        <a class="menu-link" href="{{ url('showpickupappointment') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">edit appointments</span>
+                          <span class="menu-title">Pickup appointments</span>
                         </a>
                         <!--end:Menu link-->
                       </div>

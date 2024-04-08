@@ -10,7 +10,7 @@
                         <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                             <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mb-2">
-                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Appointments </span>
+                                    <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">ID Pickup Appointments </span>
                                 </div>
                                 <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                     <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
@@ -60,10 +60,10 @@
                                 </button>
                                 <ul class="dropdown-menu mt-1">
                                     <li>
-                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to approve this appointment?')" href="{{ url('approved', $appoint->id) }}">Approve</a>
+                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to approve this appointment?')" href="{{ url('approved2', $appoint->id) }}">Approve</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled', $appoint->id) }}">Cancel</a>
+                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this appointment?')" href="{{ url('cancelled2', $appoint->id) }}">Cancel</a>
                                     </li>
                                 </ul>
                             </div>

@@ -24,86 +24,83 @@
 </div>
 
 
-<div align="center" style="padding: 100px;  margin-right: 60px; " class="text-center mx-auto shadow" style="max-width: 800px;">
+    <div align="center" style="padding:30px;"  class="text-center mx-auto shadow" >
 
 
 
-<a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:5%;" href="{{ url('generate_pdf') }}">Export Users</a>
+        <a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom:5%;" href="{{ url('generate_pdf') }}">Export Users</a>
 
 
-<a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:5%;" href="#">Add User</a>
+        <a class="text-end btn btn-primary mx-auto ms-5 float-end" style="margin-bottom:5%;" href="#">Add User</a>
 
+        <div class="table-responsive">
+    <table class="table table-bordered mx-auto" style="width: 100%; max-width: none;">
+        <thead>
+            <tr class="bg-secondary">
+                <th>User ID</th>
+                <th>Surname</th>
+                <th>Middle Name</th>
+                <th>Other Names</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($data as $appoint)
+            <tr align="center">
+                <td>{{$appoint->id}}</td>
+                <td>{{$appoint->surname}}</td>
+                <td>{{$appoint->middle_name}}</td>
+                <td>{{$appoint->name}}</td>
+                <td>{{$appoint->email}}</td>
+                <td>{{$appoint->phone}}</td>
+                <td>{{$appoint->sex}}</td>
+                <td>{{$appoint->dob}}</td>
 
-    <table class="table table-bordered mx-auto" style="margin-right: 20px; width: 80%;">
+                <td style="color: #000;">
+                    <p style="background-color:#FF6961; border-radius:10px; margin: 0;">{{$appoint->status}}</p>
+                </td>
 
-        <tr class="bg-secondary">
-            <th>User ID</th>
-            <th>Surname</th>
-            <th>Middle Name</th>
-            <th>Other Names</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Gender</th>
-            <th>Date of Birth</th>
-            <th>Status</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
+                <td>{{$appoint->role}}</td>
 
-        @foreach($data as $appoint)
-        <tr align="center">
-            <td>{{$appoint->id}}</td>
-            <td>{{$appoint->surname}}</td>
-            <td>{{$appoint->middle_name}}</td>
-            <td>{{$appoint->name}}</td>
-            <td>{{$appoint->email}}</td>
-            <td>{{$appoint->phone}}</td>
-            <td>{{$appoint->sex}}</td>
-            <td>{{$appoint->dob}}</td>
-
-            <td style="color: #000;">
-                <p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoint->status}}
-                </p>
-            </td>
-
-            <td>{{$appoint->role}}</td>
-
-            <td>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Actions
-                    </button>
-                    <ul class="dropdown-menu mt-1">
-                        <li>
-                            <a class="dropdown-item" href="">Delete
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="">
-                                Update
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </td>
-        </tr>
-        @endforeach
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Actions
+                        </button>
+                        <ul class="dropdown-menu mt-1">
+                            <li>
+                                <a class="dropdown-item" href="">Delete</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">Update</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
-
-    <nav aria-label="...">
-        <ul class="pagination">
-            {{ $data->links('pagination::bootstrap-4') }}
-        </ul>
-    </nav>
-
-
-
-
-
 </div>
+
+
+        <nav aria-label="...">
+            <ul class="pagination">
+                {{ $data->links('pagination::bootstrap-4') }}
+            </ul>
+        </nav>
+
+
+
+
+
+    </div>
 
     
 

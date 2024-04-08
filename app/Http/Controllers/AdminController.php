@@ -7,6 +7,7 @@ use App\models\Appointments;
 use Illuminate\Http\Request;
 use App\models\UserBiometrics;
 use Illuminate\Support\Carbon;
+use App\Models\Pickupappointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 
@@ -40,12 +41,28 @@ class AdminController extends Controller
         $data = appointments::paginate(5); // You can adjust the number (10) based on your desired items per page.
         return view('admin.appointments.showappointment', compact('data'));
     }
+
+    public function showappointment2(){
+        $data = Pickupappointment::paginate(5); // You can adjust the number (10) based on your desired items per page.
+        return view('admin.appointments.showpickupappointment', compact('data'));
+    }
      //End Method
 
     public function approved($id)
     {
 
         $data=appointments::find($id);
+        $data->status='approved';
+        $data->save(); 
+
+        return redirect()->back();
+
+    }
+
+    public function approved2($id)
+    {
+
+        $data=Pickupappointment::find($id);
         $data->status='approved';
         $data->save(); 
 
@@ -63,16 +80,18 @@ class AdminController extends Controller
         return redirect()->back();
 
     }
-    // public function paid($id)
-    // {
 
-    //     $data=appointments::find($id);
-    //     $data->status='paid';
-    //     $data->save(); 
+    public function cancelled2($id)
+    {
 
-    //     return redirect()->back();
+        $data=Pickupappointment::find($id);
+        $data->status='cancelled';
+        $data->save(); 
 
-    // }
+        return redirect()->back();
+
+    }
+
 
     public function seedUserBiometrics()
     {
