@@ -47,7 +47,7 @@
             </div>
         @endif
 
-        @if(count($data) > 0)
+       
         <div class="card-body pt-6 ">
         <div class="table-responsive " >
             <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
@@ -61,21 +61,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data as $applications)
+                    @foreach($applications as $application)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex justify-content-start flex-column">
-                                        <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $applications->application_type }}</a>
-                                        <span class="text-gray-500 fw-semibold d-block fs-7">{{ $applications->id }}</span>
+                                        <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $application->application_type }}</a>
+                                        <span class="text-gray-500 fw-semibold d-block fs-7">{{ $application->id }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="text-end pe-0">
-                                <span class="text-gray-600 fw-bold fs-6">{{ $applications->created_at }}</span>
+                                <span class="text-gray-600 fw-bold fs-6">{{ $application->created_at }}</span>
                             </td>
                             <td class="text-end pe-12">
-                                <span class="badge py-3 px-4 fs-7 badge-light-{{ $applications->application_status == 'Approved'? 'success' : 'danger' }}">{{ $applications->application_status }}</span>
+                                <span class="badge py-3 px-4 fs-7 badge-light-{{ $application->application_status == 'Approved'? 'success' : 'danger' }}">{{ $application->application_status }}</span>
                             </td>
                             <td class="text-end">
                                 <div class="btn-group">
@@ -83,18 +83,19 @@
                                         Appointments
                                     </button>
                                     <ul class="dropdown-menu mt-1">
-                                        <li><a class="dropdown-item" href="{{ route('biometrics_form', ['application_id' => $applications->id]) }}"> Make Biometrics Capture Appointment</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('biometrics_form', ['application_id' => $application->id]) }}"> Make Biometrics Capture Appointment</a></li>
 
                                         <li>
-                                        <a class="dropdown-item" href="{{ route('pickup_form', ['application_id' => $applications->id]) }}">Make ID pickup Appointment</a>
+                                        <a class="dropdown-item" href="{{ route('pickup_form', ['application_id' => $application->id]) }}">Make ID pickup Appointment</a>
                                         </li>
 
                                     </ul>
                                 </div>
                             </td>
                             <td class="text-end pe-0">
-                                <a href="{{ url('generate_invoice_pdf') }}" class="btn btn-primary btn-sm">Download Receipt</a>
+                                <a href="{{ route('generate_invoice_pdf', ['application_id' => $application->id]) }}" class="btn btn-primary btn-sm">Download Receipt</a>
                             </td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -102,15 +103,7 @@
         </div>
 </div>
 
-        @else
-        <div class="card shadow">
-            <div class="card-header"></div>
-            <div class="card-body">
-                <h1 align="center" class="alert alert-danger mt-3 ">YOU HAVE NO APPLICATION</h1>
-                <h5 class="alert alert-info mt-3 ">Go to the dashboard, select your application type and apply for an ID </h5>
-            </div>
-        </div>
-        @endif
+       
     </div>
 </div>
 

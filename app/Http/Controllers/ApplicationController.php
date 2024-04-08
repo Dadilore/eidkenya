@@ -42,11 +42,22 @@ class ApplicationController extends Controller
 
     public function my_application()
     {
-        // Fetch data from the applications table for the authenticated user
-        $data = Applications::where('user_id', Auth::user()->id)->get();
+        // Fetch all applications from the applications table for the authenticated user
+        $applications = Applications::where('user_id', Auth::user()->id)
+                                    ->get();
     
-        return view('applications.my_application', compact('data'));
+        // Fetch the latest application for the authenticated user
+        $latestApplication = Applications::where('user_id', Auth::user()->id)
+                                         ->latest()
+                                         ->first();
+    
+        // If no application is found, you may want to handle this case accordingly,
+        // for example, by redirecting the user with an appropriate message.
+    
+        return view('applications.my_application', compact('applications', 'latestApplication'));
     }
+    
+
 
     public function deleteapplication($id)
     {
