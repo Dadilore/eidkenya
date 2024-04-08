@@ -149,15 +149,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/make_appointment/{application_id}', [AppointmentController::class, 'make_biometrics_appointment'])->name('make_biometrics_appointment');
 
-    // Route::post('/make_appointment/{application_id}', [AppointmentController::class, 'make_appointment']);
-
     Route::get('/reschedule_appointment/{id}', [AppointmentController::class, 'reschedule_appointment']);
 
     Route::post('/edit_appointment/{id}', [AppointmentController::class, 'edit_appointment']);
 
     Route::get('/check-appointments', 'AppointmentController@checkAppointments');
 
-    Route::get('/myappointment', [AppointmentController::class, 'myappointment']);
+    Route::get('/myappointment', [AppointmentController::class, 'myappointment'])->name('myappointment');
+
+
 
     Route::get('/cancel_appoint/{id}', [AppointmentController::class, 'cancel_appoint']);
 
@@ -176,7 +176,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
-    Route::get('/mypickupappointment', [AppointmentController::class, 'mypickupappointment']);
+    // Route::get('/mypickupappointment', [AppointmentController::class, 'mypickupappointment']);
+
+    
+    Route::get('/mypickupappointment', [AppointmentController::class, 'mypickupappointment'])->name('mypickupappointment');
 
     Route::get('/pickup_reschedule/{id}', [AppointmentController::class, 'pickup_reschedule']);
 

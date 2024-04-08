@@ -32,7 +32,17 @@ class AppointmentController extends Controller
     
         // Get the application ID from the request
         $applicationId = $request->input('application_id');
-    
+
+          // Check if the user already has a biometrics appointment for this application
+          $existingAppointment = Appointments::where('user_id', $userId)
+          ->where('applications_id', $applicationId)
+          ->first();
+      
+            if ($existingAppointment) {
+                // If the user already has an appointment, redirect with a message
+                return redirect()->route('myappointment')->with('error', 'You already have a biometrics capture appointment.');
+            }
+      
         // Create a new appointment
         $appointment = new Appointments;
         $appointment->appointment_date = $request->appointment_date;
@@ -68,6 +78,16 @@ class AppointmentController extends Controller
 
         // Find the application by ID
         $applications = Applications::findOrFail($application_id);
+
+        // Check if the user already has a biometrics appointment for this application
+        $existingAppointment = Pickupappointment::where('user_id', $userId)
+        ->where('applications_id', $application_id)
+        ->first();
+    
+          if ($existingAppointment) {
+              // If the user already has an appointment, redirect with a message
+              return redirect()->route('mypickupappointment')->with('error', 'You already have an ID pickup appointment.');
+          }
 
         // Create a new pickup appointment
         $appointment = new Pickupappointment;
