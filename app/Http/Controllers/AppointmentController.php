@@ -13,11 +13,17 @@ use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
 class AppointmentController extends Controller
 {
-    public function showBiometricsForm(Request $request,$application_id)
+    public function showBiometricsForm(Request $request, $application_id)
     {
         $application = Applications::findOrFail($application_id);
+    
+        // Check if the authenticated user is authorized to view the biometrics form
+        if ($application->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You are not authorized to access this page.');
+            // abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+    
         return view('biometrics.make_appointment', ['applications' => $application]);
-
     }
 
     public function make_biometrics_appointment(Request $request)
@@ -27,11 +33,16 @@ class AppointmentController extends Controller
             // other validation rules...
         ]);
     
-        // Get the user's ID
         $userId = Auth::id();
-    
+
         // Get the application ID from the request
         $applicationId = $request->input('application_id');
+    
+        // Check if the authenticated user is authorized to make an appointment for the given application
+        $application = Applications::findOrFail($applicationId);
+        if ($application->user_id !== $userId) {
+            return redirect()->back()->with('error', 'You are not authorized to access this page.');
+        }
 
           // Check if the user already has a biometrics appointment for this application
           $existingAppointment = Appointments::where('user_id', $userId)
@@ -63,6 +74,20 @@ class AppointmentController extends Controller
     
         return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to get your biometrics captured.');
     }
+
+
+    public function showPickupForm(Request $request, $application_id)
+    {
+        // Find the application by ID
+        $application = Applications::findOrFail($application_id);
+
+        // Check if the authenticated user is authorized to view the pickup form
+        if ($application->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You are not authorized to access this page.');
+        }
+
+        return view('pickup.pickup_appointment', ['applications' => $application]);
+    }
     
 
 
@@ -78,6 +103,11 @@ class AppointmentController extends Controller
 
         // Find the application by ID
         $applications = Applications::findOrFail($application_id);
+
+        // Check if the authenticated user is authorized to make a pickup appointment for the given application
+        if ($applications->user_id !== $userId) {
+            return redirect()->back()->with('error', 'You are not authorized to access this page.');
+        }
 
         // Check if the user already has a biometrics appointment for this application
         $existingAppointment = Pickupappointment::where('user_id', $userId)
@@ -108,12 +138,7 @@ class AppointmentController extends Controller
         return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to pick up your ID.');
     }
 
-    public function showPickupForm(Request $request,$application_id)
-    {
-        $application = Applications::findOrFail($application_id);
-        return view('pickup.pickup_appointment', ['applications' => $application]);
 
-    }
 
 
 

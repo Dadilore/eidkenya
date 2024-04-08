@@ -48,6 +48,7 @@
                         <th>Application type</th>
                         <th>Status</th>
                         <th>Receipt Number</th>
+                        <th>Email</th>
                         <th>SMS</th>
                         <th>Actions</th>
                     </tr>
@@ -68,8 +69,10 @@
 
                         <td>
                         <a class="btn btn-secondary" href="{{ route('send.pickup.notification', ['applicationId' => $appoint->id]) }}">Send Email</a>
-                            <!-- <a class="btn btn-secondary mt-1" href="{{ route('test') }}">Send Email</a><br>
-                            <a class="btn btn-secondary mt-1" href="{{ route('test') }}">Send Email</a><br> -->
+                        </td>
+
+                        <td>
+                        <a class="btn btn-secondary" href="{{ route('test') }}">Send SMS</a>
                         </td>
 
                         <td>
