@@ -10,11 +10,11 @@ use App\Http\Controllers\smsController;
 use App\Notifications\NewsWasPublished;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MPESAC2BController;
 use App\Http\Controllers\paymentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ApplicationsController;
@@ -235,7 +235,22 @@ Route::middleware(['auth','role:admin'])->group(function(){
 
     Route::get('/showpickupappointment', [AdminController::class, 'showappointment2']);
 
-    Route::get('/view_users', [UsersController::class, 'view_users']);
+    Route::resources([
+        'admin/users' => UsersController::class,
+    ]);
+
+    Route::get('admin/users/create', [UsersController::class, 'create'])->name('admin.users.create');
+
+    Route::post('admin/users/store', [UsersController::class, 'store'])->name('admin.users.store');
+
+    Route::get('admin/users/edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
+
+    Route::post('admin/users/update/{id}', [UsersController::class, 'update'])->name('admin.users.update');
+
+    Route::get('admin/users/destroy/{id}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
+
+    
+    Route::get('/admin/users', [UsersController::class, 'index'])->name('admin.users.index');
 
     Route::get('/view_applications', [ApplicationsController::class, 'view_applications'])->name('view_applications');
 

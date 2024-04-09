@@ -13,6 +13,10 @@
 				<meta property="og:title" content="Metronic - The World's #1 Selling Bootstrap Admin Template by KeenThemes" />
 				<meta property="og:url" content="https://keenthemes.com/metronic" />
 				<meta property="og:site_name" content="Metronic by Keenthemes" />
+				<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+				<meta http-equiv="pragma" content="no-cache">
+				<meta http-equiv="expires" content="0">
+
 				<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
 				<link rel="shortcut icon" href=" {{ asset('assets/images/logo/logo.png') }}" />
 				<!--begin::Fonts(mandatory for all pages)-->

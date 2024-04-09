@@ -269,7 +269,7 @@
                         <!--begin:Menu link-->
                         <a
                           class="menu-link"
-                          href="pages/user-profile/overview.html"
+                          href="{{ route('admin.users.create') }}"
                         >
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -285,7 +285,7 @@
                         <!--begin:Menu link-->
                         <a
                           class="menu-link"
-                          href="{{ url('view_users') }}"
+                          href="{{ route('admin.users.index') }}"
                         >
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -301,12 +301,12 @@
                         <!--begin:Menu link-->
                         <a
                           class="menu-link"
-                          href="pages/user-profile/campaigns.html"
+                          href="#"
                         >
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">Edit User</span>
+                          <span class="menu-title">Users Report</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -377,7 +377,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">edit application</span>
+                          <span class="menu-title">Applications Report</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
@@ -487,7 +487,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <span class="menu-title">edit appointment</span>
+                          <span class="menu-title">Appointments Report</span>
                         </a>
                         <!--end:Menu link-->
                       </div>
