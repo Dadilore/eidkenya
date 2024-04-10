@@ -88,7 +88,7 @@ class HomeController extends Controller
         $log->phone = auth()->user()->phone;
         $log->status = auth()->user()->status;
         $log->role = auth()->user()->role;
-        $log->modify_user = 'Sent pickup email to user id ' . $user->id . ' and application ID ' . $application->id;
+        $log->modify_user = 'Sent pickup email to user id ' . $user->id . ' on application ID ' . $application->id;
         $log->save();
 
         // Send email notification to the user

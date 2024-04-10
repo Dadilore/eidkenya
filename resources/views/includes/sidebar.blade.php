@@ -148,79 +148,93 @@
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
 			<div class="menu-item">
-				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{ route('dashboard') }}">
-					<span class="menu-bullet">
-						<span class="bullet bullet-dot"></span>
-					</span>
-					<span class="menu-title">Dashboard</span>
-				</a>
-				<!--end:Menu link-->
-			</div>
-			<!--end:Menu item-->
+                    <!--begin:Menu link-->
+                    <a class="menu-link  active" href="{{ route('dashboard') }}">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Dashboard</span>
+                    </a>
+                    <!--end:Menu link-->
+                  </div>
+                  <!--end:Menu item-->
+
+				  <!--begin:Menu item-->
+					<div class="menu-item mt-5">
+                    <!--begin:Menu link-->
+                    <a class="menu-link  active" href="{{ url('my_application') }}">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">My Application</span>
+                    </a>
+                    <!--end:Menu link-->
+                  </div>
+                  <!--end:Menu item-->
+
+                  <!--begin:Menu item-->
+                  <div
+                    data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion"
+                  >
+
+
+                    <!--begin:Menu link-->
+                    <span class="menu-link active mt-5">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Appointments</span>
+                      <span class="menu-arrow"></span>
+                    </span>
+                    <!--end:Menu link-->
+
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+
+                      <!--begin:Menu item-->
+                      <div class="menu-item">
+
+                        <!--begin:Menu link-->
+                        <a
+                          class="menu-link"
+                          href="{{ url('myappointment') }}"
+                        >
+                          <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                          </span>
+                          <span class="menu-title">Biometrics capture</span>
+                        </a>
+                        <!--end:Menu link-->
+                      </div>
+                      <!--end:Menu item-->
+
+                      <!--begin:Menu item-->
+                      <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a
+                          class="menu-link"
+                          href="{{ url('mypickupappointment') }}"
+                        >
+                          <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                          </span>
+                          <span class="menu-title">ID pickup</span>
+                        </a>
+                        <!--end:Menu link-->
+                      </div>
+                      <!--end:Menu item-->
+                      
+                    </div>
+                    <!--end:Menu sub-->
+                  </div>
+                  <!--end:Menu item-->
 			
-			<!--begin:Menu item-->
-			<div class="mt-5 menu-item">
-				<!--begin:Menu link-->
-				<a class="menu-link  active" href="{{ url('my_application') }}">
-					<span class="menu-bullet">
-						<span class="bullet bullet-dot"></span>
-					</span>
-					<span class="menu-title">My application</span>
-				</a>
-				<!--end:Menu link-->
-			</div>
-			<!--end:Menu item-->
+			
 
 			
 
-			<!--begin:Menu item-->
-			<div
-				data-kt-menu-trigger="click"
-				class="menu-item m-5  menu-accordion"
-				style="width:95%;"
-				>
-				<!--begin:Menu link-->
-				<span class="menu-link active ">
-					<span class="menu-bullet">
-					<span class="bullet bullet-dot"></span>
-					</span>
-					<span class="menu-title">Appointments</span>
-					<span class="menu-arrow"></span>
-				</span>
-				<!--end:Menu link-->
-				<!--begin:Menu sub-->
-				<div class="menu-sub menu-sub-accordion">
-					<!--begin:Menu item-->
-					<div class="menu-item">
-					<!--begin:Menu link-->
-					<a class="menu-link" href="{{ url('myappointment') }}">
-						<span class="menu-bullet">
-						<span class="bullet bullet-dot"></span>
-						</span>
-						<span class="menu-title">Biometrics Capture</span>
-					</a>
-					<!--end:Menu link-->
-					</div>
-					<!--end:Menu item-->
-					<!--begin:Menu item-->
-					<div class="menu-item">
-					<!--begin:Menu link-->
-					<a class="menu-link" href="{{ url('mypickupappointment') }}">
-						<span class="menu-bullet">
-						<span class="bullet bullet-dot"></span>
-						</span>
-						<span class="menu-title">ID pickup</span>
-					</a>
-					<!--end:Menu link-->
-					</div>
-					<!--end:Menu item-->
-
-					
-				</div>
-				<!--end:Menu sub-->
-			</div>
-			<!--end:Menu item-->
+			
 
 			<!--begin:Menu item-->
 			<div class="mt-5 menu-item">
@@ -234,15 +248,17 @@
 				<!--end:Menu link-->
 			</div>
 			<!--end:Menu item-->
+
 			<div class="aside-footer flex-column-auto py-5" id="kt_aside_footer">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf	
-            <a :href="route('logout')"
-            onclick="event.preventDefault();
-            this.closest('form').submit();" class="btn btn-flex btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Go to main PIA page">
-                <span class="btn-label">Log Out</span>
-            </a>
-        </form>
+
+			<form method="POST" action="{{ route('logout') }}">
+				@csrf	
+				<a :href="route('logout')"
+				onclick="event.preventDefault();
+				this.closest('form').submit();" class="btn btn-flex btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Go to main PIA page">
+					<span class="btn-label">Log Out</span>
+				</a>
+			</form>
         
     </div>
 		</div>

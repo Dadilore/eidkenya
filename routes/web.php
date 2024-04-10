@@ -179,6 +179,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
+
     Route::get('/cancel_appoint/{id}', [AppointmentController::class, 'cancel_appoint']);
 
     //ID PICKUP APPOINTMENTS
@@ -246,6 +247,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/showappointment', [AdminController::class, 'showappointment']);
 
     Route::get('/showpickupappointment', [AdminController::class, 'showappointment2']);
+
+    Route::get('/add_application', function () {
+        return view('admin.applications.add_application');
+    })->name('add_application');
 
     Route::resources([
         'admin/users' => UsersController::class,

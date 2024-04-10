@@ -90,6 +90,12 @@
                                 <a class="dropdown-item" href="{{ route('admin.users.edit', ['id' => $appoint->id]) }}">Update</a>
 
                             </li>
+
+                            <!-- <li>
+                                <a class="dropdown-item" href="{{ url('add_application') }}">Add Application</a>
+
+                            </li> -->
+
                         </ul>
                     </div>
                 </td>

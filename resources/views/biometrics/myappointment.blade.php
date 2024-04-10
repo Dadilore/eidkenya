@@ -44,7 +44,7 @@
         </div>
         @endif
         
-        @if($appoint->isEmpty())
+        @if($appointments->isEmpty())
             <div class="container">
                 <div class="card shadow">
                     <div class="card-header"></div>
@@ -62,27 +62,27 @@
                             <th>Appointment Time</th>
                             <th>Appointment Venue</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th>Reschedule</th>
+                            <th>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($appoint as $appoints)
+                        @foreach($appointments as $appoints)
                         <tr align="center">
                             <td>{{$appoints->appointment_date}}</td>
                             <td>{{$appoints->appointment_time}}</td>
                             <td>{{$appoints->appointment_venue}}</td>
-                            <td style="color: #000;"><p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoints->status}}</p></td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Actions
-                                    </button>
-                                    <ul class="dropdown-menu mt-1">
-                                        <li><a class="dropdown-item" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('cancel_appoint',$appoints->id)}}">Cancel</a></li>
-                                        <li><a class="dropdown-item" href="{{ url('reschedule_appointment',$appoints->id) }}">Reschedule</a></li>
-                                    </ul>
-                                </div>
+                            <td style="color: #000;">
+                                <p style="background-color:#FF6961; border-radius:10px; me-0">{{$appoints->status}}</p>
                             </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ url('reschedule_appointment',$appoints->id) }}">Reschedule</a>
+                            </td>
+
+                            <td>
+                                <a class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this Appointment ?')" href="{{url('cancel_appoint',$appoints->id)}}">Cancel</a>
+                            </td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

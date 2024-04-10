@@ -71,8 +71,8 @@ class AppointmentController extends Controller
     
         // Use the existing sendappointmentnotification method from HomeController
         // app(HomeController::class)->sendappointmentnotification();
-    
-        return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to get your biometrics captured.');
+
+        return redirect()->route('myappointment')->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to get your biometrics captured.');
     }
 
 
@@ -135,36 +135,32 @@ class AppointmentController extends Controller
         $appointment->save();
 
         // Redirect back with success message
-        return redirect()->back()->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to pick up your ID.');
+
+        return redirect()->route('mypickupappointment')->with('success', 'Appointment submitted successfully. Please ensure you avail yourself on time at the appointment venue to pick up your ID.');
     }
-
-
-
-
-
-
-
 
     public function myappointment()
     {
-        if (Auth::id()) {
-            $user_id = Auth::user()->id;
-
-            $latestApplication = Auth::user()->applications()->latest()->first();
-
-            if ($latestApplication) {
-                $appoint = $latestApplication->appointments;
-                return view('biometrics.myappointment', compact('appoint'));
-            } else {
-                // Handle case where user has no applications
-                $appoint = collect(); // Set $appoint to an empty collection
+        if (Auth::check()) {
+            $user_id = Auth::id();
+    
+            // Retrieve all applications of the authenticated user
+            $applications = Auth::user()->applications;
+    
+            // Initialize an empty collection for appointments
+            $appointments = collect();
+    
+            // Iterate over each application and retrieve its appointments
+            foreach ($applications as $application) {
+                $appointments = $appointments->merge($application->appointments);
             }
-
-            return view('biometrics.myappointment', compact('appoint'));
+    
+            return view('biometrics.myappointment', compact('appointments'));
         } else {
             return redirect()->back();
         }
     }
+    
 
 
     public function mypickupappointment()

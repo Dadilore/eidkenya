@@ -65,7 +65,7 @@ class ApplicationsController extends Controller
          $log->phone = auth()->user()->phone;
          $log->status = auth()->user()->status;
          $log->role = auth()->user()->role;
-         $log->modify_user = 'completed application for user ID ' . $user->id . ' and application ID ' . $application->id;
+         $log->modify_user = 'completed application for user ID ' . $user->id . ' on application ID ' . $application->id;
          $log->save();
 
         // Update the status column
