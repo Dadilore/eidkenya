@@ -64,8 +64,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="{{ route ('home') }}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{ route ('about') }}">About us</a></li>
           <li><a class="nav-link scrollto" href="{{route('requirements')}}">Requirements</a></li>
-          <li><a class="nav-link scrollto" href="#">About us</a></li>        
+          <li><a class="nav-link scrollto" href="{{route('contact_us')}}">Contact Us</a></li>
           <!-- <li><a class="nav-link scrollto" href="#">News and Updates</a></li> -->
           @guest
           <li><a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
@@ -129,8 +130,8 @@
           private bag <br>
           Nairobi <br>
           Kenya<br><br>
-          <strong>Phone:</strong> 0200012120<br>
-          <strong>Email:</strong> info@eIDKenya.com<br>
+          <strong>Phone:</strong> 0743316661<br>
+          <strong>Email:</strong> info@eidkenya.com<br>
         </p>
       </div>
 

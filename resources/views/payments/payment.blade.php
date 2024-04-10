@@ -7,10 +7,21 @@
     <div id="kt_app_content" class="app-content  flex-column-fluid ">
         
     <div id="kt_app_content_container" class="app-container  container-xxl ">
-        @if (session()->has('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+
+          @if (session()->has('success'))
+            <div class="container mt-5">
+                <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close btn btn-danger me-5 mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             </div>
+        @endif
+
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+            <button type="button" class="btn-close btn btn-danger btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
 
     

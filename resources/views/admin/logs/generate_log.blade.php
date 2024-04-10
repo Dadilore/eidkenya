@@ -97,49 +97,42 @@
     <table class="order-details">
     <thead>
         <tr>
-            <th width="100%" colspan="4">
+            <th width="100%" colspan="3">
                 <h2 class="text-start">{{ $title }}</h2>
             </th>
-            <th width="100%" colspan="4" class="text-end company-data">
-                <span>Document Id: 6</span> <br>
-                <span>{{ $date }}</span> <br>
-                <span>Zip code: 560077</span> <br>
-                <span>Address: P.O BOX 47716-00100 NAIROBI GPO</span> <br>
+            <th width="100%" style="font-weight:40px;" colspan="3" class="text-end company-data">
+                <span><b>Document Id: 6</b></span> <br>
+                <span><b>{{ $date }}</b></span> <br>
+                <span><b>Zip code: 560077</b></span> <br>
+                <span><b>Address: P.O BOX 47716-00100 NAIROBI GPO</b></span> <br>
             </th>
         </tr>
-        <tr style="background-color: #17C653;">
-            <th>Application Type</th>
-            <th>Number of Applications</th>
-            <th>Completed Applications</th>
-            <th>Uncompleted Applications</th>
-            <th>% Completed applications </th>
-            <th>% Uncompleted applications </th>
+        <tr width="100%" style="background-color: #17C653;">
+            <th>User ID</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Activity</th>
+            <th>Date and Time</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($applicationTypes as $applicationType)
-            <tr>
-                <td>{{ $applicationType->application_type }}</td>
-                <td>{{ $applicationType->count }}</td>
-                <td>{{ $applicationType->completed }}</td>
-                <td>{{ $applicationType->uncompleted }}</td>
-                <td>{{ number_format(($applicationType->completed / $applicationType->count) * 100, 2) }}%</td>
-                <td>{{ number_format(($applicationType->uncompleted / $applicationType->count) * 100, 2) }}%</td>
-            </tr>
-        @endforeach
-        <tr>
-            <td><strong>Total</strong></td>
-            <td><strong>{{ $totalApplications }}</strong></td>
-            <td><b>{{ $totalCompleted }}</b></td>
-            <td><b>{{ $totalUncompleted }}</b></td>
-            <td><b>{{ number_format(($totalCompleted / $totalApplications) * 100, 2) }}%</b></td>
-            <td><b>{{ number_format(($totalUncompleted / $totalApplications) * 100, 2) }}%</b></td>
-        </tr>
-    </tbody>
-</table>
+        <tbody width="100%" >
+            @foreach ($logs as $item)
+                <tr>
+                    <td>{{ $item->user_id }}</td>
+                    <td>{{ $item->surname }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->phone }}</td>
+                    <td>{{ $item->modify_user }}</td>
+                    <td>{{ $item->created_at }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 
 
 </body>
 
 </html>
+

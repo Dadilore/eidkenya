@@ -9,6 +9,7 @@ use App\Models\Applications;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserActivityLog;
 
 class pdfController extends Controller
 {
@@ -27,10 +28,26 @@ class pdfController extends Controller
     public function generate_applications_pdf()
     {
         $applications = Applications::get();
+
+        $applicationTypes = Applications::select('application_type')
+        ->selectRaw('COUNT(*) as count')
+        ->selectRaw('SUM(CASE WHEN application_status = "ID Collected" THEN 1 ELSE 0 END) as completed')
+        ->selectRaw('SUM(CASE WHEN application_status != "ID Collected" THEN 1 ELSE 0 END) as uncompleted')
+        ->groupBy('application_type')
+        ->get();
+        $totalCompleted = $applicationTypes->sum('completed');
+        $totalUncompleted = $applicationTypes->sum('uncompleted');
+        $totalApplications = $totalCompleted + $totalUncompleted;
+
+
         $data = [
-            'title' => 'eIDKenya applications',
+            'title' => 'Application Distribution Report',
             'date' => date('m/d/Y'),
-            'applications'=>$applications
+            'applications'=>$applications,
+            'applicationTypes'=>$applicationTypes,
+            'totalCompleted'=>$totalCompleted,
+            'totalUncompleted'=>$totalUncompleted,
+            'totalApplications'=>$totalApplications
         ];
         $pdf = Pdf::loadView('admin.applications.generate_applications_pdf', $data);
         return $pdf->download(' eIDKenya applications.pdf');
@@ -66,13 +83,11 @@ class pdfController extends Controller
             $receiptNumber = $application->receipt_number;
         }
 
-        // Check if the user has paid for the application
-        $payment = MpesaSTK::where('user_id', $user->id)
-            ->latest() // Order by the latest payment
-            ->first();
+        // Check if there is a payment associated with the specific application ID
+        $payment = MpesaSTK::where('applications_id', $applicationId)->first();
 
         if (!$payment) {
-            // User hasn't paid, redirect to payments page with a message
+            // No payment found for this application, redirect to payments page with a message
             return redirect()->route('payment')->with('error', 'Please make the payment first to download the receipt.');
         }
 
@@ -91,6 +106,31 @@ class pdfController extends Controller
         // Download the generated PDF
         return $pdf->download('eIDKenya_invoice.pdf');
     }
+
+
+    public function generate_log(Request $request)
+    {
+        
+        // Get the selected month and year from the request (default to current month and year)
+        $selectedMonth = $request->input('month', date('m'));
+        $selectedYear = $request->input('year', date('Y'));
+
+        // Filter logs for the specified month and year
+        $logs = UserActivityLog::whereYear('created_at', $selectedYear)
+            ->whereMonth('created_at', $selectedMonth)
+            ->get();
+
+        $data = [
+            'title' => 'User Activity Log',
+            'date' => date('m/d/Y'),
+            'logs' => $logs,
+        ];
+
+        $pdf = Pdf::loadView('admin.logs.generate_log', $data);
+        return $pdf->download("eIDKenya_userslog_{$selectedYear}_{$selectedMonth}.pdf");
+    }
+
+
 
     
     

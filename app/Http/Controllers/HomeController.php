@@ -7,9 +7,12 @@ use App\Models\User;
 use App\Models\Applications;
 use App\Models\Appointments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Notifications\SendEmailNotification;
 use App\Notifications\sendPickupNotification;
 use App\Notifications\SendAppointmentNotification;
+use App\Mail\ContactMail;
+use App\Models\UserActivityLog;
 
 class HomeController extends Controller
 {
@@ -71,11 +74,22 @@ class HomeController extends Controller
         // Get the application details by ID
         $application = Applications::findOrFail($applicationId);
 
-         // Update the application status to "ready for pickup"
+        // Update the application status to "ready for pickup"
         $application->update(['application_status' => 'ready for pickup']);
 
         // Get the user associated with the application
         $user = User::findOrFail($application->user_id);
+
+        // Log activity - sent pickup email to user
+        $log = new UserActivityLog();
+        $log->user_id = auth()->id(); // Assuming an admin is sending the notification
+        $log->surname = auth()->user()->surname;
+        $log->email = auth()->user()->email;
+        $log->phone = auth()->user()->phone;
+        $log->status = auth()->user()->status;
+        $log->role = auth()->user()->role;
+        $log->modify_user = 'Sent pickup email to user id ' . $user->id . ' and application ID ' . $application->id;
+        $log->save();
 
         // Send email notification to the user
         if ($user) {
@@ -94,6 +108,48 @@ class HomeController extends Controller
         // Redirect back or return response
         return redirect()->back()->with('success', 'Email notification sent successfully.');
     }
+
+
+    public function sendEmail(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        // Send the email
+        Mail::to('augustineokun7@gmail.com')->send(new ContactFormMail($request->all()));
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Your message has been sent. Thank you!');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ];
+
+        Mail::to('augustineokun7@gmail.com')->send(new ContactMail($data));
+
+        return redirect()->back()->with('success', 'Your message has been sent. Thank you!');
+    }
+
+    
+
 
 
 

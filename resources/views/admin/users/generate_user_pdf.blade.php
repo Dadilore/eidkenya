@@ -52,7 +52,7 @@
                     <span>Document Id: #6</span><br>
                     <span>{{ $date }}</span><br>
                     <span>Zip code: 560077</span><br>
-                    <span>Address: #5555, Main road, Maseno, Kenya</span><br>
+                    <span>Address: P.O BOX 47716-00100 NAIROBI GPO</span><br>
                 </th>
             </tr>
             <tr class="bg-blue">

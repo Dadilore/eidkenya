@@ -90,6 +90,17 @@
 </head>
 <body>
 
+    <center>
+        <span align="center" style="color: red; font-size:60px; ">e</span>
+        <span align="center" style="color: #000; font-size:60px; ">I</span>
+        <span align="center" style="color: #000; font-size:60px; ">D</span>
+        <span align="center" style="color: #008000; font-size:60px; ">K</span>
+        <span align="center" style="color: #008000; font-size:60px; ">e</span>
+        <span align="center" style="color: #008000; font-size:60px; ">n</span>
+        <span align="center" style="color: #008000; font-size:60px; ">y</span>
+        <span align="center" style="color: #008000; font-size:60px; ">a</span>
+    </center>
+
     <table class="order-details">
         <thead>
             <tr>
@@ -101,7 +112,7 @@
                     <span>Date: {{ $date }}</span> <br>
                 </th>
             </tr>
-            <tr class="bg-blue">
+            <tr style="background-color: #17C653;" >
                 <th width="50%" colspan="2">Invoice Details</th>
                 <th width="50%" colspan="2">User Details</th>
             </tr>
@@ -144,7 +155,7 @@
                     Order Item
                 </th>
             </tr>
-            <tr class="bg-blue">
+            <tr style="background-color: #17C653;">
                 <th>ID</th>
                 <th>Product</th>
                 <th>Total Price</th>
@@ -156,7 +167,7 @@
                 <td width="10%">Application ID no {{ $application->id }}</td>
                
                 <td>
-                    New Identitiy Card
+                    Identitiy Card
                 </td>
                 <td width="15%" class="fw-bold">1000 ksh</td>
             </tr>

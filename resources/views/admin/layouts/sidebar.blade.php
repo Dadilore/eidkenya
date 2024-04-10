@@ -232,6 +232,8 @@
                   </div>
                   <!--end:Menu item-->
 
+                  
+
                   <!--begin:Menu item-->
                   <div class="menu-item">
                     <!--begin:Menu link-->
@@ -240,6 +242,19 @@
                         <span class="bullet bullet-dot"></span>
                       </span>
                       <span class="menu-title">Dashboard</span>
+                    </a>
+                    <!--end:Menu link-->
+                  </div>
+                  <!--end:Menu item-->
+
+                  <!--begin:Menu item-->
+                  <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link  active" href="{{ url('activity_log') }}">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Activity Log</span>
                     </a>
                     <!--end:Menu link-->
                   </div>
@@ -373,7 +388,7 @@
                       <!--begin:Menu item-->
                       <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="account/security.html">
+                        <a class="menu-link" href="{{ url('generate_applications_pdf') }}">
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
@@ -427,7 +442,7 @@
                           <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                           </span>
-                          <!-- <span class="menu-title">Edit payment</span> -->
+                          <span class="menu-title">Financial Report</span>
                         </a>
                         <!--end:Menu link-->
                       </div>

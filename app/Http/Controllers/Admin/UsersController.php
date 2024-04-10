@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\UserActivityLog;
 
 class UsersController extends Controller
 {
@@ -60,6 +61,17 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
         ]);
     
+        // Log activity
+        $log = new UserActivityLog();
+        $log->user_id = auth()->id();
+        $log->surname = auth()->user()->surname;
+        $log->email = auth()->user()->email;
+        $log->phone = auth()->user()->phone;
+        $log->status = auth()->user()->status;
+        $log->role = auth()->user()->role;
+        $log->modify_user = 'Added a new user with ID: ' . $user->id;
+        $log->save();
+    
         // Redirect back with success message
         return Redirect::route('admin.users.index')->with('success', 'User added successfully.');
     }
@@ -89,6 +101,14 @@ class UsersController extends Controller
     {
         $user = User::find($id);
 
+        // Before updating, store the current user details for logging
+        $oldUserData = [
+            'surname' => $user->surname,
+            'email' => $user->email,
+            'phone' => $user->phone,
+            'role' => $user->role,
+        ];
+
         $user->surname = $request->surname;
         $user->name = $request->name;
         $user->middle_name = $request->middle_name;
@@ -105,6 +125,17 @@ class UsersController extends Controller
 
         $user->save();
 
+        // Log activity
+        $log = new UserActivityLog();
+        $log->user_id = auth()->id();
+        $log->surname = auth()->user()->surname;
+        $log->email = auth()->user()->email;
+        $log->phone = auth()->user()->phone;
+        $log->status = auth()->user()->status;
+        $log->role = auth()->user()->role;
+        $log->modify_user = 'Updated details for UserID: ' . $user->id; json_encode($oldUserData);
+        $log->save();
+
         return Redirect::route('admin.users.index')->with('success', 'User edited successfully.');
     }
 
@@ -113,14 +144,25 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = User::find($id);
+        $user = User::find($id);
 
-        if (!$data) {
-            // Handle case where appointment does not exist
+        if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
 
-        $data->delete();
+        // Log activity before deleting the user
+        $log = new UserActivityLog();
+        $log->user_id = auth()->id();
+        $log->surname = auth()->user()->surname;
+        $log->email = auth()->user()->email;
+        $log->phone = auth()->user()->phone;
+        $log->status = auth()->user()->status;
+        $log->role = auth()->user()->role;
+        $log->modify_user = 'Deleted user with ID: ' . $user->id;
+        $log->save();
+
+        // Delete the user
+        $user->delete();
 
         return redirect()->back()->with('success', 'You have successfully deleted the user.');
     }

@@ -44,8 +44,11 @@
                 </div>
             </form>
 
+            
+
 
     <div align="center" style="padding: 50px;" class="text-center mx-auto shadow">
+
 
         <a class="text-start btn btn-primary mx-auto ms-5 float-start" style="margin-bottom: 5%;" href="{{ url('generate_applications_pdf') }}">Export Applications</a>
 
@@ -64,7 +67,8 @@
                         <th>Receipt Number</th>
                         <th>Email</th>
                         <th>SMS</th>
-                        <th>Actions</th>
+                        <th>ID Collected</th>
+                        <!-- <th>Actions</th> -->
                     </tr>
                 </thead>
 
@@ -83,14 +87,19 @@
                         <td>{{$appoint->receipt_number}}</td>
 
                         <td>
-                        <a class="btn btn-secondary" href="{{ route('send.pickup.notification', ['applicationId' => $appoint->id]) }}">Send Email</a>
+                        <a class="btn btn-secondary" onclick="return confirm('Are you sure you want to send email?')" href="{{ route('send.pickup.notification', ['applicationId' => $appoint->id]) }}">Send Email</a>
                         </td>
 
                         <td>
-                        <a class="btn btn-secondary" href="{{ route('test') }}">Send SMS</a>
+                        <a class="btn btn-secondary" onclick="return confirm('Are you sure you want to send SMS?')" href="{{ route('test') }}">Send SMS</a>
                         </td>
 
                         <td>
+                            <a class="btn btn-secondary" onclick="return confirm('Are you sure you want to update this application?')" href="{{ route('applications.updateStatus', ['application' => $appoint->id]) }}">ID collected</a>
+                        </td>
+
+
+                        <!-- <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
@@ -104,7 +113,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
                     @endforeach
                 </tbody>

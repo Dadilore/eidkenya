@@ -48,6 +48,15 @@ Route::get('/requirements', function () {
     return view('requirements');
 })->name('requirements');
 
+Route::get('/contact_us', function () {
+    return view('contact_us');
+})->name('contact_us');
+
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 
 //START MAIL
 Route::get('send',[HomeController::class,"sendnotification"]);
@@ -57,6 +66,9 @@ Route::get('send',[HomeController::class,"sendappointmentnotification"]);
 // Route::get('send',[HomeController::class,"sendpickupnotification"]);
 
 Route::get('send/{applicationId}', [HomeController::class, 'sendpickupnotification'])->name('send.pickup.notification');
+
+Route::post('/contact_us', [HomeController::class, 'sendMessage'])->name('contact.send');
+
 
 //END MAIL
 
@@ -272,6 +284,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
     
     Route::get('/generate_applications_pdf', [pdfController::class, 'generate_applications_pdf']);
 
+    // Route::get('/generate_log', [pdfController::class, 'generate_log']);
+    Route::get('/activity_log', function () {
+        return view('admin.logs.activity_log');
+    })->name('activity_log');
+
+    Route::get('/generate_log', [pdfController::class, 'generate_log'])->name('generate_log');
+
+
+    Route::get('applications/{application}', [ApplicationsController::class, 'updateStatus'])->name('applications.updateStatus');
+  
     Route::get('/admin/index', [AdminController::class, 'index2'])->name('admin.index');
 
     Route::get('/send-sms', [smscontroller::class, 'sms']);
