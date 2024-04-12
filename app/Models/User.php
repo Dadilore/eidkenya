@@ -10,10 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    public function applications()
-    {
-        return $this->hasMany(Applications::class);
-    }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -51,5 +47,26 @@ class User extends Authenticatable
     {
         return $this->phone;
     }
+
+    public function applications()
+    {
+        return $this->hasMany(Applications::class);
+    }
+
+    public function roles()
+	{
+		return $this->belongsToMany(Role::class, 'user_roles')->using(UserRole::Class)->withTimestamps();
+	}
+
+	public function inRole(array $roleSlugs)
+	{
+		foreach ($this->roles as $role) {
+			if($role->hasSlug($roleSlugs)){
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 }
