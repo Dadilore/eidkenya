@@ -77,6 +77,16 @@
             background-color: #414ab1;
             color: #fff;
         }
+        .small-column {
+            width: 40px; /* Adjust width as needed */
+        }
+
+        .medium-column {
+            width: 40px; /* Adjust width as needed */
+        }
+        .large-column {
+            width: 200px; /* Adjust width as needed */
+        }
     </style>
 </head>
 <body>
@@ -108,11 +118,11 @@
             </th>
         </tr>
         <tr width="100%" style="background-color: #17C653;">
-            <th>User ID</th>
-            <th>Surname</th>
+            <th class="small-column" >User ID</th>
+            <th  class="medium-column">Surname</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Activity</th>
+            <th class="medium-column" >Phone</th>
+            <th class="large-column" >Activity</th>
             <th>Date and Time</th>
         </tr>
     </thead>

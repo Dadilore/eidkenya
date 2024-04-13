@@ -126,6 +126,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('register-urls', [MPESAC2BController::class, 'registerURLS']);
 
+    Route::post('/mpesa/callback', [MpesaWebhookController::class, 'handleCallback']);
+
 
     //codewithben
     Route::post('get-token', [MPESAController::class, 'getAccessToken']);
@@ -253,7 +255,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
     })->name('add_application');
 
     Route::resources([
-        'admin/users' => UsersController::class,
+        'users' => UsersController::class,
     ]);
 
     Route::get('admin/users/create', [UsersController::class, 'create'])->name('admin.users.create');

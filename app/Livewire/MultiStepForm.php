@@ -12,6 +12,8 @@ use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert; 
 use App\Http\Controllers\HomeController;
+use Livewire\Request;
+
 
 class MultiStepForm extends Component
 {
@@ -50,6 +52,7 @@ class MultiStepForm extends Component
     public $mothers_id_card_front;
     public $mothers_id_card_back;
     public $application_status;
+    public $county_of_birth;
     public $terms;
 
     public $totalSteps = 4;
@@ -106,6 +109,8 @@ class MultiStepForm extends Component
         // } elseif ($this->currentStep == 3) {
         //     $this->validate([
         //         'district_of_birth' => 'required|string',
+        //         'tribe' => 'required|string',
+        //         'county_of_birth' => 'required|string',
         //         'clan' => 'required|string',
         //         'family' => 'required',
         //         'home_district' => 'required|string',
@@ -132,7 +137,7 @@ class MultiStepForm extends Component
         // } 
     }
 
-    public function register()
+    public function register(\Illuminate\Http\Request $request)
     {
         $this->resetErrorBag();
 
@@ -158,10 +163,14 @@ class MultiStepForm extends Component
                 'application_status' => 'application_incomplete', 
             ]);
 
+
             // Check if the application was created successfully
             if ($application) {
                 // Retrieve the ID of the created application
                 $applicationsId = $application->id;
+
+                // Store the application ID in the session
+                $request->session()->put('application_id', $applicationsId);
 
                 $personalDetails = PersonalDetails::create([
                     'user_id' => $this->user_id,
@@ -250,9 +259,12 @@ class MultiStepForm extends Component
                 }
 
                 
-                   // Redirect to the payment page with the application ID
-                    return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.')
-                    ->with('application_id', $applicationsId);
+                    // Redirect to the payment page with the application ID
+                    return redirect()->route('payment')->with('success', [
+                        'message' => 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.',
+                        'application_id' => $applicationsId,
+                    ]);                    
+                    
 
 
             }

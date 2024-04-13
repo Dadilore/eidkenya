@@ -98,21 +98,21 @@
                                     <div class="col-md-4 mb-4">
                                         <div class="form-group">
                                             <label for="surname" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Surname </label>
-                                            <input type="text" id="surname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('surname') ?? Auth::user()->surname }}" wire:model="surname" disabled >
+                                            <input type="text" id="surname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('surname') ?? Auth::user()->surname }}" wire:model="surname" >
                                             <span class="text-danger">@error('surname'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-4">
                                         <div class="form-group">
                                             <label for="name" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">First Name</label>
-                                            <input type="text" id="name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('name') ?? Auth::user()->name }}" wire:model="name" disabled>
+                                            <input type="text" id="name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('name') ?? Auth::user()->name }}" wire:model="name">
                                             <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-4">
                                         <div class="form-group">
                                             <label for="middle_name" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Other Names</label>
-                                            <input type="text" id="middle_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('middle_name') ?? Auth::user()->middle_name }}" wire:model="middle_name" disabled>
+                                            <input type="text" id="middle_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('middle_name') ?? Auth::user()->middle_name }}" wire:model="middle_name">
                                             <span class="text-danger">@error('middle_name'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="sex" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Gender</label>
-                                            <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="sex" disabled>
+                                            <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="sex">
                                                 <option value="">Choose Gender</option>
                                                 <option value="M" @if(Auth::user()->sex === "M") selected @endif>Male</option>
                                                 <option value="F" @if(Auth::user()->sex === "F") selected @endif>Female</option>
@@ -132,7 +132,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="dob" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Date of Birth</label>
-                                            <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('dob') ?? Auth::user()->dob }}" wire:model="dob" disabled>
+                                            <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('dob') ?? Auth::user()->dob }}" wire:model="dob">
                                             <span class="text-danger">@error('dob'){{ $message }}@enderror</span>
                                         </div>
                                     </div>                        
@@ -208,6 +208,7 @@
                                         <div class="form-group">
                                             <label for="" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">County of birth</label>
                                             <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"wire:model="county_of_birth">
+                                                <option value="" selected>Choose County of Birth</option>
                                                 @foreach($counties as $county)
                                                 <option value="{{ $county['code'] }}">{{ $county['name'] }}</option>
                                                 @endforeach

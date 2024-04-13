@@ -8,14 +8,16 @@
         
     <div id="kt_app_content_container" class="app-container  container-xxl ">
 
-          @if (session()->has('success'))
+            @if (session()->has('success'))
             <div class="container mt-5">
-                <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close btn btn-danger me-5 mt-2" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="alert alert-success alert-dismissible fade show mt-5 " role="alert">
+                    {{ session('success')['message'] }} <!-- Access the 'message' key -->
+                    <button type="button" class="btn-close btn btn-danger me-5 mt-5 btn btn-lg " data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         @endif
+
+
 
         @if(session('error'))
         <div class="alert alert-danger">

@@ -12,6 +12,8 @@ use App\http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert; 
 use App\Http\Controllers\HomeController;
+use Livewire\Request;
+
 
 class ReplacementApplication extends Component
 {
@@ -136,7 +138,7 @@ class ReplacementApplication extends Component
 
 
 
-    public function register2()
+    public function register2(\Illuminate\Http\Request $request)
     {
         $this->resetErrorBag();
 
@@ -167,6 +169,9 @@ class ReplacementApplication extends Component
             if ($application) {
                 // Retrieve the ID of the created application
                 $applicationsId = $application->id;
+
+                // Store the application ID in the session
+                $request->session()->put('application_id', $applicationsId);
 
                 $personalDetails = PersonalDetails::create([
                     'user_id' => $this->user_id,
@@ -266,9 +271,12 @@ class ReplacementApplication extends Component
                     // ... (Similar logic for other images)
                 }
 
-                 // Redirect to the payment page with the application ID
-                 return redirect()->route('payment')->with('success', 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.')
-                 ->with('application_id', $applicationsId);
+    
+                // Redirect to the payment page with the application ID
+                return redirect()->route('payment')->with('success', [
+                    'message' => 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.',
+                    'application_id' => $applicationsId,
+                ]);
             }
         }
 

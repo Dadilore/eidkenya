@@ -19,20 +19,53 @@ class MpesaSTKPUSHController extends Controller
     // Initiate Stk Push Request
     public function STKPush(Request $request)
     {
-        // Set the fixed amount (Ksh 1000) and account number ("eidkenya")
-        $amount = 1;
         $account_number = 'eIDKenya';
 
         // Get the phone number from the request
         $phoneno = $request->input('phonenumber');
 
-        $application_id = $request->input('application_id');
+        $applicationsId = $request->session()->get('application_id');
 
-         // Retrieve the most recent application ID for the authenticated user
-         $latestApplicationId = Applications::where('user_id', Auth::user()->id)
-         ->latest()
-         ->first()
-         ->id;
+        if (!$applicationsId) {
+            // Handle the case where the application ID is not available
+            return redirect()->back()->with('error', 'You Have No application to pay for .');
+        }
+
+        // Retrieve the application based on the application ID
+        $application = Applications::find($applicationsId);
+
+        if (!$application) {
+            // Handle the case where the application is not found
+            return redirect()->back()->with('error', 'Application not found.');
+        }
+
+        // Determine the amount based on the application type
+        switch ($application->application_type) {
+            case 'New Application':
+                $amount = 1; // Set the amount to 1 for New Application
+                break;
+            case 'Replacement Application':
+                $amount = 2; // Set the amount to 2 for Replacement Application
+                break;
+            case 'Change of Particulars':
+                $amount = 3; // Set the amount to 3 for Change of Particulars
+                break;
+            // Add more cases if needed for other application types
+            default:
+                $amount = 1; // Default to 1 if the application type is not recognized
+                break;
+        }
+
+       
+
+         // Check if there is a record of payment for the specific application ID in the mpesa_stk table
+        $paymentRecord = MpesaSTK::where('applications_id', $applicationsId)->first();
+
+        if ($paymentRecord) {
+            // Handle the case where the user has already paid for the application
+            return redirect()->back()->with('error', 'You have already paid for the application.');
+        }
+
 
         // Call the Mpesa STK push API
         $response = Mpesa::stkpush($phoneno, $amount, $account_number);
@@ -53,16 +86,19 @@ class MpesaSTKPUSHController extends Controller
                 'amount' => $amount,
                 'phonenumber' => $phoneno,
                 'user_id' => $user_id,
-                'applications_id' => $latestApplicationId,
+                'applications_id' => $applicationsId,
             ]);
 
-            // Update the application status to "application_paid" for all applications of the authenticated user
-            Applications::where('user_id', $user_id)->update(['application_status' => 'paid']);
+            // Update the application status to "application_paid" for the specific application of the authenticated user
+            Applications::where('user_id', $user_id)
+            ->where('id', $applicationsId)
+            ->update(['application_status' => 'paid']);
+
 
             // return redirect()->route('make_appointment')->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
 
             // Redirect to the payment page with the application ID
-            return redirect()->route('biometrics_form', ['application_id' => $latestApplicationId])->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
+            return redirect()->route('biometrics_form', ['application_id' => $applicationsId])->with('success', 'Payment successful. Please proceed to book your biometrics capture appointment.');
 
 
 
