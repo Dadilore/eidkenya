@@ -16,14 +16,21 @@ class CheckAuthMiddleware
      */
 
 
+     public function handle(Request $request, Closure $next): Response
+     {
+         if (!Auth::check()) {
+             // If not authenticated, redirect to login
+             return redirect('/login');
+         }
+ 
+         $response = $next($request);
+ 
+         // Prevent caching for authenticated users
+         $response->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+         $response->header('Pragma', 'no-cache');
+         $response->header('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
+ 
+         return $response;
 
-
-
-    public function handle(Request $request, Closure $next): Response
-    {
-        if (!Auth::check()) {
-            return redirect('/login');
-        }
-        return $next($request);
-    }
+     }
 }

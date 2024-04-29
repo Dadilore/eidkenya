@@ -9,6 +9,11 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+
   <!-- Favicons -->
   <link href="{{ asset ('assets/images/logo/logo.png') }}" rel="icon">
   <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon">
@@ -31,6 +36,8 @@
   <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('sass/app.scss') }}">
+
+
   
 </head>
 
@@ -195,6 +202,8 @@
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
+
+<script src="{{ asset('assets/js/preventback.js') }}"></script>
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>

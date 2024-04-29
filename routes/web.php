@@ -72,7 +72,7 @@ Route::post('/contact_us', [HomeController::class, 'sendMessage'])->name('contac
 
 //END MAIL
 
-
+// AUTHENTICATED ROUTES
 Route::middleware(['auth', 'verified'])->group(function () {
     // Your user dashboard route here
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -113,6 +113,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('payments.payment');
     })->name('payment');
 
+    Route::get('/payment/{application_id}', [MpesaSTKPUSHController::class, 'STKPush'])->name('mpesa.stkpush');
+
     // Route::get('/pay', [PayController::class, 'stk'])->name('pay.stk');
 
     // Route::post('/v1/mpesatest/stk/push', [MpesaSTKPUSHController::class, 'STKPush']);
@@ -126,7 +128,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('register-urls', [MPESAC2BController::class, 'registerURLS']);
 
-    Route::post('/mpesa/callback', [MpesaWebhookController::class, 'handleCallback']);
+    Route::post('/mpesa-webhook', [MpesaSTKPUSHController::class, 'handleCallback'])->name('mpesa.webhook');
+
+
+
 
 
     //codewithben
@@ -291,12 +296,19 @@ Route::middleware(['auth','role:admin'])->group(function(){
     
     Route::get('/generate_applications_pdf', [pdfController::class, 'generate_applications_pdf']);
 
-    // Route::get('/generate_log', [pdfController::class, 'generate_log']);
     Route::get('/activity_log', function () {
         return view('admin.logs.activity_log');
     })->name('activity_log');
 
     Route::get('/generate_log', [pdfController::class, 'generate_log'])->name('generate_log');
+
+    Route::get('/financial_report', function () {
+        return view('admin.payments.financial_report');
+    })->name('financial_report');
+
+    Route::get('/generate_financial_reports', [pdfController::class, 'generate_financial_reports'])->name('generate_financial_reports');
+
+    // Route::get('/admin/financial-report', [AdminController::class, 'generateFinancialReport'])->name('admin.financial_report');
 
 
     Route::get('applications/{application}', [ApplicationsController::class, 'updateStatus'])->name('applications.updateStatus');

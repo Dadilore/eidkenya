@@ -3,7 +3,8 @@
                 
                 <div id="kt_app_content_container" class="app-container mt-5 container-xxl ">
                    
-    
+                <div style="font-size: 24px; color: red;">Time spent: <span id="timer" style="font-weight: bold;"></span></div>
+                
                     <div class="card my-5 mb-xxl-8 bg-light-primary">
                         <div class="card-body pt-9 pb-0">
                             <div class="d-flex flex-wrap flex-sm-nowrap">
@@ -141,14 +142,14 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="phone" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Telephone number</label>
-                                                <input type="number" id="phone" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('phone') ?? Auth::user()->phone }}" wire:model="phone">
+                                                <input type="number" id="phone" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('phone') ?? Auth::user()->phone }}" wire:model="phone" disabled>
                                                 <span class="text-danger">@error('phone'){{ $message }}@enderror</span>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="email" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Email address</label>
-                                                <input type="email" id="email" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('email') ?? Auth::user()->email }}" wire:model="email">
+                                                <input type="email" id="email" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('email') ?? Auth::user()->email }}" wire:model="email" disabled>
                                                 <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                                             </div>
                                         </div>

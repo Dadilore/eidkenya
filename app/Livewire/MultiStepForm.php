@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert; 
 use App\Http\Controllers\HomeController;
 use Livewire\Request;
+use Illuminate\Support\Str;
 
 
 class MultiStepForm extends Component
@@ -20,8 +21,8 @@ class MultiStepForm extends Component
     use WithFileUploads;
 
     public $user_id;
-    public $gender;
-    public $phone;
+    // public $gender;
+    // public $phone;
     public $fathers_name;
     public $mothers_name;
     public $marital_status;
@@ -29,7 +30,7 @@ class MultiStepForm extends Component
     public $husbands_id_number;
     public $occupation;
     public $telephone_number;
-    public $email;
+    // public $email;
     public $district_of_birth;
     public $tribe;
     public $clan;
@@ -53,6 +54,9 @@ class MultiStepForm extends Component
     public $mothers_id_card_back;
     public $application_status;
     public $county_of_birth;
+    // public $surname;
+    // public $name;
+    // public $middle_name;
     public $terms;
 
     public $totalSteps = 4;
@@ -97,44 +101,38 @@ class MultiStepForm extends Component
     {
         // Add your validation rules here
 
-        // if ($this->currentStep == 2) {
-        //     $this->validate([
-        //         'phone' => 'required',
-        //         'email' => 'required|email',
-        //         'marital_status' => 'required',
-        //         'occupation' => 'required|string',
-        //         'fathers_name' => 'required|string',
-        //         'mothers_name' => 'required|string',
-        //     ]);
-        // } elseif ($this->currentStep == 3) {
-        //     $this->validate([
-        //         'district_of_birth' => 'required|string',
-        //         'tribe' => 'required|string',
-        //         'county_of_birth' => 'required|string',
-        //         'clan' => 'required|string',
-        //         'family' => 'required',
-        //         'home_district' => 'required|string',
-        //         'division' => 'required|string',
-        //         'constituency' => 'required',
-        //         'location' => 'required|string',
-        //         'sub_location' => 'required|string',
-        //         'village' => 'required|string',
-        //         'home_address' => 'required',
-        //     ]);
-        // } elseif ($this->currentStep == 4) {
-        //     $this->validate([
-        //         'birth_certificate_number' => 'string',
-        //         'passport_number' => 'string',
-        //         'parents_id_number' => 'string',
-        //         'certificate_of_registration_number' => 'string',
+        if ($this->currentStep == 2) {
+            $this->validate([
 
-        //         'birth_certificate' => 'required|string',
-        //         'fathers_id_card_front' => 'required|string',
-        //         'fathers_id_card_back' => 'required',
-        //         'mothers_id_card_front' => 'required|string',
-        //         'mothers_id_card_back' => 'required|string',
-        //     ]);
-        // } 
+                // 'surname' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'middle_name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'phone' => 'required|regex:/^07\d{8}$/|max:10',
+                // 'gender' => 'required',
+                // 'email' => 'required|email',
+                
+                'marital_status' => 'required',
+                'occupation' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'fathers_name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'mothers_name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            ]);
+        } elseif ($this->currentStep == 3) {
+            $this->validate([
+                'district_of_birth' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'tribe' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'county_of_birth' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'clan' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'family' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'home_district' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'division' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'constituency' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'location' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'sub_location' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'village' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'home_address' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            ]);
+        } 
+       
     }
 
     public function register(\Illuminate\Http\Request $request)
@@ -146,6 +144,7 @@ class MultiStepForm extends Component
         $document = null;
 
         // Check if the user has already applied for a new ID
+        
         // $existingApplication = Applications::where('user_id', auth()->id())
         //     ->where('application_type', 'New Application')
         //     ->first();
@@ -155,13 +154,37 @@ class MultiStepForm extends Component
         // }
 
         if ($this->currentStep == 4) {
+
+           
+                
+            $this->validate([
+                'birth_certificate_number' => 'required|numeric',
+                'passport_number' => 'required|numeric',
+                'parents_id_number' => 'required|numeric',
+                'certificate_of_registration_number' => 'required|numeric',
+
+                'birth_certificate' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'passport_photo' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'fathers_id_card_front' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'fathers_id_card_back' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'mothers_id_card_front' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'mothers_id_card_back' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+            ]);
+                
+            
+
             // Proceed with form submission since there is no existing application
 
             $application = Applications::create([
                 'user_id' => $this->user_id,
                 'application_type' => 'New Application',
                 'application_status' => 'application_incomplete', 
+                'unique_application_id' => 'eID' . Str::random(5, 'alnum'), // Generate a unique ID
             ]);
+
+            // $uniqueApplicationId = Str::random(6);
+            // dd($uniqueApplicationId); // Debugging: Print out the generated ID
+
 
 
             // Check if the application was created successfully
@@ -206,6 +229,7 @@ class MultiStepForm extends Component
                     'passport_number' => $this->passport_number,
                     'parents_id_number' => $this->parents_id_number,
                     'certificate_of_registration_number' => $this->certificate_of_registration_number,
+                    
                     'birth_certificate' => $this->birth_certificate,
                     'fathers_id_card_front' => $this->fathers_id_card_front,
                     'fathers_id_card_back' => $this->fathers_id_card_back,
@@ -216,8 +240,9 @@ class MultiStepForm extends Component
                 $application->update(['application_status' => 'Application Complete']);
 
                 // Send email after successful form submission
-                // $homeController = new HomeController();
-                // $homeController->sendnotification();
+                
+                $homeController = new HomeController();
+                $homeController->sendnotification();
 
 
                 if ($this->currentStep === 4) {
@@ -263,7 +288,10 @@ class MultiStepForm extends Component
                     return redirect()->route('payment')->with('success', [
                         'message' => 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.',
                         'application_id' => $applicationsId,
-                    ]);                    
+                        'random_number' => $application->unique_application_id, 
+                    ]);    
+                    
+
                     
 
 

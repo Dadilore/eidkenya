@@ -3,7 +3,8 @@
                 
                 <div id="kt_app_content_container" class="app-container mt-5 container-xxl ">
                    
-    
+                <div style="font-size: 24px; color: red;">Time spent: <span id="timer" style="font-weight: bold;"></span></div>
+                
                     <div class="card my-5 mb-xxl-8 bg-light-primary">
                         <div class="card-body pt-9 pb-0">
                             <div class="d-flex flex-wrap flex-sm-nowrap">
@@ -148,7 +149,7 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="email" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Email address</label>
-                                                <input type="email" id="email" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('email') ?? Auth::user()->email }}" wire:model="email">
+                                                <input type="email" id="email" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('email') ?? Auth::user()->email }}" wire:model="email" disabled>
                                                 <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                                             </div>
                                         </div>
@@ -158,13 +159,12 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group">
                                                 <label for="" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Marital Status</label>
-                                                <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="marital_status">
+                                                <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="marital_status" disabled>
                                                     <option value="" selected>Choose Marital status</option>
                                                     <option value="single">Single</option>
                                                     <option value="married">Married</option>
                                                     <option value="divorced">Divorced</option>
                                                     <option value="widowed">Widowed</option>
-                                                    <!-- <option value="male">Male</option> -->
                                                 </select>
                                                 <span class="text-danger">@error('marital_status'){{ $message }}@enderror</span>
                                             </div>

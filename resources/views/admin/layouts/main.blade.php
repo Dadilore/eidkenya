@@ -28,6 +28,11 @@
     <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="expires" content="0">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shortcut icon" href="{{ asset ('assets/images/logo/logo.png') }}" />
@@ -196,6 +201,9 @@
     <script src="{{ asset('user/js/custom/utilities/modals/offer-a-deal/complete.js') }}"></script>
     <script src="{{ asset('user/js/custom/utilities/modals/offer-a-deal/main.js') }}"></script>
     <script src="{{ asset('user/js/custom/utilities/modals/users-search.js') }}"></script>
+
+    <script src="{{ asset('assets/js/preventback.js') }}"></script>
+
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
   </body>

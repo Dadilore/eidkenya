@@ -10,8 +10,8 @@
 				<!--begin::Wrapper-->
 				<div class="w-lg-500px p-10 ">
 					<!--begin::Form-->
-					<form class="form w-100 " method="POST" action="{{ route('login') }}">
-					@csrf
+					<form class="form w-100" method="POST" action="{{ route('login') }}">
+						@csrf
 						<!--begin::Heading-->
 						<div class="text-center mb-11">
 							<!--begin::Title-->
@@ -21,10 +21,15 @@
 							<div class="text-gray-500 fw-semibold fs-6">A Smarter National ID Application Experience.</div>
 							<!--end::Subtitle=-->
 						</div>
+						
 						<div class="fv-row mb-8">
 							<!--begin::Email-->
 							<label>Email Address</label>
 							<input id="login" class="form-control bg-transparent" type="text" name="login" value="{{ old('login') }}"  placeholder="Enter your email address" autocomplete="off" class="form-control bg-transparent" />
+							<!-- Display email validation error -->
+							@error('login')
+								<div class="text-danger">{{ $message }}</div>
+							@enderror
 							<!--end::Email-->
 						</div>
 						<!--end::Input group=-->
@@ -32,6 +37,10 @@
 							<!--begin::Password-->
 							<label>Password</label>
 							<input type="password" id="password" placeholder="Enter your password" name="password" autocomplete="off" class="form-control bg-transparent" />
+							<!-- Display password validation error -->
+							@error('password')
+								<div class="text-danger">{{ $message }}</div>
+							@enderror
 							<!--end::Password-->
 						</div>
 						<!--end::Input group=-->
@@ -40,23 +49,23 @@
 							<div></div>
 							<!--begin::Link-->
 							@if (Route::has('password.request'))
-							<a href="{{ route('password.request') }}" class="link-primary">Forgot Password ?</a>
+								<a href="{{ route('password.request') }}" class="link-primary">Forgot Password ?</a>
 							@endif
 							<!--end::Link-->
 						</div>
 						<!--end::Wrapper-->
 						<!--begin::Submit button-->
 						<div class="d-grid mb-10">
-							<button type="submit" class="btn btn-primary">
-								Log In
-							</button>
+							<button type="submit" class="btn btn-primary">Log In</button>
 						</div>
 						<!--end::Submit button-->
 						<!--begin::Sign up-->
 						<div class="text-gray-500 text-center fw-semibold fs-6">Not registered yet? 
-						<a href="{{route('register')}}" class="link-primary">Register</a></div>
+							<a href="{{ route('register') }}" class="link-primary">Register</a>
+						</div>
 						<!--end::Sign up-->
 					</form>
+
 					<!--end::Form-->
 				</div>
 				<!--end::Wrapper-->

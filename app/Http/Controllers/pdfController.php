@@ -53,6 +53,7 @@ class pdfController extends Controller
         return $pdf->download(' eIDKenya applications.pdf');
     }
 
+
     public function generate_invoice_pdf(Request $request)
     {
         // Fetch authenticated user's details
@@ -129,6 +130,64 @@ class pdfController extends Controller
         $pdf = Pdf::loadView('admin.logs.generate_log', $data);
         return $pdf->download("eIDKenya_userslog_{$selectedYear}_{$selectedMonth}.pdf");
     }
+
+    public function generate_financial_reports(Request $request)
+    {
+        // Get the selected month and year from the request (default to current month and year)
+        $selectedMonth = $request->input('month', date('m'));
+        $selectedYear = $request->input('year', date('Y'));
+
+        // Fetch data from mpesa_stks table for the specified month and year
+        $mpesaTransactions = MpesaSTK::whereYear('created_at', $selectedYear)
+            ->whereMonth('created_at', $selectedMonth)
+            ->get();
+
+        $financialData = [];
+        $totalAmount = 0;
+
+        // Loop through each mpesa transaction
+        foreach ($mpesaTransactions as $transaction) {
+            // Retrieve application ID from the mpesa transaction
+            $applicationId = $transaction->application_id;
+
+            // Get application type from the applications table using the application ID
+            $application = Applications::find($applicationId);
+
+            if ($application) {
+                $applicationType = $application->application_type;
+                $amountReceived = $transaction->amount;
+
+                // Add amount to the respective application type in the financial data array
+                if (!isset($financialData[$applicationType])) {
+                    $financialData[$applicationType] = 0;
+                }
+                $financialData[$applicationType] += $amountReceived;
+
+                // Update total amount
+                $totalAmount += $amountReceived;
+            }
+        }
+
+        // Calculate percentages
+        $percentageData = [];
+        foreach ($financialData as $applicationType => $amountReceived) {
+            $percentageData[$applicationType] = round(($amountReceived / $totalAmount) * 100, 2);
+        }
+
+        $data = [
+            'title' => 'Financial Report',
+            'date' => date('m/d/Y'),
+            'financialData' => $financialData,
+            'percentageData' => $percentageData,
+            'totalAmount' => $totalAmount,
+        ];
+
+        $pdf = Pdf::loadView('admin.payments.generate_financial_report', $data);
+        return $pdf->download("eIDKenya_financial_report_{$selectedYear}_{$selectedMonth}.pdf");
+    }
+
+
+    
 
 
 

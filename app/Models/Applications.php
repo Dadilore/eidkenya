@@ -36,6 +36,7 @@ class Applications extends Model
     protected $fillable = [
         'user_id',
         'application_type',
-        'application_status'
+        'application_status',
+        'unique_application_id'
     ];
 }

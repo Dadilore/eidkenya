@@ -3,6 +3,8 @@
                 
             <div id="kt_app_content_container" class="app-container mt-5 container-xxl ">
                
+            <div style="font-size: 24px; color: red;">Time spent: <span id="timer" style="font-weight: bold;"></span></div>
+
 
                 <div class="card my-5 mb-xxl-8 bg-light-primary">
                     <div class="card-body pt-9 pb-0">
@@ -98,21 +100,21 @@
                                     <div class="col-md-4 mb-4">
                                         <div class="form-group">
                                             <label for="surname" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Surname </label>
-                                            <input type="text" id="surname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('surname') ?? Auth::user()->surname }}" wire:model="surname" >
+                                            <input type="text" id="surname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('surname') ?? Auth::user()->surname }}" wire:model="surname" disabled >
                                             <span class="text-danger">@error('surname'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-4">
                                         <div class="form-group">
                                             <label for="name" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">First Name</label>
-                                            <input type="text" id="name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('name') ?? Auth::user()->name }}" wire:model="name">
+                                            <input type="text" id="name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('name') ?? Auth::user()->name }}" wire:model="name" disabled>
                                             <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-4">
                                         <div class="form-group">
                                             <label for="middle_name" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Other Names</label>
-                                            <input type="text" id="middle_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('middle_name') ?? Auth::user()->middle_name }}" wire:model="middle_name">
+                                            <input type="text" id="middle_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('middle_name') ?? Auth::user()->middle_name }}" wire:model="middle_name" disabled>
                                             <span class="text-danger">@error('middle_name'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -121,7 +123,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="sex" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Gender</label>
-                                            <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="sex">
+                                            <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" wire:model="sex" disabled>
                                                 <option value="">Choose Gender</option>
                                                 <option value="M" @if(Auth::user()->sex === "M") selected @endif>Male</option>
                                                 <option value="F" @if(Auth::user()->sex === "F") selected @endif>Female</option>
@@ -132,7 +134,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="dob" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Date of Birth</label>
-                                            <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('dob') ?? Auth::user()->dob }}" wire:model="dob">
+                                            <input type="text" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('dob') ?? Auth::user()->dob }}" wire:model="dob" disabled>
                                             <span class="text-danger">@error('dob'){{ $message }}@enderror</span>
                                         </div>
                                     </div>                        
@@ -141,14 +143,14 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="phone" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Telephone number</label>
-                                            <input type="number" id="phone" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('phone') ?? Auth::user()->phone }}" wire:model="phone">
+                                            <input type="number" id="phone" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('phone') ?? Auth::user()->phone }}" wire:model="phone" disabled>
                                             <span class="text-danger">@error('phone'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-group">
                                             <label for="email" class="d-flex align-items-center fs-5 fw-semibold mb-2 required">Email address</label>
-                                            <input type="email" id="email" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('email') ?? Auth::user()->email }}" wire:model="email">
+                                            <input type="email" id="email" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{ old ('email') ?? Auth::user()->email }}" wire:model="email" disabled>
                                             <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -305,10 +307,7 @@
                             </div>
                             @endif
 
-                            {{-- STEP 4 --}}
-
                             @if ($currentStep == 4)
-
                                 <div class="step-three" id="4">
                                     <div class="card">
                                     
@@ -429,7 +428,7 @@
                             @endif
                             
                             @if ($currentStep == 4)
-                                <button  type="submit" class="btn btn-md btn-primary">Submit</button>
+                                <button  type="submit" class="btn btn-md btn-primary" >Submit</button>
                             @endif
 
                             

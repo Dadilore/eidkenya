@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('pageTitle', 'Activity Logs')
+@section('pageTitle', 'Financial Report')
 @section('content')
 
     <div class="card my-5 mb-xxl-8 bg-light-primary">
@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                         <div class="d-flex flex-column">
                             <div class="d-flex align-items-center mb-2">
-                                <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Generate activity Logs </span>
+                                <span class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Generate Financial Reports </span>
                             </div>
                             <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
                                 <span class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
@@ -25,9 +25,9 @@
 
     <center>
         <div class="col-md-8 card shadow"  style="padding:20px;">
-            <div class="card-header" style="font-size:30px;"><b>Activity Logs</b></div>
+            <div class="card-header" style="font-size:30px;"><b>financial Reports</b></div>
             <div class="card-body">
-                <form action="{{ route('generate_log') }}" method="GET">
+                <form action="{{ route('generate_financial_reports') }}" method="GET">
                     
 
                     <div class="col-md-6">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-danger" type="submit">Download Logs</button>
+                    <button class="btn btn-danger" type="submit">Download Report</button>
                 </form>
             </div>
         </div>

@@ -36,9 +36,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'middle_name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'regex:/^[a-zA-Z\s]+$/u', 'max:255'],
+            'middle_name' => ['required', 'regex:/^[a-zA-Z\s]+$/u', 'max:255'],
+            'surname' => ['required', 'regex:/^[a-zA-Z\s]+$/u', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'dob' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d') . '|after_or_equal:' . now()->subYears(100)->format('Y-m-d'),
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -48,6 +48,7 @@ class RegisteredUserController extends Controller
                 // Add any other phone-related validation rules here if needed
             ],
         ]);
+        
 
         $user = User::create([
             'name' => $request->name,

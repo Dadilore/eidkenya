@@ -42,17 +42,17 @@ class MpesaSTKPUSHController extends Controller
         // Determine the amount based on the application type
         switch ($application->application_type) {
             case 'New Application':
-                $amount = 1; // Set the amount to 1 for New Application
+                $amount = 1000; // Set the amount to 1 for New Application
                 break;
             case 'Replacement Application':
-                $amount = 2; // Set the amount to 2 for Replacement Application
+                $amount = 2000; // Set the amount to 2 for Replacement Application
                 break;
             case 'Change of Particulars':
-                $amount = 3; // Set the amount to 3 for Change of Particulars
+                $amount = 2000; // Set the amount to 3 for Change of Particulars
                 break;
             // Add more cases if needed for other application types
             default:
-                $amount = 1; // Default to 1 if the application type is not recognized
+                $amount = 1000; // Default to 1 if the application type is not recognized
                 break;
         }
 
@@ -116,6 +116,42 @@ class MpesaSTKPUSHController extends Controller
                 return redirect()->back()->with('error', 'An error occurred during payment.');
             }
         }
+    }
+
+
+    // Handle webhook callback
+    public function handleCallback(Request $request)
+    {
+        // Log the request for debugging
+        Log::info('Mpesa STK Push Webhook Request: ' . json_encode($request->all()));
+
+        // Retrieve the necessary data from the request
+        $checkoutRequestID = $request->input('CheckoutRequestID');
+        $resultCode = $request->input('ResultCode');
+        $resultDesc = $request->input('ResultDesc');
+
+        // Update the MpesaSTK record based on the checkoutRequestID
+        $mpesaSTK = MpesaSTK::where('checkout_request_id', $checkoutRequestID)->first();
+
+        if ($mpesaSTK) {
+            // Update the MpesaSTK record with the response data
+            $mpesaSTK->update([
+                'result_code' => $resultCode,
+                'result_desc' => $resultDesc
+            ]);
+
+            // Log the update
+            Log::info('Mpesa STK Push Record Updated: ' . json_encode($mpesaSTK->toArray()));
+            Log::info('Mpesa STK Push Webhook Request: ' . json_encode($request->all()));
+        } else {
+            // Log an error if the record is not found
+            Log::error('Mpesa STK Push Record Not Found for Checkout Request ID: ' . $checkoutRequestID);
+        }
+
+        // Return a response
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 
     

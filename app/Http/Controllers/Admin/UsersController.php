@@ -17,11 +17,18 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
         $data = User::paginate(5); // You can adjust the number (10) based on your desired items per page.
         return view('admin.users.index', compact('data'));
     }
+
+    // public function index()
+    // {
+    //     $data = User::whereNotIn('role', ['admin'])->paginate(5);
+    //     return view('admin.users.index', compact('data'));
+    // }
 
     /**
      * Show the form for creating a new resource.

@@ -2,17 +2,18 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use App\Models\Birthplaces;
-use App\Models\PersonalDetails;
-use App\Models\Documents;
-use App\Models\Applications;
-use App\http\Controllers\Auth\AuthenticatedSessionController;
-use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert; 
-use App\Http\Controllers\HomeController;
 use Livewire\Request;
+use Livewire\Component;
+use App\Models\Documents;
+use App\Models\Birthplaces;
+use Illuminate\Support\Str;
+use App\Models\Applications;
+use Livewire\WithFileUploads;
+use App\Models\PersonalDetails;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use RealRashid\SweetAlert\Facades\Alert; 
+use App\http\Controllers\Auth\AuthenticatedSessionController;
 
 
 class ChangeOfParticulars extends Component
@@ -20,8 +21,8 @@ class ChangeOfParticulars extends Component
     use WithFileUploads;
 
     public $user_id;
-    public $gender;
-    public $phone;
+    // public $gender;
+    // public $phone;
     public $fathers_name;
     public $mothers_name;
     public $marital_status;
@@ -29,7 +30,7 @@ class ChangeOfParticulars extends Component
     public $husbands_id_number;
     public $occupation;
     public $telephone_number;
-    public $email;
+    // public $email;
     public $district_of_birth;
     public $tribe;
     public $clan;
@@ -51,8 +52,12 @@ class ChangeOfParticulars extends Component
     public $fathers_id_card_back;
     public $mothers_id_card_front;
     public $mothers_id_card_back;
-    public $old_id;
     public $application_status;
+    public $county_of_birth;
+    public $old_id;
+    // public $surname;
+    // public $name;
+    // public $middle_name;
     public $terms;
 
     public $totalSteps = 4;
@@ -74,8 +79,8 @@ class ChangeOfParticulars extends Component
 
     public function increaseStep()
     {
-        // $this->resetErrorBag();
-        // $this->validateData();
+        $this->resetErrorBag();
+        $this->validateData();
 
 
         $this->currentStep++;
@@ -86,7 +91,7 @@ class ChangeOfParticulars extends Component
 
     public function decreaseStep()
     {
-        // $this->resetErrorBag();
+        $this->resetErrorBag();
         $this->currentStep--;
         if ($this->currentStep < 1) {
             $this->currentStep = 1;
@@ -99,44 +104,38 @@ class ChangeOfParticulars extends Component
 
         if ($this->currentStep == 2) {
             $this->validate([
-                'phone' => 'required',
-                'email' => 'required|email',
+                // 'surname' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'middle_name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'phone' => 'required|regex:/^07\d{8}$/|max:10',
+                // 'gender' => 'required',
+                // 'email' => 'required|email',
                 'marital_status' => 'required',
-                'occupation' => 'required|string',
-                'fathers_name' => 'required|string',
-                'mothers_name' => 'required|string',
+                'occupation' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'fathers_name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'mothers_name' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             ]);
         } elseif ($this->currentStep == 3) {
             $this->validate([
-                'district_of_birth' => 'required|string',
-                'clan' => 'required|string',
-                'family' => 'required',
-                'home_district' => 'required|string',
-                'division' => 'required|string',
-                'constituency' => 'required',
-                'location' => 'required|string',
-                'sub_location' => 'required|string',
-                'village' => 'required|string',
-                'home_address' => 'required',
-            ]);
-        } elseif ($this->currentStep == 4) {
-            $this->validate([
-                'birth_certificate_number' => 'string',
-                'passport_number' => 'string',
-                'parents_id_number' => 'string',
-                'certificate_of_registration_number' => 'string',
-
-                'birth_certificate' => 'required|string',
-                'fathers_id_card_front' => 'required|string',
-                'fathers_id_card_back' => 'required',
-                'mothers_id_card_front' => 'required|string',
-                'mothers_id_card_back' => 'required|string',
+                'district_of_birth' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'tribe' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                // 'county_of_birth' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'clan' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'family' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'home_district' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'division' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'constituency' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'location' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'sub_location' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'village' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'home_address' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             ]);
         } 
+       
     }
 
 
-    public function register3(\Illuminate\Http\Request $request)
+    public function register(\Illuminate\Http\Request $request)
     {
         $this->resetErrorBag();
 
@@ -145,23 +144,43 @@ class ChangeOfParticulars extends Component
         $document = null;
 
         // Check if the user has already applied for a new ID
-        $existingApplication = Applications::where('user_id', auth()->id())
-            ->where('application_type', 'Change of Particulars')
-            ->first();
+        // $existingApplication = Applications::where('user_id', auth()->id())
+        //     ->where('application_type', 'New Application')
+        //     ->first();
 
-        if ($existingApplication) {
-            // Redirect the user back with an error message
-            return redirect()->back()->with('error', 'You have already applied for change of particulars. You cannot apply for a second one.');
-        }
+        // if ($existingApplication) {
+        //     return redirect()->back()->with('error', 'You have already applied for a new ID. You cannot apply for a second one.');
+        // }
 
         if ($this->currentStep == 4) {
+
+           
+                
+            $this->validate([
+                'birth_certificate_number' => 'required|numeric',
+                'passport_number' => 'required|numeric',
+                'parents_id_number' => 'required|numeric',
+                'certificate_of_registration_number' => 'required|numeric',
+
+                'birth_certificate' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'passport_photo' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'fathers_id_card_front' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'fathers_id_card_back' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'mothers_id_card_front' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+                'mothers_id_card_back' => 'required|file|mimes:jpeg,png,jpg|max:5000',
+            ]);
+                
+            
+
             // Proceed with form submission since there is no existing application
 
             $application = Applications::create([
                 'user_id' => $this->user_id,
                 'application_type' => 'Change of Particulars',
                 'application_status' => 'application_incomplete', 
+                'unique_application_id' => 'eID' . Str::random(5, 'alnum'), // Generate a unique ID
             ]);
+
 
             // Check if the application was created successfully
             if ($application) {
@@ -205,6 +224,7 @@ class ChangeOfParticulars extends Component
                     'passport_number' => $this->passport_number,
                     'parents_id_number' => $this->parents_id_number,
                     'certificate_of_registration_number' => $this->certificate_of_registration_number,
+
                     'birth_certificate' => $this->birth_certificate,
                     'fathers_id_card_front' => $this->fathers_id_card_front,
                     'fathers_id_card_back' => $this->fathers_id_card_back,
@@ -216,8 +236,9 @@ class ChangeOfParticulars extends Component
                 $application->update(['application_status' => 'Application Complete']);
 
                 // Send email after successful form submission
-                // $homeController = new HomeController();
-                // $homeController->sendnotification();
+                
+                $homeController = new HomeController();
+                $homeController->sendnotification();
 
 
                 if ($this->currentStep === 4) {
@@ -263,12 +284,16 @@ class ChangeOfParticulars extends Component
                     // ... (Similar logic for other images)
                 }
 
+                
+                    // Redirect to the payment page with the application ID
+                    return redirect()->route('payment')->with('success', [
+                        'message' => 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.',
+                        'application_id' => $applicationsId,
+                        'random_number' => $application->unique_application_id, 
+                    ]);                    
+                    
 
-                 // Redirect to the payment page with the application ID
-                 return redirect()->route('payment')->with('success', [
-                    'message' => 'Application submitted successfully. Please enter your MPESA number or follow the paybill steps to complete your application payment.',
-                    'application_id' => $applicationsId,
-                ]);
+
             }
         }
 
@@ -276,4 +301,8 @@ class ChangeOfParticulars extends Component
         // You can redirect to the first step of the form or stay on the current step
         return redirect()->back()->with('error', 'There was an error submitting your application. Please try again.');
     }
+
+
+
+    
 }

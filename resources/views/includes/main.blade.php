@@ -17,6 +17,7 @@
 				<meta http-equiv="pragma" content="no-cache">
 				<meta http-equiv="expires" content="0">
 
+
 				<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
 				<link rel="shortcut icon" href=" {{ asset('assets/images/logo/logo.png') }}" />
 				<!--begin::Fonts(mandatory for all pages)-->
@@ -2639,6 +2640,8 @@
 				<script src="{{ asset('user/js/custom/widgets.js') }}"></script>
 				<script src="{{ asset('user/js/custom/apps/chat/chat.js') }}"></script>
 				<script src="{{ asset('user/js/custom/utilities/modals/users-search.js') }}"></script>
+
+				<script src="{{ asset('assets/js/preventback.js') }}"></script>
 
 
 

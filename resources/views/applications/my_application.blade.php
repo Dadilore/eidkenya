@@ -63,7 +63,10 @@
                                     <th class="p-0 pb-3 text-end">CREATED ON</th>
                                     <th class="p-0 pb-3 text-end">STATUS</th>
                                     <th class="p-0 pb-3 text-end">APPOINTMENTS</th>
+                                    <th class="p-0 pb-3 text-end">UNIQUE APPLICATION ID</th>
                                     <th class="p-0 pb-3 text-end">RECEIPT</th>
+                                    
+                                    <!-- <th class="p-0 pb-3 text-end">Pay</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,9 +97,17 @@
                                                 </ul>
                                             </div>
                                         </td>
+
+                                        <td class="text-end">
+                                            <span class="text-gray-600 fw-bold fs-6">{{ $application->unique_application_id }}</span>
+                                        </td>
+
                                         <td class="text-end">
                                             <a href="{{ route('generate_invoice_pdf', ['application_id' => $application->id]) }}" class="btn btn-primary btn-sm">Download Receipt</a>
                                         </td>
+                                        <!-- <td class="text-end">
+                                            <a href="{{ route('payment', ['application_id' => $application->id]) }}" class="btn btn-primary btn-sm">Pay</a>
+                                        </td> -->
                                     </tr>
                                 @endforeach
                             </tbody>

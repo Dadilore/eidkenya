@@ -7,6 +7,8 @@
     <div id="kt_app_content" class="app-content  flex-column-fluid ">
         
     <div id="kt_app_content_container" class="app-container  container-xxl ">
+        
+    <div style="font-size: 24px; color: red;">Time spent: <span id="timer" style="font-weight: bold;"></span></div>
 
             @if (session()->has('success'))
             <div class="container mt-5">
@@ -134,14 +136,17 @@
                                                         </div>
                                                     </div>                                
                                                 </div>
+
                                                 <div class="separator separator-dashed my-3"></div>
                                                 <div class="d-flex flex-stack">
                                                     <div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
                                                         <div class="me-5">
-                                                            <span class="text-gray-800 fw-bold text-hover-primary fs-6">5. Enter Account Number <span class="fw-bolder text-primary">gok</span></span>                                  
+                                                            <span class="text-gray-800 fw-bold text-hover-primary fs-6">5. Enter Account Number <span class="fw-bolder text-primary">{{ session('success.random_number') }}</span></span>                                  
                                                         </div>
                                                     </div>                                
                                                 </div>
+
+
                                                 <div class="separator separator-dashed my-3"></div>
                                                 <div class="d-flex flex-stack">
                                                     <div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -191,5 +196,36 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let startTime = localStorage.getItem('startTime');
+        if (!startTime) {
+            // Handle case where timer was not started on the application page
+            return;
+        }
+        startTime = new Date(startTime);
+
+        function startTimer() {
+            setInterval(updateTimer, 1000); // Update timer every second
+        }
+
+        function updateTimer() {
+            const currentTime = new Date();
+            const elapsedTime = currentTime - startTime; // Time difference in milliseconds
+
+            // Calculate hours, minutes, and seconds
+            const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+            const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+            // Display the timer in a suitable format
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Start the timer when the page loads
+        startTimer();
+    });
+</script>
 
     @endsection

@@ -66,7 +66,7 @@
                         <th>Status</th>
                         <th>Receipt Number</th>
                         <th>Email</th>
-                        <th>SMS</th>
+                        <!-- <th>SMS</th> -->
                         <th>ID Collected</th>
                         <!-- <th>Actions</th> -->
                     </tr>
@@ -90,9 +90,9 @@
                         <a class="btn btn-secondary" onclick="return confirm('Are you sure you want to send email?')" href="{{ route('send.pickup.notification', ['applicationId' => $appoint->id]) }}">Send Email</a>
                         </td>
 
-                        <td>
+                        <!-- <td>
                         <a class="btn btn-secondary" onclick="return confirm('Are you sure you want to send SMS?')" href="{{ route('test') }}">Send SMS</a>
-                        </td>
+                        </td> -->
 
                         <td>
                             <a class="btn btn-secondary" onclick="return confirm('Are you sure you want to update this application?')" href="{{ route('applications.updateStatus', ['application' => $appoint->id]) }}">ID collected</a>
